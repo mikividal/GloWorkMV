@@ -10,9 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_27_150009) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_27_152501) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "suggestion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["suggestion_id"], name: "index_likes_on_suggestion_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "moodtrackers", force: :cascade do |t|
+    t.integer "mood"
+    t.date "date"
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_moodtrackers_on_user_id"
+  end
+
+  create_table "suggestion_comments", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.bigint "suggestion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["suggestion_id"], name: "index_suggestion_comments_on_suggestion_id"
+    t.index ["user_id"], name: "index_suggestion_comments_on_user_id"
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.string "suggestion"
+    t.date "date"
+    t.boolean "actioned"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +63,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_27_150009) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "likes", "suggestions"
+  add_foreign_key "likes", "users"
+  add_foreign_key "moodtrackers", "users"
+  add_foreign_key "suggestion_comments", "suggestions"
+  add_foreign_key "suggestion_comments", "users"
 end
