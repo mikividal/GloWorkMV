@@ -1,0 +1,7 @@
+<h1>Events Calendar</h1>
+<p>See your upcoming events</p>
+
+<h2>List of events</h2>
+<p><%= event.name %></p>
+<p><%=  event.count %> events </p>
+<%= link_to "Add an event", new_event_path if current_user.admin? %>
