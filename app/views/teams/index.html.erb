@@ -1,0 +1,54 @@
+<div class="teams-container">
+  <% if current_user.admin? %>
+    <!-- MANAGER VIEW -->
+    <div class="team-list">
+      <button class="add-button">+ Add new team member</button>
+      <ul>
+        <% @users.each do |user| %>
+          <li>
+            <%= image_tag("default_avatar.png") %>
+            <div><%= user.full_name %></div>
+            <div><%= user.job_position %></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="team-detail">
+      <div class="user-card">
+        <!-- Placeholder details - use JS or Ruby to show selected user -->
+        <h2>Full Name</h2>
+        <p>Role</p>
+        <p>Team</p>
+        <p>📍Location</p>
+        <p>Email: first.last@lewagon.com</p>
+      </div>
+      <div id="map">[insert map here]</div>
+    </div>
+
+  <% else %>
+    <!-- EMPLOYEE VIEW -->
+    <div class="team-list">
+      <ul>
+        <% @users.each do |user| %>
+          <li>
+            <%= image_tag("default_avatar.png") %>
+            <div><%= user.full_name %></div>
+            <div><%= user.job_position %></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="team-detail">
+      <div class="user-card">
+        <h2><%= current_user.full_name %></h2>
+        <p><%= current_user.job_position %></p>
+        <p><%= current_user.team %></p>
+        <p>📍<%= current_user.location %></p>
+        <p>Email: <%= current_user.email %></p>
+      </div>
+      <div id="map">[insert map here]</div>
+    </div>
+  <% end %>
+</div>

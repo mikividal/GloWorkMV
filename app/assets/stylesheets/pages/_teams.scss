@@ -1,0 +1,27 @@
+.teams-container {
+  display: flex;
+  flex-direction: row;
+  width: 1440px;
+  height: 1024px;
+  background: #FCFCFC;
+}
+
+.team-list {
+  width: 30%;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.team-detail {
+  width: 70%;
+  padding: 40px;
+}
+
+.add-button {
+  background-color: #F48C7F;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}

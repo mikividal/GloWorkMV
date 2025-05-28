@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     resource :likes, only: %i[create]
   end
   resources :events
-  resources :teams
+  resources :teams, only: [:index, :show]
   resources :pages, only: %i[dashboard]
 end
