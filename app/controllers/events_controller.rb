@@ -9,10 +9,12 @@ class EventsController < ApplicationController
   end
 
   def new
+    redirect_to events_path unless current_user.admin?
     @event = Event.new
   end
 
   def create
+    redirect_to events_path unless current_user.admin?
     @event = Event.new(params[:event])
     if @event.save
       redirect_to events_path
@@ -22,16 +24,19 @@ class EventsController < ApplicationController
   end
 
   def edit
+    redirect_to events_path unless current_user.admin?
     @edit = Edit.find(params[:id])
   end
 
   def update
+    redirect_to events_path unless current_user.admin?
     @event = Event.find(params[:id])
     @event.update(params[:event])
     redirect_to event_path(@event)
   end
 
   def destroy
+    redirect_to events_path unless current_user.admin?
     @event = Event.find(params[:id])
     @event.destroy
   end
