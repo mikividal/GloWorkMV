@@ -9,15 +9,14 @@ class SuggestionsController < ApplicationController
 
   def new
     @suggestion = Suggestion.new
-    @user = current_user
   end
 
 
   def create
     @suggestion = Suggestion.new(suggestion_params)
-    @suggestion.user = current_user
+    # @suggestion.user = current_user
     if @suggestion.save
-      redirect_to suggestions_path
+      redirect_to root_path
     else
       render :new, :unprocessable_entity
     end
@@ -29,6 +28,7 @@ class SuggestionsController < ApplicationController
       redirect_to suggestion_path(@suggestion)
     else
       render :index, :unprocessable_entity
+    end
   end
 
 

@@ -1,0 +1,10 @@
+<div id="comment-form">
+  <div class="modal-card">
+    <button class="close-button">&times;</button>
+    <h2>Would you like to add a suggestion</h2>
+     <%= simple_form_for @suggestion do |f| %>
+      <%= f.input :suggestion, placeholder: "Share your suggestion here..." %>
+      <%= f.button :submit, "SUBMIT", class: "next-button" %>
+    <% end %>
+  </div>
+</div>

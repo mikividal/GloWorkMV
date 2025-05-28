@@ -1,7 +1,6 @@
-
 <% [ [1, "☹️"], [2, "😐"], [3, "😀"] ].each do |mood_value, emoji| %>
-  <%= simple_form_for Moodtracker.new do |f| %>
-    <%= f.input :mood, as: :hidden, input_html: { value: mood_value }%>
+  <%= simple_form_for Moodtracker.new, html: { class: "inline-form" }, data: { turbo_frame: "modal-output" } do |f| %>
+    <%= f.input :mood, as: :hidden, input_html: { value: mood_value } %>
     <%= f.button :submit, emoji, class:"mood-button"%>
   <% end %>
 <% end %>
