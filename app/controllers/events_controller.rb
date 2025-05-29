@@ -2,6 +2,8 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    start_date = params.fetch(:start_date, Date.today).to_date
+    @events = Event.where(start_date: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
   end
 
   def show
@@ -14,8 +16,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    redirect_to events_path unless current_user.admin?
-    @event = Event.new(params[:event])
+    @event = Event.new(event_params)
+    @event.user = current_user
     if @event.save
       redirect_to events_path
     else
@@ -44,6 +46,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:event_name, :description, :location, :time, :date)
+    params.require(:event).permit(:event_name, :description, :location, :start_date)
   end
 end

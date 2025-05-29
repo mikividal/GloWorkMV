@@ -1,0 +1,11 @@
+
+<div id="comment-form">
+  <div class="modal-card">
+    <button class="close-button">&times;</button>
+    <h2>Please tell us more about your current mood</h2>
+     <%= simple_form_for @moodtracker do |f| %>
+      <%= f.input :comment, placeholder: "Share here..." %>
+      <%= f.button :submit, "NEXT", class: "next-button" %>
+    <% end %>
+  </div>
+</div>
