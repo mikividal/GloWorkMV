@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_28_164131) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_29_161918) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,22 +40,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_28_164131) do
     t.index ["user_id"], name: "index_moodtrackers_on_user_id"
   end
 
-  create_table "suggestion_comments", force: :cascade do |t|
-    t.text "comment"
-    t.bigint "user_id", null: false
-    t.bigint "suggestion_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["suggestion_id"], name: "index_suggestion_comments_on_suggestion_id"
-    t.index ["user_id"], name: "index_suggestion_comments_on_user_id"
-  end
-
   create_table "suggestions", force: :cascade do |t|
     t.string "suggestion"
     t.date "date"
     t.boolean "actioned"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "suggestions_comments", force: :cascade do |t|
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.bigint "suggestion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["suggestion_id"], name: "index_suggestions_comments_on_suggestion_id"
+    t.index ["user_id"], name: "index_suggestions_comments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,6 +80,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_28_164131) do
   add_foreign_key "likes", "suggestions"
   add_foreign_key "likes", "users"
   add_foreign_key "moodtrackers", "users"
-  add_foreign_key "suggestion_comments", "suggestions"
-  add_foreign_key "suggestion_comments", "users"
+  add_foreign_key "suggestions_comments", "suggestions"
+  add_foreign_key "suggestions_comments", "users"
 end
