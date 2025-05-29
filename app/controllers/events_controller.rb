@@ -4,6 +4,7 @@ class EventsController < ApplicationController
     @events = Event.all
     start_date = params.fetch(:start_date, Date.today).to_date
     @events = Event.where(start_date: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
+    @event = Event.new
   end
 
   def show
@@ -27,25 +28,30 @@ class EventsController < ApplicationController
 
   def edit
     redirect_to events_path unless current_user.admin?
-    @edit = Edit.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def update
     redirect_to events_path unless current_user.admin?
     @event = Event.find(params[:id])
-    @event.update(params[:event])
-    redirect_to event_path(@event)
+    @event.update(event_params)
+    if @event.save
+      redirect_to events_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
     redirect_to events_path unless current_user.admin?
     @event = Event.find(params[:id])
     @event.destroy
+    redirect_to events_path, status: :see_other
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:event_name, :description, :location, :start_date)
+    params.require(:event).permit(:event_name, :description, :location, :start_date, :end_date)
   end
 end

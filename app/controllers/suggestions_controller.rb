@@ -4,6 +4,7 @@ class SuggestionsController < ApplicationController
 
   def index
     @suggestions = Suggestion.all
+    @suggestions = Suggestion.order(:created_at)
   end
 
 
@@ -13,28 +14,42 @@ class SuggestionsController < ApplicationController
 
 
   def create
-    @suggestion = Suggestion.new(suggestion_params)
-    # @suggestion.user = current_user
-    if @suggestion.save
-      redirect_to root_path
-    else
-      render :new, :unprocessable_entity
-    end
+  @suggestion = Suggestion.new(suggestion_params)
+  if @suggestion.save
+    @suggestions = Suggestion.order(:created_at)
+    render :index, status: :see_other
+  else
+    render :new, status: :unprocessable_entity
   end
+end
+
 
 
   def update
+    unless current_user.admin?
+      redirect_to root_path, alert: "Not authorized"
+      return
+    end
+
     if @suggestion.update(suggestion_params)
-      redirect_to suggestion_path(@suggestion)
+      respond_to do |format|
+        format.html { redirect_to request.referer || suggestion_path(@suggestion) }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace("suggestion_#{@suggestion.id}", partial: "suggestions/suggestion", locals: { suggestion: @suggestion })
+        end
+      end
     else
-      render :index, :unprocessable_entity
+      redirect_to request.referer || suggestion_path(@suggestion), alert: "Update failed"
     end
   end
+
+
+
 
   private
 
   def suggestion_params
-    params.require(:suggestion).permit(:suggestion, :date, :actioned?)
+    params.require(:suggestion).permit(:suggestion, :date, :actioned)
   end
 
   def set_suggestion

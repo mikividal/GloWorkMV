@@ -116,6 +116,29 @@ marketing4 = User.create!(
   team: "Marketing",
   password: "secret"
 )
+
+admin = User.create!(
+  first_name: "Admin",
+  last_name: "Adminson",
+  email: "admin@glowork.com",
+  admin: true,
+  job_position: "Bossman",
+  team: "All",
+  location: Faker::Address.country,
+  password: "secret"
+)
+
+user = User.create!(
+  first_name: "User",
+  last_name: "Userson",
+  email: "user@glowork.com",
+  admin: false,
+  job_position: "Employee",
+  team: "Sales",
+  location: Faker::Address.country,
+  password: "secret"
+)
+
 puts "#{User.count} users created"
 puts"creating moodtrackers"
 
