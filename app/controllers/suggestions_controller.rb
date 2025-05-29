@@ -29,8 +29,8 @@ class SuggestionsController < ApplicationController
       redirect_to suggestion_path(@suggestion)
     else
       render :index, :unprocessable_entity
+    end
   end
-
 
   private
 
