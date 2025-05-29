@@ -1,0 +1,28 @@
+<h4> Latest Suggestions </h4>
+
+<div class="container" style="width: 95%;">
+  <div class='d-flex justify-content-between'>
+    <div class='left'>
+      <div class='suggestions-main'>
+        <% if @suggestions.any? %>
+          <% @suggestions.each do |suggestion| %>
+            <div class='suggestion-box'>
+             <h5> <%= suggestion.suggestion %></h5>
+              <p> <%= suggestion.date %> </p>
+              <p> <%= suggestion.actioned %> </p>
+              <%= link to "Edit", edit_suggestions_path(suggestion)%>
+              <%= link_to "Delete", suggestion_path(suggestion), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+
+    <div class='gap'>
+    </div>
+
+    <div class= 'right'>
+    </div>
+  </div>
+</div>

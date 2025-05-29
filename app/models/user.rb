@@ -1,6 +1,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+   devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  
+  validates :first_name, :last_name, :job_position, :location, :team, :admin, presence: true
+
+  has_many :events
+  
   def manager?
     admin
   end
@@ -9,8 +16,5 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
   
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
 
-  has_many :events
 end

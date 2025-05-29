@@ -31,7 +31,6 @@ class SuggestionsController < ApplicationController
     end
   end
 
-
   private
 
   def suggestion_params
