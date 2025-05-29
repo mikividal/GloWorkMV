@@ -1,0 +1,17 @@
+<turbo-frame id="modal-output">
+  <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0,0,0,0.5);">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content text-center">
+       <div class="modal-body p-4">
+        <div>
+          <h5 class="mb-3">DO YOU WANT TO TELL US MORE?</h5>
+          <div class="d-flex justify-content-center gap-3">
+            <%= link_to "NO", root_path, class: "btn btn-outline-secondary" %>
+            <%= link_to "YES", edit_moodtracker_path(moodtracker), class: "btn btn-outline-secondary", data: { turbo_frame: "_top" }  %>
+          </div>
+       </div>
+     </div>
+    </div>
+  </div>
+ </div>
+</turbo-frame>
