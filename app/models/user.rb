@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :job_position, :location, :team,  presence: true
 
+
   has_many :events
 
   def manager?
