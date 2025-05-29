@@ -1,20 +1,24 @@
 <turbo-frame id="suggestion_<%= suggestion.id %>">
   <div class='suggestion-box'>
     <h5><%= suggestion.suggestion %></h5>
-    <p><%= suggestion.date %></p>
-    <p>Actioned:</p>
-      <% if current_user.admin? %>
-        <% if suggestion.actioned.nil? %>
-          <div class="actioned-buttons">
-            <%= button_to "✅", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: true } }, form: { data: { turbo: true } }, class: "tick-btn" %>
-            <%= button_to "❌", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: false } }, form: { data: { turbo: true } }, class: "cross-btn" %>
-          </div>
-        <% else %>
-          <%= suggestion.actioned ? "✅" : "❌" %>
-        <% end %>
-      <% else %>
-        <%= suggestion.actioned ? "✅" : "❌" %>
-      <% end %>
+    <div class="info-bar d-flex">
+      <p><%= suggestion.created_at.strftime("%-d %B %Y") %></p>
+
+        <p>Actioned:</p>
+          <% if current_user.admin? %>
+            <% if suggestion.actioned.nil? %>
+
+                <%= button_to "✅", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: true } }, form: { data: { turbo: true } }, class: "tick-btn" %>
+                <%= button_to "❌", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: false } }, form: { data: { turbo: true } }, class: "cross-btn" %>
+
+            <% else %>
+              <%= suggestion.actioned ? "✅" : "❌" %>
+            <% end %>
+          <% else %>
+            <%= suggestion.actioned ? "✅" : "❌" %>
+          <% end %>
 
   </div>
+  </div>
 </turbo-frame>
+
