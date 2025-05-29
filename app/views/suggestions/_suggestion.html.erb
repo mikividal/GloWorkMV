@@ -1,24 +1,41 @@
 <turbo-frame id="suggestion_<%= suggestion.id %>">
   <div class='suggestion-box'>
     <h5><%= suggestion.suggestion %></h5>
-    <div class="info-bar d-flex">
-      <p><%= suggestion.created_at.strftime("%-d %B %Y") %></p>
+    <div class="info-bar d-flex justify-content-between">
+      <div class="date-comments d-flex">
+        <p> ❤️ Likes (14) </p>
 
-        <p>Actioned:</p>
-          <% if current_user.admin? %>
-            <% if suggestion.actioned.nil? %>
+      <div data-controller="comments">
+        <p data-action="click->comments#toggle" style="cursor:pointer;">
+          💬 Comments (<%= suggestion.suggestion_comments.count %>)
+        </p>
 
-                <%= button_to "✅", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: true } }, form: { data: { turbo: true } }, class: "tick-btn" %>
-                <%= button_to "❌", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: false } }, form: { data: { turbo: true } }, class: "cross-btn" %>
+        <div data-comments-target="comments" class="hidden">
+        <% suggestion.suggestion_comments.each do |comment| %>
+          <p> <%= comment.comment %></p>
+          <% end %>
+          <form> <!-- new comment form --> </form>
+        </div>
+      </div>
 
+
+
+        <p><%= suggestion.created_at.strftime("%-d %B %Y") %></p>
+        </div>
+
+          <div class="actioned d-flex">
+
+            <% if current_user.admin? %>
+              <% if suggestion.actioned.nil? %>
+                  <%= button_to "✅", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: true } }, form: { data: { turbo: true } }, class: "tick-btn" %>
+                  <%= button_to "❌", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: false } }, form: { data: { turbo: true } }, class: "cross-btn" %>
+              <% else %>
+                <%= suggestion.actioned ? "✅" : "❌" %>
+              <% end %>
             <% else %>
               <%= suggestion.actioned ? "✅" : "❌" %>
             <% end %>
-          <% else %>
-            <%= suggestion.actioned ? "✅" : "❌" %>
-          <% end %>
-
+    </div>
   </div>
   </div>
 </turbo-frame>
-

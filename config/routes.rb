@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   resources :moodtrackers, only: %i[new create index show edit update]
   resources :suggestions, only: %i[new create index update] do
-    resource :suggestions_comments, only: %i[create]
+    resources :suggestions_comments, only: %i[create destroy]
     resource :likes, only: %i[create]
   end
   resources :events
