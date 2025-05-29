@@ -1,0 +1,41 @@
+<div class="teams-container">
+  <!-- Column 1: Team list -->
+  <div class="team-list">
+    <% if current_user.admin? %>
+      <button class="add-button">+ Add new team member</button>
+    <% end %>
+
+    <ul id="team-member-list" data-controller="teams">
+      <% @users.each do |user| %>
+        <li class="team-member"
+            data-full-name="<%= user.full_name %>"
+            data-job-position="<%= user.job_position %>"
+            data-team="<%= user.team %>"
+            data-location="<%= user.location %>"
+            data-email="<%= user.email %>">
+          <div class="member-card">
+            <%= image_tag("default_avatar.png", class: "avatar") %>
+            <div>
+              <div class="name"><%= user.full_name %></div>
+              <div class="position"><%= user.job_position %></div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <!-- Column 2: User details -->
+  <div class="user-panel">
+    <div class="user-card hidden" id="user-details">
+      <!-- Initially hidden -->
+    </div>
+  </div>
+
+  <!-- Column 3: Map -->
+  <div class="map-panel">
+    <div id="map" class="map-placeholder">
+      <p>[Mapbox Placeholder]</p>
+    </div>
+  </div>
+</div>
