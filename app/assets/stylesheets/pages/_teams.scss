@@ -1,8 +1,7 @@
 .teams-container {
   display: flex;
   flex-direction: row;
-  width: 1440px;
-  height: 1024px;
+  height: 100vh;
   background: #FCFCFC;
 }
 
@@ -10,18 +9,90 @@
   width: 30%;
   padding: 20px;
   background-color: #f2f2f2;
+  overflow-y: auto;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .add-button {
+    margin-bottom: 20px;
+    background-color: #F48C7F;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  li.team-member {
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    .member-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #EDE9FE;
+      padding: 12px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #C4B5FD;
+      }
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .name {
+        font-weight: bold;
+      }
+
+      .position {
+        font-size: 14px;
+        color: #555;
+      }
+    }
+  }
 }
 
-.team-detail {
-  width: 70%;
+.user-panel {
+  width: 35%;
   padding: 40px;
+
+  .user-card {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #fefefe;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .hidden {
+    display: none;
+  }
 }
 
-.add-button {
-  background-color: #F48C7F;
-  color: white;
-  font-size: 18px;
-  padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 20px;
+.map-panel {
+  width: 35%;
+  padding: 40px;
+
+  .map-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+  }
 }
