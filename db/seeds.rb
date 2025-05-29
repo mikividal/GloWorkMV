@@ -132,7 +132,7 @@ user = User.create!(
   first_name: "User",
   last_name: "Userson",
   email: "user@glowork.com",
-  admin: true,
+  admin: false,
   job_position: "Employee",
   team: "Sales",
   location: Faker::Address.country,
