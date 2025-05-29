@@ -1,25 +1,30 @@
 .container {
-
   margin-top: 40px;
 }
 
 .d-flex {
-  height: 200px;
+  height: 100%;
   margin: auto;
 }
 
 .left {
-  background-color: red;
+  background-color: $porcelain;
   width: 69%;
   border-radius: 16px;
+  padding: 20px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .right {
-  background-color: blue;
+
   width: 29%;
   border-radius: 16px;
 }
 
 .gap {
   width: 2%;
+}
+
+.suggestions-post {
+  background-color: $periwinkle;
 }

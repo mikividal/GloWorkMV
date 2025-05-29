@@ -6,23 +6,25 @@
       <div class='suggestions-main'>
         <% if @suggestions.any? %>
           <% @suggestions.each do |suggestion| %>
-            <div class='suggestion-box'>
-             <h5> <%= suggestion.suggestion %></h5>
-              <p> <%= suggestion.date %> </p>
-              <p> <%= suggestion.actioned %> </p>
-             
-              <%= link_to "Delete", suggestion_path(suggestion), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          <div class="suggestion-post">
+            <%= render partial: "suggestions/suggestion", locals: { suggestion: suggestion } %>
             </div>
           <% end %>
+        <% else %>
+          <p>No suggestions have been made yet</p>
         <% end %>
       </div>
     </div>
 
+    <div class='gap'></div>
 
-    <div class='gap'>
-    </div>
-
-    <div class= 'right'>
+    <div class='right'>
+      <div class="suggestion-form">
+        <%= simple_form_for(Suggestion.new) do |f| %>
+          <%= f.input :suggestion, placeholder: "Type your suggestion here..." %>
+          <%= f.button :submit, "Send suggestion", class: "btn button-accept" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
