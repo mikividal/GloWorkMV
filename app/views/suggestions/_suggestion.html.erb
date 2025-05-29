@@ -1,41 +1,47 @@
 <turbo-frame id="suggestion_<%= suggestion.id %>">
-  <div class='suggestion-box'>
+  <div class="suggestion-box" data-controller="comments">
     <h5><%= suggestion.suggestion %></h5>
-    <div class="info-bar d-flex justify-content-between">
-      <div class="date-comments d-flex">
-        <p> ❤️ Likes (14) </p>
 
-      <div data-controller="comments">
+    <div class="info-bar d-flex justify-content-between">
+      <div class="date-comments d-flex align-items-center gap-3">
+        <p>❤️ Likes (14)</p>
         <p data-action="click->comments#toggle" style="cursor:pointer;">
           💬 Comments (<%= suggestion.suggestion_comments.count %>)
         </p>
-
-        <div data-comments-target="comments" class="hidden">
-        <% suggestion.suggestion_comments.each do |comment| %>
-          <p> <%= comment.comment %></p>
-          <% end %>
-          <form> <!-- new comment form --> </form>
-        </div>
+        <p><%= suggestion.created_at.strftime("%-d %B %Y") %></p>
       </div>
 
-
-
-        <p><%= suggestion.created_at.strftime("%-d %B %Y") %></p>
-        </div>
-
-          <div class="actioned d-flex">
-
-            <% if current_user.admin? %>
-              <% if suggestion.actioned.nil? %>
-                  <%= button_to "✅", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: true } }, form: { data: { turbo: true } }, class: "tick-btn" %>
-                  <%= button_to "❌", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: false } }, form: { data: { turbo: true } }, class: "cross-btn" %>
-              <% else %>
-                <%= suggestion.actioned ? "✅" : "❌" %>
-              <% end %>
-            <% else %>
-              <%= suggestion.actioned ? "✅" : "❌" %>
-            <% end %>
+      <div class="actioned d-flex align-items-center gap-2">
+        <% if current_user.admin? %>
+          <% if suggestion.actioned.nil? %>
+            <%= button_to "✅", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: true } }, form: { data: { turbo: true } }, class: "tick-btn" %>
+            <%= button_to "❌", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: false } }, form: { data: { turbo: true } }, class: "cross-btn" %>
+          <% else %>
+            <%= suggestion.actioned ? "✅" : "❌" %>
+          <% end %>
+        <% else %>
+          <%= suggestion.actioned ? "✅" : "❌" %>
+        <% end %>
+      </div>
     </div>
+
+    <!-- Comments Section -->
+    <div id="comments_section_<%= suggestion.id %>" class="hidden" data-comments-target="comments">
+      <%= render partial: "suggestions/comment", collection: suggestion.suggestion_comments %>
+    </div>
+
+
+    <!-- Comment Form (Ensures Only One Form Per Suggestion) -->
+    <div class="comment-form" data-controller="reset_form">
+      <%= form_with model: [suggestion, SuggestionsComment.new], data: { turbo_frame: "suggestion_#{suggestion.id}", turbo_submit: "reset_form#reset" } do |form| %>
+    <div>
+      <%= form.text_area :comment, rows: 2, placeholder: "Add a comment...", data: { reset_form_target: "input" } %>
+    </div>
+    <div>
+      <%= form.submit "Comment", data: { action: "click->reset_form#clear" } %>
+    </div>
+  <% end %>
   </div>
+
   </div>
 </turbo-frame>

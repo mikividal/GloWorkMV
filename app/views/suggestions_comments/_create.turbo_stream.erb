@@ -1,0 +1,3 @@
+<%= turbo_stream.append "comments_section_#{@suggestion.id}" do %>
+  <%= render partial: "suggestions/comment", locals: { comment: @comment } %>
+<% end %>
