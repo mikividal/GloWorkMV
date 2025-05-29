@@ -1,20 +1,20 @@
 <h1>Events Calendar</h1>
 <p>See your upcoming events</p>
 
-<%= month_calendar(events: @events, attribute: :start_date) do |date, meetings| %>
+<%= month_calendar(events: @events, attribute: :start_date, end_attribute: :end_date) do |date, meetings| %>
   <%= date.day %>
   <% meetings.each do |meeting| %>
   <div>
-    <%= meeting.event_name %>
+    <%= link_to meeting.event_name, edit_event_path(meeting) %>
   </div>
   <% end %>
 <% end %>
 
 <h2>List of events</h2>
-
+<h3><%= @events.count %> events </h3>
 <% @events.each do |event| %>
   <p><%= event.event_name %></p>
-  <p><%= @events.count %> events </p>
+  <%= link_to "delete", event_path(event), data: {turbo_method: :delete, turbo_confirm: "are you sure?"}  %>
 <% end %>
 
 <%= link_to "Add an event", new_event_path if current_user.admin? %>

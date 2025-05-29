@@ -3,11 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
    devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  validates :first_name, :last_name, :job_position, :location, :team, :admin, presence: true
+
+  validates :first_name, :last_name, :job_position, :location, :team, presence: true
 
   has_many :events
-  
+
   def manager?
     admin
   end
@@ -15,6 +15,6 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
-  
+
 
 end
