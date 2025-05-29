@@ -1,0 +1,62 @@
+
+
+<div class="container" id="mood-cards">
+  <div class="card-mood">
+    <h1>MY MOOD</h1>
+    <div class="d-flex" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+      <div class="progress flex-grow-1" style="height: 28px;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:happy] %>%; background-color: green;">
+        </div>
+      </div>
+      <p class="ps-3"><%= @percentage[:happy] %> % 😀</p>
+    </div>
+      <div class="progress" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:neutral] %>%; background-color: orange;">
+        </div>
+          <p><%= @percentage[:neutral] %>% 😐 </p>
+      </div>
+      <div class="progress" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:sad] %>%; background-color: red;">
+        </div>
+          <p><%= @percentage[:sad] %>% ☹️  </p>
+      </div>
+  </div>
+  <div class="card-mood">
+    <h1>TEAM MOOD</h1>
+    <div class="progress" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+      <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:happy] %>%; background-color: green;">
+      </div>
+        <p><%= @percentage[:happy] %>% 😀</p>
+    </div>
+    <div class="progress" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+      <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:neutral] %>%; background-color: orange;">
+      </div>
+        <p><%= @percentage[:neutral] %>% 😐 </p>
+    </div>
+    <div class="progress" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+      <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:sad] %>%; background-color: red;">
+      </div>
+        <p><%= @percentage[:sad] %>% ☹️  </p>
+    </div>
+  </div>
+  <div class="card-mood">
+    <h1>COMPANY MOOD</h1>
+    <div class="progress" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+      <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:happy] %>%; background-color: green;">
+      </div>
+        <p><%= @percentage[:happy] %>% 😀</p>
+    </div>
+    <div class="progress" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+      <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:neutral] %>%; background-color: orange;">
+      </div>
+        <p><%= @percentage[:neutral] %>% 😐 </p>
+    </div>
+      <div class="progress" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+      <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:sad] %>%; background-color: red;">
+      </div>
+        <p><%= @percentage[:sad] %>% ☹️  </p>
+    </div>
+  </div>
+</div>
+
+<%= @emojis[0][1] %>
