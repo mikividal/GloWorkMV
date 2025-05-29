@@ -1,16 +1,13 @@
-<h1>Edit an existing event</h1>
+<h1>Edit event</h1>
 
 <% if current_user.admin?  %>
 
-  <%= form_with model: @event do |f| %>
-    <%= f.label :name, placeholder:"Edit an existing event" %>
-    <%= f.text_field :description %>
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-    <%= f.label :start_date %>
-    <%= f.number_field :start_date %>
-    <%= f.label :end_date %>
-    <%= f.number_field :end_date %>
+  <%= simple_form_for(@event) do |f| %>
+    <%= f.input :event_name %>
+    <%= f.input :description %>
+    <%= f.input :location %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
     <%= f.submit %>
   <% end %>
 
