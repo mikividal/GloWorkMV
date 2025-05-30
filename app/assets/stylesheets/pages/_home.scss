@@ -15,10 +15,17 @@
   align-items: center;
   text-align: center;
   padding: 20px;
+  gap: 0px;
 
   p {
-    font-size: 24px;
+    font-size: 18px;
   }
+
+  h5 {
+
+  font-weight: 600;
+  font-size: 28px;
+}
   }
 
 .right-visitor {
@@ -34,6 +41,15 @@
 
   background-color: $peach;
 
+  h3 {
+  color: $porcelain;
+  font-weight: 600;
+}
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    width: 500px;
+  }
 }
 
 .right-visitor-outside {
@@ -54,7 +70,7 @@
 
 
 #tagline {
-    font-size: 24px;
+    font-size: 40px;
     font-weight: bold;
     text-align: center;
     display: block;
@@ -62,25 +78,30 @@
     margin-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
-    font-size: 50px;
+
 
 }
 
 .visitor-image {
-  max-width: 700px;
-  height: auto;
+  width: 500px;
+  margin-top: -80px;
+  padding: 0;
+}
+.copy p {
+  width: 550px;
+  margin-bottom: 0px;
+  font-weight: 400;
 }
 
 .login-form {
     border-radius: 16px;
-    padding: 30px;
     background-color: $peach;
-    display: flex;
+    padding: 10px 0px 10px 0px;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 80%; /* Make it span the full container */
-    max-width: 80%;
+    width: 50%;
+    max-width: 70%;
 
 }
 
@@ -88,6 +109,7 @@
     font-weight: bold;
     margin-top: 10px;
     display: block;
+    ;
 }
 
 .login-form input {
@@ -95,7 +117,8 @@
     padding: 8px;
     margin-top: 5px;
     border: 1px solid $porcelain;
-    border-radius: 5px;
+    border-radius: 8px;
+    background-color: $porcelain
 }
 
 .login-form .btn-primary {
@@ -116,21 +139,8 @@
 }
 
 
-h3 {
-  color: $porcelain;
-  font-weight: 600;
-}
+
 
 #signin-text {
   color: $porcelain
-}
-
-h5 {
-
-  font-weight: 600;
-  font-size: 28px;
-}
-
-p {
-  font-size: 16px;
 }

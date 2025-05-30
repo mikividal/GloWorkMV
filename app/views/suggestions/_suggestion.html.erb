@@ -15,6 +15,7 @@
       <div class="actioned d-flex align-items-center gap-2">
         <% if current_user.admin? %>
           <% if suggestion.actioned.nil? %>
+      
             <%= button_to "✅", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: true } }, form: { data: { turbo: true } }, class: "tick-btn" %>
             <%= button_to "❌", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: false } }, form: { data: { turbo: true } }, class: "cross-btn" %>
           <% else %>
