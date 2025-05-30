@@ -1,6 +1,9 @@
 <div id="comment-form">
   <div class="modal-card">
-    <h2>Would you like to add a suggestion</h2>
+    <%= link_to root_path do %>
+      <p class="btn-close"></p>
+    <% end %>
+    <h2>Would you like to add a suggestion?</h2>
      <%= simple_form_for @suggestion do |f| %>
       <%= f.input :suggestion, placeholder: "Share your suggestion here..." %>
       <%= f.button :submit, "SUBMIT", class: "button-accept" %>

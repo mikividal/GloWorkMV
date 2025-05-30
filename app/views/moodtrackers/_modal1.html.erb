@@ -1,17 +1,22 @@
 <turbo-frame id="modal-output">
-  <div class="modal fade show d-block" tabindex="-1" role="dialog">
-   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content text-center">
-       <div class="modal-body p-4">
+    <div id="comment-form">
+      <div class="modal-card" id="yesno-card">
         <div>
           <h5 class="mb-3">DO YOU WANT TO TELL US MORE?</h5>
-          <div class="justify-content-center">
+          <div class=" d-flex justify-content-evenly flex-grow-1">
             <%= link_to "NO", root_path, class: "btn button-cancel", data: { turbo_frame: "_top" } %>
             <%= link_to "YES", edit_moodtracker_path(moodtracker), class: "btn button-accept", data: { turbo_frame: "_top" }  %>
           </div>
        </div>
      </div>
     </div>
-  </div>
- </div>
 </turbo-frame>
+
+<%# <div id="comment-form">
+  <div class="modal-card">
+
+
+<div class="modal-card" fade show d-block" tabindex="-1" role="dialog">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content text-center">
+       <div class="modal-body p-4"> %>
