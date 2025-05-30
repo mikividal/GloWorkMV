@@ -6,16 +6,18 @@ def create
   @comment.user = current_user
 
   if @comment.save
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.append("comments_section_#{@suggestion.id}", partial: "suggestions/comment", locals: { comment: @comment }),
-          turbo_stream.replace("comment_form_#{@suggestion.id}", partial: "suggestions/comment_form", locals: { suggestion: @suggestion }),
-          turbo_stream.replace("comment_counter_#{@suggestion.id}", inline: "<p id='comment_counter_#{@suggestion.id}' data-action='click->comments#toggle' style='cursor:pointer;'>💬 Comments (#{@suggestion.suggestion_comments.count})</p>")
-        ]
-      end
-      format.html { redirect_to @suggestion }
-    end
+ respond_to do |format|
+  format.turbo_stream do
+    render turbo_stream: [
+      turbo_stream.append("comments_section_#{@suggestion.id}", partial: "suggestions/comment", locals: { comment: @comment }),
+      turbo_stream.replace("comment_form_#{@suggestion.id}", partial: "suggestions/comment_form", locals: { suggestion: @suggestion }),
+      turbo_stream.replace("suggestions_list", partial: "suggestions/suggestion", collection: Suggestion.order(created_at: :desc))
+    ]
+  end
+  format.html { redirect_to @suggestion }
+end
+
+
   else
     Rails.logger.error("COMMENT SAVE FAILED: #{@comment.errors.full_messages}")
     respond_to do |format|

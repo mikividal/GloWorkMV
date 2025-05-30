@@ -1,1 +1,136 @@
-// Specific CSS for your home-page
+.visitors-container {
+  margin-top: 40px;
+  max-width: none;
+  width: 90%;
+}
+
+.left-visitor {
+  width: 60%;
+  min-height: 100px;
+  align-items: center;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+
+  p {
+    font-size: 24px;
+  }
+  }
+
+.right-visitor {
+
+  min-height: 100px;
+  align-items: center;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-color: $peach;
+
+}
+
+.right-visitor-outside {
+  background-color: $peach;
+  width: 50%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  height: 100%;
+
+  border-radius: 16px;
+}
+
+
+ .gap-visitor {
+  width: 2%;
+  min-height: 100px;
+}
+
+
+#tagline {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 50px;
+
+}
+
+.visitor-image {
+  max-width: 700px;
+  height: auto;
+}
+
+.login-form {
+    border-radius: 16px;
+    padding: 30px;
+    background-color: $peach;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80%; /* Make it span the full container */
+    max-width: 80%;
+
+}
+
+.login-form label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid $porcelain;
+    border-radius: 5px;
+}
+
+.login-form .btn-primary {
+    background-color: $lilac; /* Stylish coral for the button */
+    color: $porcelain;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.login-form .btn-primary:hover {
+    background-color: $blush; /* Darker shade for hover effect */
+}
+
+
+h3 {
+  color: $porcelain;
+  font-weight: 600;
+}
+
+#signin-text {
+  color: $porcelain
+}
+
+h5 {
+
+  font-weight: 600;
+  font-size: 28px;
+}
+
+p {
+  font-size: 16px;
+}
