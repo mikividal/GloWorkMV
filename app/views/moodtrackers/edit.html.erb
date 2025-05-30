@@ -1,12 +1,12 @@
 
 <div id="comment-form">
   <div class="modal-card">
-    <%= link_to root_path do %>
+    <%= link_to dashboard_path do %>
       <p class="btn-close"></p>
     <% end %>
     <h2>Please tell us more about your current mood</h2>
      <%= simple_form_for @moodtracker do |f| %>
-      <%= f.input :comment, placeholder: "Share here..." %>
+      <%= f.input :comment, label: false, placeholder: "Share here..." %>
       <%= f.button :submit, "NEXT", class: "button-accept" %>
     <% end %>
   </div>
