@@ -1,0 +1,20 @@
+<div class="container" >
+  <div class='d-flex justify-content-center'>
+    <div class='left' style="width: 90%;">
+    <h4>Latest <%= current_user.team %> Team Suggestions</h4>
+      <div class='suggestions-main'>
+        <% if @suggestions.any? %>
+          <% @suggestions.take(4).each do |suggestion| %>
+          <div class="suggestion-post">
+            <%= render partial: "suggestions/suggestion", locals: { suggestion: suggestion } %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>No suggestions have been made yet</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class='gap'></div>
+  </div>
+</div>
