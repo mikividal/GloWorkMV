@@ -17,30 +17,10 @@ puts"Cleaning db"
 Moodtracker.destroy_all
 SuggestionsComment.destroy_all
 Suggestion.destroy_all
+Event.destroy_all
 User.destroy_all
 
 puts"creating users"
-
-salesmanager = User.create!(
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  email: Faker::Internet.email,
-  admin: true,
-  job_position: "Sales Manager",
-  team: "Sales",
-  location: Faker::Address.country,
-  password: "secret"
-)
-marketingmanager = User.create!(
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  email: Faker::Internet.email,
-  admin: true,
-  job_position: "Marketing Manager",
-  team: "Marketing",
-  location: Faker::Address.country,
-  password: "secret"
-)
 
 sales1 = User.create!(
   first_name: Faker::Name.first_name,
@@ -117,20 +97,30 @@ marketing4 = User.create!(
   password: "secret"
 )
 
-admin = User.create!(
-  first_name: "Admin",
-  last_name: "Adminson",
-  email: "admin@glowork.com",
+admin1 = User.create!(
+  first_name: "Bruno",
+  last_name: "Bond",
+  email: "admin1@glowork.com",
   admin: true,
-  job_position: "Bossman",
-  team: "All",
+  job_position: "Sales Manager",
+  team: "Sales",
+  location: Faker::Address.country,
+  password: "secret"
+)
+admin2 = User.create!(
+  first_name: "Mimi",
+  last_name: "James",
+  email: "admin2@glowork.com",
+  admin: true,
+  job_position: "Marketing Manager",
+  team: "Marketing",
   location: Faker::Address.country,
   password: "secret"
 )
 
 user = User.create!(
-  first_name: "User",
-  last_name: "Userson",
+  first_name: "Jane",
+  last_name: "Smith",
   email: "user@glowork.com",
   admin: false,
   job_position: "Employee",
@@ -245,3 +235,11 @@ comment4 = SuggestionsComment.create!(
   suggestion: suggestion3
 )
 puts "#{SuggestionsComment.count} suggestions_comments created"
+
+puts "Creating Events..."
+
+Event.create!(event_name: "End of bootcamp party", start_date: "25/05/2025", end_date: "25/05/2025", location: "London", user: admin1)
+Event.create!(event_name: "Catch-up Meeting", start_date: "24/05/2025", end_date: "24/05/2025", location: "Liverpool", user: admin1)
+Event.create!(event_name: "Summer Meeting", start_date: "23/05/2025", end_date: "23/05/2025", location: "Manchester", user: admin1)
+
+puts "#{Event.count} events created"

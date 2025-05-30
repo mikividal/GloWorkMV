@@ -1,0 +1,29 @@
+<div class="teams-container">
+  <%# Team list %>
+  <div class="team-list">
+   
+    <ul id="team-member-list" data-controller="teams">
+      <% @users.each do |user| %>
+        <li class="team-member"
+            data-full-name="<%= user.full_name %>"
+            data-job-position="<%= user.job_position %>"
+            data-team="<%= user.team %>"
+            data-location="<%= user.location %>"
+            data-email="<%= user.email %>">
+          <div class="member-card">
+            <%= image_tag("default_avatar.png", class: "avatar") %>
+            <div>
+              <div class="name"><%= user.full_name %></div>
+              <div class="position"><%= user.job_position %></div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%# User Moodtracker %>
+  <div class="user-panel">
+    <div class="user-card hidden" id="user-details">
+    </div>
+  </div>

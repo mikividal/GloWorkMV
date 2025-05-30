@@ -1,1 +1,42 @@
-<h1> DASHBOARD </h1>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-4">
+      <div class="d-flex flex-column mb-3">
+        <div class="card-mood" style="height: 50%vh; width: 100%">
+          <h2><%= current_user.first_name %>'s Mood</h2>
+          <div class="d-flex" style="height: 28px; font-size: 20px; margin-bottom:20px; margin-top:20px;">
+            <div class="progress flex-grow-1" style="height: 28px;">
+              <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:happy] %>%; background-color: green;">
+              </div>
+            </div>
+            <p class="ps-3"><%= @percentage[:happy] %> % 😀</p>
+          </div>
+          <div class="d-flex" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+            <div class="progress flex-grow-1" style="height: 28px;">
+              <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:neutral] %>%; background-color: orange;">
+              </div>
+            </div>
+            <p class="ps-3"><%= @percentage[:neutral] %>% 😐 </p>
+          </div>
+          <div class="d-flex" style="height: 28px; font-size: 20px; margin-bottom:20px;">
+            <div class="progress flex-grow-1" style="height: 28px;">
+              <div class="progress-bar" role="progressbar" style="width: <%= @percentage[:sad] %>%; background-color: red;">
+              </div>
+            </div>
+              <p><%= @percentage[:sad] %>% ☹️  </p>
+            </div>
+            <div>
+            <%= render "shared/comparison" %>
+          </div>
+          <%= render "shared/emojis" %>
+        </div>
+        <div>
+          <%= render "shared/events_dashboard" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <%= render "shared/sugg_board_noadd" %>
+    </div>
+  </div>
+</div>

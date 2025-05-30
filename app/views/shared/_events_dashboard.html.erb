@@ -1,0 +1,12 @@
+<ul class="list-group mt-4">
+  <% @events.take(4).each do |event| %>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+        <div class="fw-bold"><%= event.event_name %></div>
+        <%= event.description %>
+        <%= event.location %>
+    </div>
+        <span class="badge text-bg-primary rounded-pill"><%= event.start_date %></span>
+  </li>
+  <% end %>
+</ul>

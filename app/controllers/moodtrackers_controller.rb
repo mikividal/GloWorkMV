@@ -18,6 +18,11 @@ class MoodtrackersController < ApplicationController
     @moodtrackers = Moodtracker.all
     @percentage = user_percentage
     @emojis = emoji_percentage
+    @users = if current_user.admin?
+               User.where(team: current_user.team).where.not(id: current_user.id)
+             else
+               [current_user]
+             end
   end
 
   def edit
