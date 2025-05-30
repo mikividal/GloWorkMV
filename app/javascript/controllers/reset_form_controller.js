@@ -3,12 +3,17 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["input"]
 
-  clear(event) {
-    event.preventDefault(); // Prevent default form behavior
-    this.inputTarget.value = ""; // Clear text field
+  connect() {
+    this.element.addEventListener("turbo:submit-end", () => {
+      this.clear(); // Ensures input resets when Turbo finishes processing
+    });
+  }
+
+  clear() {
+    this.inputTarget.value = ""; // Clears the text box immediately
   }
 
   reset() {
-    this.inputTarget.value = ""; // Ensures input clears on Turbo update
+    this.inputTarget.value = ""; // Clears input field after Turbo updates
   }
 }
