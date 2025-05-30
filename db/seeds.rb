@@ -15,7 +15,7 @@ random_date = rand(start_date..end_date)
 puts"Cleaning db"
 
 Moodtracker.destroy_all
-SuggestionComment.destroy_all
+SuggestionsComment.destroy_all
 Suggestion.destroy_all
 User.destroy_all
 
@@ -224,24 +224,24 @@ suggestion3 = Suggestion.create!(
 puts "#{Suggestion.count} suggestions created"
 puts "creating comments"
 
-comment1 = SuggestionComment.create!(
+comment1 = SuggestionsComment.create!(
   comment: Faker::Lorem.sentence,
   user: sales1,
   suggestion: suggestion1
 )
-comment2 = SuggestionComment.create!(
+comment2 = SuggestionsComment.create!(
   comment: Faker::Lorem.sentence,
   user: sales2,
   suggestion: suggestion1
 )
-comment3 = SuggestionComment.create!(
+comment3 = SuggestionsComment.create!(
   comment: Faker::Lorem.sentence,
   user: sales3,
   suggestion: suggestion2
 )
-comment4 = SuggestionComment.create!(
+comment4 = SuggestionsComment.create!(
   comment: Faker::Lorem.sentence,
   user: sales1,
   suggestion: suggestion3
 )
-puts "#{SuggestionComment.count} suggestions_comments created"
+puts "#{SuggestionsComment.count} suggestions_comments created"

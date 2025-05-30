@@ -1,0 +1,13 @@
+<%= turbo_stream.append "comments_section_<%= @suggestion.id>" do %>
+  <%= render partial: "suggestions/comment", locals: { comment: @comment } %>
+<% end %>
+
+<%= turbo_stream.replace "comment_form_<%= @suggestion.id>" do %>
+  <%= render partial: "suggestions/comment_form", locals: { suggestion: @suggestion } %>
+<% end %>
+
+<%= turbo_stream.replace "comment_counter_<%= @suggestion.id>" do %>
+  <p id="comment_counter_<%= @suggestion.id %>" data-action="click->comments#toggle" style="cursor:pointer;">
+    💬 Comments (<%= @suggestion.suggestion_comments.count %>)
+  </p>
+<% end %>

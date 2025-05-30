@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   end
   resources :events
   resources :teams, only: [:index, :show]
-  resources :pages, only: %i[dashboard]
+  get "dashboard", to: "pages#dashboard"
 end
