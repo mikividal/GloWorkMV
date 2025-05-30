@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
 
   has_many :events
+  has_many :moodtrackers
 
   def manager?
     admin
