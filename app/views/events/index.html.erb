@@ -48,11 +48,11 @@
           <% if current_user.admin?  %>
             <h1>Edit event</h1>
             <%= simple_form_for(meeting) do |f| %>
-              <%= f.input :event_name %>
-              <%= f.input :description %>
-              <%= f.input :location %>
-              <%= f.input :start_date %>
-              <%= f.input :end_date %>
+              <%= f.input :event_name, label: "Edit event name" %>
+              <%= f.input :description, label: "Edit event description" %>
+              <%= f.input :location, label: "Edit event location" %>
+              <%= f.input :start_date, label: "Change start date" %>
+              <%= f.input :end_date, label: "Change end date" %>
               <%= f.submit %>
             <% end %>
           <% end %>
@@ -60,7 +60,7 @@
         <div class="modal-footer">
           <!-- Back to Modal 1 -->
           <button class="btn btn-primary" data-bs-target="#Modal1-<%= meeting.id %>" data-bs-toggle="modal" data-bs-dismiss="modal">
-            Back to first modal
+            Back to event
           </button>
         </div>
       </div>
@@ -81,16 +81,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Event</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <%= simple_form_for(@event) do |f| %>
-          <%= f.input :event_name %>
-          <%= f.input :description %>
-          <%= f.input :location %>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
+          <%= f.input :event_name, label: "Event Name", placeholder: "Write your event name here" %>
+          <%= f.input :description, label: "Event Description", placeholder: "Write your description here" %>
+          <%= f.input :location, label: "Event Location", placeholder: "Enter your event location here" %>
+          <%= f.input :start_date, label: "Start Date" %>
+          <%= f.input :end_date, label: "End Date" %>
           <%= f.submit %>
         <% end %>
       </div>
