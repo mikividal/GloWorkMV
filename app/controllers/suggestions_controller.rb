@@ -14,15 +14,15 @@ class SuggestionsController < ApplicationController
 
 
   def create
-  @suggestion = Suggestion.new(suggestion_params)
-  if @suggestion.save
-    @suggestions = Suggestion.order(created_at: :desc)
+    @suggestion = Suggestion.new(suggestion_params)
+    if @suggestion.save
+      @suggestions = Suggestion.order(created_at: :desc)
 
-    render :index, status: :see_other
-  else
-    render :new, status: :unprocessable_entity
+      render :index, status: :see_other
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
-end
 
 
 
