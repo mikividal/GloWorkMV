@@ -22,10 +22,14 @@
     <div class='gap'></div>
 
     <div class='right'>
+
       <div class="suggestion-form">
         <%= simple_form_for(Suggestion.new) do |f| %>
-          <%= f.input :suggestion, placeholder: "Type your suggestion here...", label: false %>
-          <%= f.button :submit, "Send suggestion", class: "btn button-accept" %>
+        <div class=suggestion-container">
+          <%= f.text_area :suggestion, placeholder: "Type your suggestion here...", label: false, class: "suggestion-textbox" %>
+         <%= button_tag '<i class="fa-solid fa-paper-plane"></i>'.html_safe, type: "submit", class: "button-suggestion-send" %>
+        </div>
+
 
         <% end %>
 

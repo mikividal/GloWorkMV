@@ -4,12 +4,14 @@
 
     <div class="info-bar d-flex justify-content-between">
       <div class="date-comments d-flex align-items-center gap-3">
-        <p>❤️ Likes (14)</p>
 
 
         <div >
-         <%= render partial: "suggestions/comment_counter", locals: { suggestion: suggestion }
-          %>
+         <%= render partial: "suggestions/likes", locals: { suggestion: suggestion }%>
+        </div>
+
+        <div >
+         <%= render partial: "suggestions/comment_counter", locals: { suggestion: suggestion }%>
         </div>
 
 

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :moodtrackers, only: %i[new create index show edit update]
   resources :suggestions, only: %i[new create index update] do
     resources :suggestions_comments, only: %i[create destroy]
-    resource :likes, only: %i[create]
+    resource :likes, only: %i[create destroy]
   end
   resources :events
   resources :teams, only: [:index, :show]
