@@ -6,9 +6,10 @@ class User < ApplicationRecord
 
 
   validates :first_name, :last_name, :job_position, :location, :team,  presence: true
-  
+
   has_many :events
   has_many :moodtrackers
+  has_many :questions
 
   geocoded_by :location  # `location` could be a city, e.g. "London"
   after_validation :geocode, if: ->(obj){ obj.location.present? && obj.will_save_change_to_location? }
