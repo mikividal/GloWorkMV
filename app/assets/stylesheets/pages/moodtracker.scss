@@ -1,0 +1,136 @@
+/* MOODTRACKER LAYOUT */
+
+.moodtracker-wrapper {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  padding: 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: #FCFCFC;
+  overflow: hidden;
+  display: flex;                /* added flex */
+  flex-direction: column;       /* added flex */
+}
+
+.moodtracker-container {
+  display: flex;
+  gap: 1rem;
+  flex: 1 1 auto;              /* fill available vertical space */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Each mood column (My Mood, Company Mood, Team Mood) */
+.column {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #FCFCFC;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* remove overflow-y: auto to avoid clipping height */
+}
+
+/* Wrapper inside column that should fill whole column */
+.column-card-wrapper {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;  /* keep scroll only here */
+}
+
+/* The actual mood card filling its container */
+.column .card.mood {
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toggle buttons (top-right for admins) */
+.top-right-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.top-right-toggle button {
+  margin-left: 8px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ADMIN TEAM MOOD (inside 3rd column when visible) */
+
+.teams-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.team-list {
+  width: 40%;
+  overflow-y: auto;
+  background-color: #FFF;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.user-panel {
+  width: 60%;
+  background-color: #FFF;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+  overflow-y: auto;
+}
+
+/* Avatar and member card styles (optional polish) */
+.member-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.member-card:hover {
+  background-color: #f1f1f1;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.member-info .name {
+  font-weight: bold;
+}
+
+.member-info .position {
+  font-size: 0.85rem;
+  color: #777;
+}

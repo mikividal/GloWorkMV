@@ -1,0 +1,26 @@
+<div class="admin-team-container">
+  <!-- Left: Team Member List -->
+  <aside class="team-sidebar">
+    <ul class="team-member-list">
+      <% @users.each do |user| %>
+        <li class="team-member"
+            data-controller="select-user"
+            data-action="click->select-user#showMood"
+            data-user-id="<%= user.id %>">
+          <article class="member-card">
+            <%= image_tag("default_avatar.png", class: "avatar", alt: "#{user.full_name} avatar") %>
+            <div class="member-info">
+              <div class="name"><%= user.full_name %></div>
+              <div class="position"><%= user.job_position %></div>
+            </div>
+          </article>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+
+  <!-- Right: Mood Display -->
+  <section class="team-user-panel" id="user-mood-placeholder">
+    <h3>Select a team member to view their mood</h3>
+  </section>
+</div>
