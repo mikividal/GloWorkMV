@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :events
   resources :teams, only: [:index, :show]
   get "dashboard", to: "pages#dashboard"
+  resources :questions, only: [:index, :create]
 end
