@@ -243,3 +243,4 @@ Event.create!(event_name: "Catch-up Meeting", start_date: "24/05/2025", end_date
 Event.create!(event_name: "Summer Meeting", start_date: "23/05/2025", end_date: "23/05/2025", location: "Manchester", user: admin1)
 
 puts "#{Event.count} events created"
+

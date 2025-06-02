@@ -24,9 +24,9 @@
     <div class='right'>
       <div class="suggestion-form">
         <%= simple_form_for(Suggestion.new) do |f| %>
-          <%= f.input :suggestion, placeholder: "Type your suggestion here..." %>
+          <%= f.input :suggestion, placeholder: "Type your suggestion here...", label: false %>
           <%= f.button :submit, "Send suggestion", class: "btn button-accept" %>
-          
+
         <% end %>
 
       </div>
