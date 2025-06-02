@@ -2,6 +2,8 @@
 <p>See your upcoming events</p>
 
 <%= month_calendar(events: @events, attribute: :start_date, end_attribute: :end_date) do |date, meetings| %>
+<div class="card-calendar">
+  <div class="card-calendar-body">
   <%= date.day %>
   <% meetings.each do |meeting| %>
   <div>
@@ -51,8 +53,8 @@
               <%= f.input :event_name, label: "Edit event name" %>
               <%= f.input :description, label: "Edit event description" %>
               <%= f.input :location, label: "Edit event location" %>
-              <%= f.input :start_date, label: "Change start date" %>
-              <%= f.input :end_date, label: "Change end date" %>
+              <%= f.input :start_date, as: :datetime, label: "Start Date" %>
+              <%= f.input :end_date, as: :datetime, label: "End Date" %>
               <%= f.submit %>
             <% end %>
           <% end %>
@@ -89,19 +91,19 @@
           <%= f.input :event_name, label: "Event Name", placeholder: "Write your event name here" %>
           <%= f.input :description, label: "Event Description", placeholder: "Write your description here" %>
           <%= f.input :location, label: "Event Location", placeholder: "Enter your event location here" %>
-          <%= f.input :start_date, label: "Start Date" %>
-          <%= f.input :end_date, label: "End Date" %>
+          <%= f.input :start_date, as: :datetime, label: "Start Date" %>
+          <%= f.input :end_date, as: :datetime, label: "End Date" %>
           <%= f.submit %>
         <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-
+</div>
+</div>
 <% end %>
 
 <h2>List of events</h2>
