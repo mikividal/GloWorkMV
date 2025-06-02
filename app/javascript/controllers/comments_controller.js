@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["comments", "form"]
 
   toggle() {
-    this.commentsTarget.classList.toggle("hidden"); // Shows/hides comments section
-    this.formTarget.classList.toggle("hidden"); // Shows/hides comment form
-  }
+  this.commentsTarget.classList.toggle("hidden");
+  this.formTarget.classList.toggle("hidden");
+}
 }

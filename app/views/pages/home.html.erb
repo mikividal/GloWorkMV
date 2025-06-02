@@ -5,8 +5,10 @@
 
     <div class='left-visitor'>
     <h5> Well-being tool for remote teams</h5>
+    <div class="copy">
     <p > GloWork helps remote teams stay connected and motivated through quick mood check-ins and anonymous feedback. It gives managers real-time insights and simple, team-driven actions to boost well-being and engagement.</p>
     <%= image_tag asset_path("remoteteam.png"), class: "visitor-image" %>
+    </div>
 
     </div>
 
@@ -16,14 +18,14 @@
     <div class='right-visitor-outside'>
 
     <div class='right-visitor'>
-    <h3> SIGN IN TO YOUR ACCOUNT </h3>
+    <h3> Sign in to your account </h3>
     <p id="signin-text"> Your workplace should have signed you up to GloWork with your company email. Please log in using the email (and initial password) your company provided. </p>
     <div class="login-form">
     <%= form_for(User.new, url: new_user_session_path) do |f| %>
     <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= f.email_field :email, placeholder: "Email" %>
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, placeholder: "••••••" %>
     <%= f.submit "Log in", class: "btn btn-primary" %>
   <% end %>
   </div>
