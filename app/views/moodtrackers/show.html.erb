@@ -1,9 +1,77 @@
-<%# <% if current_user.admin? %> 
-<%# <%= render "shared/admin_moodtrshow" %>
-<%# <% else %>
-  <div class="container" id="mood-cards">
-    <%= render "mymood_card" %>
-    <%= render "teammood_card" %>
-    <%= render "shared/companymood_card" %>
+ <div class="moodtracker-wrapper">
+  <% if current_user.admin? %>
+    <div class="top-right-toggle">
+      <button id="show-team-mood">My Team</button>
+      <button id="show-own-mood" style="display: none;">Back to My Mood</button>
+    </div>
+  <% end %>
+
+  <div class="moodtracker-container">
+    <!-- Column 1: My Mood -->
+    <div class="column">
+      <%= render "mymood_card" %>
+    </div>
+
+    <!-- Column 2: Company Mood -->
+    <div class="column">
+      <%= render "shared/companymood_card" %>
+    </div>
+
+    <!-- Column 3: Team Mood (dynamic for admin) -->
+    <div class="column">
+      <% if current_user.admin? %>
+        <div id="team-mood-section" style="display: none;">
+          <%= render "shared/admin_team_mood" %>
+        </div>
+        <div id="personal-team-mood">
+          <%= render "teammood_card" %>
+        </div>
+      <% else %>
+        <%= render "teammood_card" %>
+      <% end %>
+    </div>
   </div>
-<%# <% end %>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const showTeamBtn = document.getElementById("show-team-mood");
+  const showOwnBtn = document.getElementById("show-own-mood");
+  const teamSection = document.getElementById("team-mood-section");
+  const personalSection = document.getElementById("personal-team-mood");
+
+  const moodtrackerContainer = document.querySelector(".moodtracker-container");
+  const columns = moodtrackerContainer.querySelectorAll(".column");
+
+  if (showTeamBtn && showOwnBtn) {
+    showTeamBtn.addEventListener("click", () => {
+      // Hide first 2 columns completely
+      columns[0].style.display = "none";
+      columns[1].style.display = "none";
+
+      // Show third column, and inside it show team mood, hide personal mood
+      columns[2].style.display = "flex";  // keep flex display to keep layout
+      teamSection.style.display = "block";
+      personalSection.style.display = "none";
+
+      showTeamBtn.style.display = "none";
+      showOwnBtn.style.display = "inline-block";
+    });
+
+    showOwnBtn.addEventListener("click", () => {
+      // Show all 3 columns again
+      columns[0].style.display = "flex";
+      columns[1].style.display = "flex";
+      columns[2].style.display = "flex";
+
+      teamSection.style.display = "none";
+      personalSection.style.display = "block";
+
+      showTeamBtn.style.display = "inline-block";
+      showOwnBtn.style.display = "none";
+    });
+  }
+});
+
+</script>
