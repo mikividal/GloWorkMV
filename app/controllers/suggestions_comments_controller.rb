@@ -11,7 +11,7 @@ def create
     render turbo_stream: [
       turbo_stream.append("comments_section_#{@suggestion.id}", partial: "suggestions/comment", locals: { comment: @comment }),
       turbo_stream.replace("comment_form_#{@suggestion.id}", partial: "suggestions/comment_form", locals: { suggestion: @suggestion }),
-      turbo_stream.replace("suggestions_list", partial: "suggestions/suggestion", collection: Suggestion.order(created_at: :desc))
+      turbo_stream.replace("comment_counter_#{@suggestion.id}", partial: "suggestions/comment_counter", locals: { suggestion: @suggestion })
     ]
   end
   format.html { redirect_to @suggestion }

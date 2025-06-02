@@ -5,9 +5,13 @@
     <div class="info-bar d-flex justify-content-between">
       <div class="date-comments d-flex align-items-center gap-3">
         <p>❤️ Likes (14)</p>
-        <p id="comment_counter_<%= suggestion.id %>" data-action="click->comments#toggle" style="cursor:pointer;">
-          💬 Comments (<%= suggestion.suggestion_comments.count %>)
-        </p>
+
+
+        <div >
+         <%= render partial: "suggestions/comment_counter", locals: { suggestion: suggestion }
+          %>
+        </div>
+
 
         <p><%= suggestion.created_at.strftime("%-d %B %Y") %></p>
       </div>
@@ -26,14 +30,17 @@
       </div>
     </div>
 
-    <!-- Comments Section -->
-    <div id="comments_section_<%= suggestion.id %>" class="hidden" data-comments-target="comments">
-      <%= render partial: "suggestions/comment", collection: suggestion.suggestion_comments %>
-    </div>
+
+    <div data-comments-target="container", class="hidden">
+      <!-- Comments Section -->
+      <div id="comments_section_<%= suggestion.id %>" >
+        <%= render partial: "suggestions/comment", collection: suggestion.suggestion_comments %>
+      </div>
 
     <!-- Comment Form -->
-    <div id="comment_form_<%= suggestion.id %>" class="hidden" data-comments-target="form">
-      <%= render partial: "suggestions/comment_form", locals: { suggestion: suggestion } %>
+      <div id="comment_form_<%= suggestion.id %>" >
+        <%= render partial: "suggestions/comment_form", locals: { suggestion: suggestion } %>
+      </div>
     </div>
   </div>
 </turbo-frame>

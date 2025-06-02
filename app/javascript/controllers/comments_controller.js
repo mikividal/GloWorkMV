@@ -1,10 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["comments", "form"]
+  static targets = [ "container"]
+
+  connect ( ){
+    console.log ("Comments controller connected")
+  } ;
 
   toggle() {
-  this.commentsTarget.classList.toggle("hidden");
-  this.formTarget.classList.toggle("hidden");
+    console.log("Toggling comments visibility");
+    this.containerTarget.classList.toggle("hidden");
+  // this.commentsTarget.classList.toggle("hidden");
+  // this.formTarget.classList.toggle("hidden");
 }
 }
