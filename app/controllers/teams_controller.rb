@@ -7,5 +7,6 @@ class TeamsController < ApplicationController
              else
                [current_user]
              end
+    @users = @users.select(&:geocoded?) 
   end
 end

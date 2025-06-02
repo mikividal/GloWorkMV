@@ -33,9 +33,20 @@
   </div>
 
   <!-- Column 3: Map -->
-  <div class="map-panel">
-    <div id="map" class="map-placeholder">
-      <p>[Mapbox Placeholder]</p>
-    </div>
-  </div>
-</div>
+  <% users_with_coords = @users.select { |u| u.latitude.present? && u.longitude.present? } %>
+<% users_with_coords = @users.select { |u| u.latitude.present? && u.longitude.present? } %>
+
+<div
+  id="map"
+  class="map-placeholder"
+  data-controller="map"
+  data-map-users-value='<%= raw(users_with_coords.map { |u|
+    {
+      full_name: u.full_name,
+      location: u.location,
+      lat: u.latitude,
+      lng: u.longitude
+    }
+  }.to_json) %>'
+  data-map-mapbox-api-key-value="pk.eyJ1IjoibWlnejIyMDUiLCJhIjoiY21hemc4ZzJiMGJzcjJsc2Fxdm83MDdweiJ9.yu0zSvl3tEeW55Rw9wjFjA"
+></div>
