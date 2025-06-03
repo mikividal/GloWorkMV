@@ -1,14 +1,20 @@
 <div class="comments-box">
-<p><%= comment.comment %></p>
+  <div class="avatar-comment-group">
+<img src="https://api.dicebear.com/9.x/icons/svg?seed=<%= "#{comment.user.id}-#{comment.suggestion.id}" %>"
+     alt="User Icon"
+     class="avatar-icon" />
 
-<%= button_to suggestion_suggestions_comment_path(comment.suggestion, comment),
-              method: :delete,
-              id: 'delete-comment-btn',
-              data: { turbo_confirm: "Are you sure?" } do %>
-  <i class="fa-solid fa-trash"></i>
-<% end %>
+
+
+    <p><%= comment.comment %></p>
+  </div>
+
+  <%= button_to suggestion_suggestions_comment_path(comment.suggestion, comment),
+                method: :delete,
+                id: 'delete-comment-btn' do %>
+    <i class="fa-solid fa-trash"></i>
+  <% end %>
+</div>
 
 
 <div data-controller="reset_form"></div>
-
-</div>

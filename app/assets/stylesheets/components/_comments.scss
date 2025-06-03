@@ -1,5 +1,5 @@
 .comments-box{
-display: flex;
+  display: flex;
   justify-content: space-between;
   align-items: center; // vertically centre items
   padding: 10px;
@@ -7,6 +7,10 @@ display: flex;
   border-radius: 8px;
   margin: 10px 0;
   box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+
+  p {
+    margin: 0;
+  }
 }
 
   #delete-comment-btn {
@@ -19,4 +23,18 @@ background-color: transparent;
     color: $lilac;
     font-size: 16px;
   }
+}
+
+.avatar-comment-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #ccc;
 }
