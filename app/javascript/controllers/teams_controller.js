@@ -1,11 +1,20 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   connect() {
-    const members = document.querySelectorAll(".team-member");
-    const userDetails = document.getElementById("user-details");
+    this.setupMemberClick();
+  }
 
-    members.forEach(member => {
+  toggleForm() {
+    const form = this.element.querySelector("#new-member-form");
+    form.classList.toggle("hidden");
+  }
+
+  setupMemberClick() {
+    const members = this.element.querySelectorAll(".team-member");
+    const userDetails = this.element.querySelector("#user-details");
+
+    members.forEach((member) => {
       member.addEventListener("click", () => {
         const fullName = member.dataset.fullName;
         const job = member.dataset.jobPosition;

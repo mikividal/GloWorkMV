@@ -9,20 +9,19 @@
   box-sizing: border-box;
   background: #FCFCFC;
   overflow: hidden;
-  display: flex;                /* added flex */
-  flex-direction: column;       /* added flex */
+  display: flex;
+  flex-direction: column;
 }
 
 .moodtracker-container {
   display: flex;
   gap: 1rem;
-  flex: 1 1 auto;              /* fill available vertical space */
+  flex: 1 1 auto;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Each mood column (My Mood, Company Mood, Team Mood) */
-.column {
+.card.mood {
   flex: 1 1 0;
   display: flex;
   flex-direction: column;
@@ -30,33 +29,10 @@
   padding: 16px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  /* remove overflow-y: auto to avoid clipping height */
-}
-
-/* Wrapper inside column that should fill whole column */
-.column-card-wrapper {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   width: 100%;
   height: 100%;
-  overflow-y: auto;  /* keep scroll only here */
 }
 
-/* The actual mood card filling its container */
-.column .card.mood {
-  flex: 1 1 auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Toggle buttons (top-right for admins) */
 .top-right-toggle {
   position: absolute;
   top: 20px;
@@ -103,7 +79,7 @@
   overflow-y: auto;
 }
 
-/* Avatar and member card styles (optional polish) */
+/* Avatar and member card styles */
 .member-card {
   display: flex;
   align-items: center;

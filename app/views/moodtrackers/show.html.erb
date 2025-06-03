@@ -1,4 +1,4 @@
- <div class="moodtracker-wrapper">
+<div class="moodtracker-wrapper">
   <% if current_user.admin? %>
     <div class="top-right-toggle">
       <button id="show-team-mood">My Team</button>
@@ -6,19 +6,19 @@
     </div>
   <% end %>
 
-  <div class="moodtracker-container">
-    <!-- Column 1: My Mood -->
-    <div class="column">
+  <div class="moodtracker-container" id="mood-cards">
+    <!-- My Mood -->
+    <div class="card mood">
       <%= render "mymood_card" %>
     </div>
 
-    <!-- Column 2: Company Mood -->
-    <div class="column">
+    <!-- Company Mood -->
+    <div class="card mood">
       <%= render "shared/companymood_card" %>
     </div>
 
-    <!-- Column 3: Team Mood (dynamic for admin) -->
-    <div class="column">
+    <!-- Team Mood / Admin Toggle Area -->
+    <div class="card mood" id="team-mood-card">
       <% if current_user.admin? %>
         <div id="team-mood-section" style="display: none;">
           <%= render "shared/admin_team_mood" %>
@@ -41,17 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const teamSection = document.getElementById("team-mood-section");
   const personalSection = document.getElementById("personal-team-mood");
 
-  const moodtrackerContainer = document.querySelector(".moodtracker-container");
-  const columns = moodtrackerContainer.querySelectorAll(".column");
+  const moodCards = document.getElementById("mood-cards").children;
 
   if (showTeamBtn && showOwnBtn) {
     showTeamBtn.addEventListener("click", () => {
-      // Hide first 2 columns completely
-      columns[0].style.display = "none";
-      columns[1].style.display = "none";
+      moodCards[0].style.display = "none"; // My Mood
+      moodCards[1].style.display = "none"; // Company Mood
 
-      // Show third column, and inside it show team mood, hide personal mood
-      columns[2].style.display = "flex";  // keep flex display to keep layout
+      moodCards[2].style.display = "flex";  // Team mood column
       teamSection.style.display = "block";
       personalSection.style.display = "none";
 
@@ -60,10 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     showOwnBtn.addEventListener("click", () => {
-      // Show all 3 columns again
-      columns[0].style.display = "flex";
-      columns[1].style.display = "flex";
-      columns[2].style.display = "flex";
+      moodCards[0].style.display = "flex";
+      moodCards[1].style.display = "flex";
+      moodCards[2].style.display = "flex";
 
       teamSection.style.display = "none";
       personalSection.style.display = "block";
@@ -73,5 +69,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-
 </script>
