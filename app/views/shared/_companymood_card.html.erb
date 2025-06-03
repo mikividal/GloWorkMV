@@ -4,27 +4,27 @@
 
     <div class="d-flex" style="height: 28px; font-size: 20px; margin-bottom:20px; margin-top:20px;">
       <div class="progress flex-grow-1" style="height: 28px;">
-        <div class="progress-bar" role="progressbar" style="width: <%= @company[:happy] %>%; background-color: green;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @company[:happy_comp] %>%; background-color: green;">
         </div>
       </div>
-      <p class="ps-3"><%= @company[:happy] %> % 😀</p>
+      <p class="ps-3"><%= @company[:happy_comp] %> % 😀</p>
     </div>
     <div class="d-flex" style="height: 28px; font-size: 20px; margin-bottom:20px;">
       <div class="progress flex-grow-1" style="height: 28px;">
-        <div class="progress-bar" role="progressbar" style="width: <%= @company[:neutral] %>%; background-color: orange;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @company[:neutral_comp] %>%; background-color: orange;">
         </div>
       </div>
-      <p class="ps-3"><%= @company[:neutral] %>% 😐 </p>
+      <p class="ps-3"><%= @company[:neutral_comp] %>% 😐 </p>
     </div>
     <div class="d-flex" style="height: 28px; font-size: 20px; margin-bottom:20px;">
       <div class="progress flex-grow-1" style="height: 28px;">
-        <div class="progress-bar" role="progressbar" style="width: <%= @company[:sad] %>%; background-color: red;">
+        <div class="progress-bar" role="progressbar" style="width: <%= @company[:sad_comp] %>%; background-color: red;">
         </div>
       </div>
-      <p><%= @company[:sad] %>% ☹️  </p>
+      <p><%= @company[:sad_comp] %>% ☹️  </p>
       </div>
     <div>
       <%= render "shared/comparison" %>
     </div>
-    <%= render "shared/emojis" %>
+    <%= render "shared/emojis", emojis: @company[:emojis] %>
   </div>
