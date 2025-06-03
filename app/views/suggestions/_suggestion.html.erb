@@ -1,4 +1,35 @@
 <turbo-frame id="suggestion_<%= suggestion.id %>">
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true" data-controller="suggestions-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Are you sure?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Do you really want to take this action?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+        <form method="post" data-suggestions-modal-target="form">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <%= hidden_field_tag "suggestion[actioned]", "", data: { suggestions_modal_target: "actionedField" } %>
+          <input type="hidden" name="_method" value="patch">
+          <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
   <div class="suggestion-box" data-controller="comments">
     <h5><%= suggestion.suggestion %></h5>
 
@@ -21,8 +52,24 @@
       <div class="actioned d-flex align-items-center gap-2">
         <% if current_user.admin? %>
           <% if suggestion.actioned.nil? %>
-            <%= button_to "✅", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: true } }, form: { data: { turbo: true } }, class: "tick-btn" %>
-            <%= button_to "❌", suggestion_path(suggestion), method: :patch, params: { suggestion: { actioned: false } }, form: { data: { turbo: true } }, class: "cross-btn" %>
+
+        <button type="button" class="btn btn-success tick-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#confirmModal"
+          data-actioned="true"
+          data-suggestion-id="<%= suggestion.id %>">
+            ✅
+        </button>
+
+        <button type="button" class="btn btn-danger cross-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#confirmModal"
+          data-actioned="false"
+          data-suggestion-id="<%= suggestion.id %>">
+            ❌
+        </button>
+
+
           <% else %>
             <%= suggestion.actioned ? "✅" : "❌" %>
           <% end %>

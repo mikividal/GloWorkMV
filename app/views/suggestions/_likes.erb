@@ -1,15 +1,15 @@
 <div id="likes-count-<%= suggestion.id %>">
 <% if suggestion.likes.exists? %>
-  <div>
+  <div class="likes-count-liked">
       <%= button_to suggestion_likes_path(suggestion),
                   method: :delete,
                   remote: true,
                   class: "like-button btn" do %>
-            <p id="liked-heart"> <i class="fa-solid fa-heart"></i> ( <%= suggestion.likes.count %> ) </p>
+            <p > <i class="fa-solid fa-heart", id="liked-heart"></i> ( <%= suggestion.likes.count %> ) </p>
       <% end %>
     </div>
 <% else %>
-    <div>
+    <div class="likes-count-unliked">
       <%= button_to suggestion_likes_path(suggestion),
                   method: :post,
                   remote: true,

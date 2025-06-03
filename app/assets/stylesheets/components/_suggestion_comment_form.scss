@@ -1,0 +1,15 @@
+
+#suggestions_comment_comment {
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+  border: 1px solid $porcelain;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: $porcelain;
+
+   &:focus {
+    outline: none;
+    border: #ffba9777 3px solid;
+  }
+}
