@@ -108,7 +108,25 @@
 
 <h2>List of events</h2>
 <h3><%= @events.count %> events </h3>
-<% @events.each do |event| %>
+<% @events.each_with_index do |event, index| %>
   <p><%= event.event_name %></p>
-  <%= link_to "delete", event_path(event), data: {turbo_method: :delete, turbo_confirm: "are you sure?"}  %>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= index %>">
+      <%= event.event_name %>
+    </button>
+<div class="modal fade" id="exampleModal<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel<%= index %>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel<%= index %>">Would you like to delete this event?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= link_to "Delete", event_path(event), data: {turbo_method: :delete, turbo_confirm: "are you sure?"} %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
