@@ -23,6 +23,7 @@ class MoodtrackersController < ApplicationController
              else
                [current_user]
              end
+    @team = team_percentage
   end
 
   def edit
@@ -46,7 +47,6 @@ class MoodtrackersController < ApplicationController
       my_moods += mood.mood
     end
     average_mood = my_moods / user_moods.size
-    raise
     return average_mood
   end
 
@@ -62,6 +62,49 @@ class MoodtrackersController < ApplicationController
       when 2 then neutral += 1
       when 3 then happy += 1
       end
+    end
+    total = happy + neutral + sad
+    @p_happy = (happy.to_f / total) * 100
+    @p_neutral = (neutral.to_f / total) * 100
+    @p_sad = (sad.to_f / total) * 100
+    { happy: @p_happy.round(2), neutral: @p_neutral.round(2), sad: @p_sad.round(2) }
+  end
+
+  def company_percentage
+    @moodtrackers = Moodtracker.all
+    sad = 0
+    neutral = 0
+    happy = 0
+    user_moods = @moodtrackers
+    user_moods.each do |mood|
+      case mood.mood
+      when 1 then sad += 1
+      when 2 then neutral += 1
+      when 3 then happy += 1
+      end
+    end
+    total = happy + neutral + sad
+    @p_happy = (happy.to_f / total) * 100
+    @p_neutral = (neutral.to_f / total) * 100
+    @p_sad = (sad.to_f / total) * 100
+    { happy: @p_happy.round(2), neutral: @p_neutral.round(2), sad: @p_sad.round(2) }
+  end
+
+  def team_percentage
+    @moodtrackers = Moodtracker.all
+    sad = 0
+    neutral = 0
+    happy = 0
+    teams_user = User.where(team: current_user.team)
+    teams_user.each do |user|
+      team_moods = user.moodtrackers
+       team_moods.each do |mood|
+          case mood.mood
+          when 1 then sad += 1
+          when 2 then neutral += 1
+          when 3 then happy += 1
+          end
+        end
     end
     total = happy + neutral + sad
     @p_happy = (happy.to_f / total) * 100
