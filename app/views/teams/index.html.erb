@@ -1,11 +1,52 @@
-<div class="teams-container">
-  <!-- Column 1: Team list -->
+<div class="teams-container" data-controller="teams">
   <div class="team-list">
     <% if current_user.admin? %>
-      <button class="add-button">+ Add new team member</button>
+      <!-- Toggle Form Button -->
+      <button class="add-button" data-action="click->teams#toggleForm">
+        + Add new team member
+      </button>
+
+      <!-- New Member Form -->
+      <div id="new-member-form" class="hidden">
+        <%= form_with model: User.new, url: users_path, method: :post, local: false, html: { id: "create-team-member-form" } do |f| %>
+          <div>
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name %>
+          </div>
+
+          <div>
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name %>
+          </div>
+
+          <div>
+            <%= f.label :job_position %>
+            <%= f.text_field :job_position %>
+          </div>
+
+          <div>
+            <%= f.label :location %>
+            <%= f.text_field :location %>
+          </div>
+
+          <div>
+            <%= f.label :team %>
+            <%= f.text_field :team %>
+          </div>
+
+          <div>
+            <%= f.label :email %>
+            <%= f.email_field :email, placeholder: "name@glowork.com", value: "@glowork.com" %>          </div>
+
+          <div>
+            <%= f.submit "Create Member" %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
 
-    <ul id="team-member-list" data-controller="teams">
+    <!-- Team Member List -->
+    <ul id="team-member-list">
       <% @users.each do |user| %>
         <li class="team-member"
             data-full-name="<%= user.full_name %>"
@@ -25,28 +66,21 @@
     </ul>
   </div>
 
-  <!-- Column 2: User details -->
   <div class="user-panel">
-    <div class="user-card hidden" id="user-details">
-      <!-- Initially hidden -->
-    </div>
+    <div class="user-card hidden" id="user-details"></div>
   </div>
 
-  <!-- Column 3: Map -->
-  <% users_with_coords = @users.select { |u| u.latitude.present? && u.longitude.present? } %>
-<% users_with_coords = @users.select { |u| u.latitude.present? && u.longitude.present? } %>
-
-<div
-  id="map"
-  class="map-placeholder"
-  data-controller="map"
-  data-map-users-value='<%= raw(users_with_coords.map { |u|
-    {
-      full_name: u.full_name,
-      location: u.location,
-      lat: u.latitude,
-      lng: u.longitude
-    }
-  }.to_json) %>'
-  data-map-mapbox-api-key-value="pk.eyJ1IjoibWlnejIyMDUiLCJhIjoiY21hemc4ZzJiMGJzcjJsc2Fxdm83MDdweiJ9.yu0zSvl3tEeW55Rw9wjFjA"
-></div>
+  <div id="map"
+       class="map-placeholder"
+       data-controller="map"
+       data-map-users-value='<%= raw @users.select { |u| u.latitude && u.longitude }.map { |u|
+         {
+           full_name: u.full_name,
+           location: u.location,
+           lat: u.latitude,
+           lng: u.longitude
+         }
+       }.to_json %>'
+       data-map-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
