@@ -8,5 +8,5 @@ class Question < ApplicationRecord
   def fetch_ai_answer
     ChatbotJob.perform_later(self)
   end
-  
+
 end
