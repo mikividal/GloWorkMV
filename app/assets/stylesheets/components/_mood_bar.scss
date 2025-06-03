@@ -1,0 +1,53 @@
+.mood-bar {
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  flex-direction: row;
+  border-top: solid 2px #62566f74;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+}
+
+.companymood-box {
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  border-right: solid 2px #62566f74;
+  background-image: linear-gradient(to right, $periwinkle, $periwinkle, $red, $red);
+
+  p {
+    font-size: 20px;
+    font-weight: 600;
+    color: $porcelain;
+    text-align: left;
+    padding: 10px;
+  }
+}
+
+.teammood-box {
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  background-image: linear-gradient(to right, $periwinkle, $periwinkle, $yellow, $yellow);
+
+
+  p {
+    font-size: 20px;
+    font-weight: 600;
+    color: $porcelain;
+    text-align: left;
+    padding: 10px;
+  }
+}
+
+.red {
+  background-image: linear-gradient(to right, $periwinkle, $red);
+}
+
+.yellow {
+  background-image: linear-gradient(to right, $periwinkle, $yellow);
+}
+
+.green {
+  background-image: linear-gradient(to right, $periwinkle, $green);
+}
