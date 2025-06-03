@@ -24,6 +24,7 @@ class MoodtrackersController < ApplicationController
                [current_user]
              end
     @team = team_percentage
+    @company = company_percentage
   end
 
   def edit
@@ -122,6 +123,5 @@ class MoodtrackersController < ApplicationController
   def mood_params
     params.require(:moodtracker).permit(:mood, :comment)
   end
-
 
 end
