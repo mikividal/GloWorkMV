@@ -1,9 +1,22 @@
 .comments-box{
-  width: 100%;
-  height: 40px;
+display: flex;
+  justify-content: space-between;
+  align-items: center; // vertically centre items
   padding: 10px;
   background-color: $porcelain;
   border-radius: 8px;
-  margin: 10px 0px;
+  margin: 10px 0;
   box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+}
+
+  #delete-comment-btn {
+
+background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  i {
+    color: $lilac;
+    font-size: 16px;
+  }
 }
