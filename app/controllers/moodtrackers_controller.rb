@@ -17,7 +17,7 @@ class MoodtrackersController < ApplicationController
   def show
     @moodtrackers = Moodtracker.all
     @percentage = user_percentage
-    @emojis = emoji_percentage
+    # @emojis = emoji_percentage(happy, sad, neutral)
     @users = if current_user.admin?
                User.where(team: current_user.team).where.not(id: current_user.id)
              else
@@ -68,7 +68,7 @@ class MoodtrackersController < ApplicationController
     @p_happy = (happy.to_f / total) * 100
     @p_neutral = (neutral.to_f / total) * 100
     @p_sad = (sad.to_f / total) * 100
-    { happy: @p_happy.round(2), neutral: @p_neutral.round(2), sad: @p_sad.round(2) }
+    { happy: @p_happy.round(2), neutral: @p_neutral.round(2), sad: @p_sad.round(2), emojis: emoji_percentage(@p_happy, @p_sad, @p_neutral)  }
   end
 
   def company_percentage
@@ -88,7 +88,7 @@ class MoodtrackersController < ApplicationController
     @p_happy = (happy.to_f / total) * 100
     @p_neutral = (neutral.to_f / total) * 100
     @p_sad = (sad.to_f / total) * 100
-    { happy_comp: @p_happy.round(2), neutral_comp: @p_neutral.round(2), sad_comp: @p_sad.round(2) }
+    { happy_comp: @p_happy.round(2), neutral_comp: @p_neutral.round(2), sad_comp: @p_sad.round(2), emojis: emoji_percentage(@p_happy, @p_sad, @p_neutral) }
   end
 
   def team_percentage
@@ -108,14 +108,14 @@ class MoodtrackersController < ApplicationController
         end
     end
     total = happy + neutral + sad
-    @p_happy = (happy.to_f / total) * 100
-    @p_neutral = (neutral.to_f / total) * 100
-    @p_sad = (sad.to_f / total) * 100
-    { happy: @p_happy.round(2), neutral: @p_neutral.round(2), sad: @p_sad.round(2) }
+    p_happy = (happy.to_f / total) * 100
+    p_neutral = (neutral.to_f / total) * 100
+    p_sad = (sad.to_f / total) * 100
+    { happy: p_happy.round(2), neutral: p_neutral.round(2), sad: p_sad.round(2), emojis: emoji_percentage(@p_happy, @p_sad, @p_neutral) }
   end
 
-  def emoji_percentage
-    [[@p_happy, "😀"], [@p_neutral, "😐"], [@p_sad, "☹️"]].sort_by { |a| a[0] }.reverse
+  def emoji_percentage(happy, sad, neutral)
+    [[happy, "😀"], [neutral, "😐"], [sad, "☹️"]].sort_by { |a| a[0] }.reverse
   end
 
   private
