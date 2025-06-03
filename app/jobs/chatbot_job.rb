@@ -31,9 +31,9 @@ class ChatbotJob < ApplicationJob
 
     Start the conversation by saying: “Hello, how can I help you today?”
 
-    When the user shares something, respond with 2-3 concise and practical tips they can try. The tips should be focused, actionable, and easy to follow — avoid vague or generic advice.
+    When the user shares something, engage in conversation and be empathic. If you give tips, they should be focused, actionable, and easy to follow — avoid vague or generic advice.
 
-    Do not continue the conversation or ask more questions, such as 'Is there anything else I can help you with?'.
+   ask follow up questions. If the user says things like 'thank you' or any other phrase suggesting the end of the conversation, then politely end the conversation.
 
     Keep responses supportive and brief. Do not give medical or therapeutic advice." }
     questions.each do |question|
