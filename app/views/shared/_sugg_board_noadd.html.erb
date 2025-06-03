@@ -2,7 +2,7 @@
 <div class="container" >
   <div class='d-flex'>
     <div class='left' style="width: 90%;">
-    <h4>Latest <%= current_user.team %> Team Suggestions</h4>
+    <h4>Latest Suggestions</h4>
       <div class='suggestions-main'>
         <% if @suggestions.any? %>
           <% @suggestions.take(4).each do |suggestion| %>

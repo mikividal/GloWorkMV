@@ -3,10 +3,10 @@
   justify-content: space-between;
   align-items: center; // vertically centre items
   padding: 10px;
-  background-color: $porcelain;
+  // background-color: $porcelain;
   border-radius: 8px;
   margin: 10px 0;
-  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+  // box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
 
   p {
     margin: 0;
@@ -35,6 +35,5 @@ background-color: transparent;
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: white;
-  border: 1px solid #ccc;
+
 }

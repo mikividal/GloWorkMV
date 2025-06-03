@@ -31,10 +31,16 @@ def destroy
   @comment = @suggestion.suggestion_comments.find(params[:id])
   @comment.destroy
 
-  redirect_to suggestions_path, status: :see_other
+  respond_to do |format|
+    format.turbo_stream do
+      render turbo_stream: [
+        turbo_stream.remove(view_context.dom_id(@comment)),
+        turbo_stream.replace("comment_counter_#{@suggestion.id}", partial: "suggestions/comment_counter", locals: { suggestion: @suggestion })
+      ]
+    end
+    format.html { redirect_to suggestions_path, status: :see_other }
+  end
 end
-
-
 
 
 
