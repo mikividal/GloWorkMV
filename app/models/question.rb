@@ -6,7 +6,7 @@ class Question < ApplicationRecord
   private
 
   def fetch_ai_answer
-    ChatbotJob.perform_later(self)
+    ChatbotJob.perform_now(self)
   end
-  
+
 end
