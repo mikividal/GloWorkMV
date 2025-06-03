@@ -7,14 +7,12 @@ class PagesController < ApplicationController
   def dashboard
     @moodtrackers = Moodtracker.all
     @percentage = user_percentage
-    @emojis = emoji_percentage
     @suggestions = Suggestion.all
     @suggestions = Suggestion.order(:created_at)
     @events = Event.all
   end
 
   def user_percentage
-    @moodtrackers = Moodtracker.all
     sad = 0
     neutral = 0
     happy = 0
@@ -30,11 +28,11 @@ class PagesController < ApplicationController
     @p_happy = (happy.to_f / total) * 100
     @p_neutral = (neutral.to_f / total) * 100
     @p_sad = (sad.to_f / total) * 100
-    { happy: @p_happy.round(2), neutral: @p_neutral.round(2), sad: @p_sad.round(2) }
+    { happy: @p_happy.round(2), neutral: @p_neutral.round(2), sad: @p_sad.round(2), emojis: emoji_percentage(@p_happy, @p_sad, @p_neutral) }
   end
 
-  def emoji_percentage
-    [[@p_happy, "😀"], [@p_neutral, "😐"], [@p_sad, "☹️"]].sort_by { |a| a[0] }.reverse
+  def emoji_percentage(happy, sad, neutral)
+    [[happy, "😀"], [neutral, "😐"], [sad, "☹️"]].sort_by { |a| a[0] }.reverse
   end
 
   private
