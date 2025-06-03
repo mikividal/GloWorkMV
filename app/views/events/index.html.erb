@@ -29,6 +29,10 @@
         </div>
         <div class="modal-footer">
           <!-- Trigger for Modal 2 -->
+          <button class="btn btn-primary" data-bs-target="#Modal2-<%= meeting.id %>"  data-bs-dismiss="modal">
+            <%= link_to "Delete", event_path(meeting), data: {turbo_method: :delete} %>
+
+          </button>
           <button class="btn btn-primary" data-bs-target="#Modal2-<%= meeting.id %>" data-bs-toggle="modal" data-bs-dismiss="modal">
             Edit Event
           </button>
@@ -49,21 +53,21 @@
           <!-- TODO: Customize this modal content per event -->
           <% if current_user.admin?  %>
             <h1>Edit event</h1>
-            <%= simple_form_for(meeting) do |f| %>
+            <%= simple_form_for(meeting, html: { id: "edit_meeting_#{meeting.id}" }) do |f| %>
               <%= f.input :event_name, label: "Edit event name" %>
               <%= f.input :description, label: "Edit event description" %>
               <%= f.input :location, label: "Edit event location" %>
               <%= f.datetime_local_field :start_date, as: :datetime, label: "Start Date" %>
               <%= f.datetime_local_field :end_date, as: :datetime, label: "End Date" %>
-              <%= f.submit %>
+
+            <div class="modal-footer">
+          <!-- Update button -->
+            <button class="btn btn-primary" data-bs-target="#Modal1-<%= meeting.id %>" data-bs-dismiss="modal" >
+              <%= f.submit "Update Event" %>
+            </button>
             <% end %>
           <% end %>
         </div>
-        <div class="modal-footer">
-          <!-- Back to Modal 1 -->
-          <button class="btn btn-primary" data-bs-target="#Modal1-<%= meeting.id %>" data-bs-toggle="modal" data-bs-dismiss="modal">
-            Back to event
-          </button>
         </div>
       </div>
     </div>
