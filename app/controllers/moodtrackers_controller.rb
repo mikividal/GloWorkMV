@@ -17,14 +17,13 @@ class MoodtrackersController < ApplicationController
   def show
     @moodtrackers = Moodtracker.all
     @percentage = user_percentage
-    # @emojis = emoji_percentage(happy, sad, neutral)
     @users = if current_user.admin?
                User.where(team: current_user.team).where.not(id: current_user.id)
              else
                [current_user]
              end
     @team = team_percentage
-    @company = company_percentage
+    @company = calculate_percentages(@moodtrackers)
   end
 
   def edit
@@ -52,66 +51,42 @@ class MoodtrackersController < ApplicationController
   end
 
   def user_percentage
-    @moodtrackers = Moodtracker.all
-    sad = 0
-    neutral = 0
-    happy = 0
     user_moods = @moodtrackers.where(user_id: current_user.id)
-    user_moods.each do |mood|
-      case mood.mood
-      when 1 then sad += 1
-      when 2 then neutral += 1
-      when 3 then happy += 1
-      end
-    end
-    total = happy + neutral + sad
-    @p_happy = (happy.to_f / total) * 100
-    @p_neutral = (neutral.to_f / total) * 100
-    @p_sad = (sad.to_f / total) * 100
-    { happy: @p_happy.round(2), neutral: @p_neutral.round(2), sad: @p_sad.round(2), emojis: emoji_percentage(@p_happy, @p_sad, @p_neutral)  }
-  end
-
-  def company_percentage
-    @moodtrackers = Moodtracker.all
-    sad = 0
-    neutral = 0
-    happy = 0
-    user_moods = @moodtrackers
-    user_moods.each do |mood|
-      case mood.mood
-      when 1 then sad += 1
-      when 2 then neutral += 1
-      when 3 then happy += 1
-      end
-    end
-    total = happy + neutral + sad
-    @p_happy = (happy.to_f / total) * 100
-    @p_neutral = (neutral.to_f / total) * 100
-    @p_sad = (sad.to_f / total) * 100
-    { happy_comp: @p_happy.round(2), neutral_comp: @p_neutral.round(2), sad_comp: @p_sad.round(2), emojis: emoji_percentage(@p_happy, @p_sad, @p_neutral) }
+    calculate_percentages(user_moods)
   end
 
   def team_percentage
-    @moodtrackers = Moodtracker.all
+    team_users = User.where(team: current_user.team)
+    team_moods = Moodtracker.where(user_id: team_users)
+    calculate_percentages(team_moods)
+  end
+
+  def calculate_percentages(moods)
     sad = 0
     neutral = 0
     happy = 0
-    teams_user = User.where(team: current_user.team)
-    teams_user.each do |user|
-      team_moods = user.moodtrackers
-       team_moods.each do |mood|
-          case mood.mood
-          when 1 then sad += 1
-          when 2 then neutral += 1
-          when 3 then happy += 1
-          end
-        end
+
+    moods.each do |mood|
+      case mood.mood
+      when 1 then sad += 1
+      when 2 then neutral += 1
+      when 3 then happy += 1
+      end
     end
-    total = happy + neutral + sad
-    p_happy = (happy.to_f / total) * 100
-    p_neutral = (neutral.to_f / total) * 100
-    p_sad = (sad.to_f / total) * 100
-    { happy: p_happy.round(2), neutral: p_neutral.round(2), sad: p_sad.round(2), emojis: emoji_percentage(@p_happy, @p_sad, @p_neutral) }
+
+    total = sad + neutral + happy
+    return { happy: 0, neutral: 0, sad: 0, emojis: [] } if total == 0
+
+    p_happy = (happy.to_f / total * 100).round(2)
+    p_neutral = (neutral.to_f / total * 100).round(2)
+    p_sad = (sad.to_f / total * 100).round(2)
+
+    {
+      happy: p_happy,
+      neutral: p_neutral,
+      sad: p_sad,
+      emojis: emoji_percentage(p_happy, p_sad, p_neutral)
+    }
   end
 
   def emoji_percentage(happy, sad, neutral)
