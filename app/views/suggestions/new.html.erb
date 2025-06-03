@@ -1,3 +1,4 @@
+
 <div id="comment-form">
   <div class="modal-card">
     <%= link_to dashboard_path do %>
@@ -7,8 +8,6 @@
      <%= simple_form_for @suggestion do |f| %>
       <%= f.input :suggestion, label: false, placeholder: "Share your suggestion here..." %>
       <%= f.button :submit, "SUBMIT", class: "button-accept" %>
-   
-      <% end %>
     <% end %>
   </div>
 </div>
