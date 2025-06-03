@@ -12,23 +12,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
+          <li class="nav-item <%= 'active' if current_page?(dashboard_path) %>">
             <%= link_to "DASHBOARD", dashboard_path, class: "nav-link" %>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item <%= 'active' if current_page?(suggestions_path) %>">
             <%= link_to "SUGGESTIONS", suggestions_path, class: "nav-link" %>
           </li>
 
-           <li class="nav-item">
+           <li class="nav-item <%= 'active' if current_page?(moodtracker_path(current_user.id)) %>">
             <%= link_to "MOOD TRACKER", moodtracker_path(current_user.id), class: "nav-link" %>
           </li>
 
-           <li class="nav-item">
+           <li class="nav-item <%= 'active' if current_page?(events_path) %>">
             <%= link_to "EVENTS", events_path, class: "nav-link" %>
           </li>
 
-           <li class="nav-item">
+           <li class="nav-item <%= 'active' if current_page?(teams_path) %>">
             <%= link_to "TEAM", teams_path, class: "nav-link" %>
           </li>
 

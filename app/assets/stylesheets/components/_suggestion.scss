@@ -10,3 +10,16 @@
 .actioned {
 scale: 150%;
 }
+
+
+
+.actioned {
+  .btn{
+
+    &:hover {
+    text-decoration: none;
+    background-color: transparent;
+    border-color: transparent;
+    }
+  }
+}

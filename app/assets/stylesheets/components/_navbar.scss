@@ -1,4 +1,6 @@
 .navbar-lewagon {
+
+
   justify-content: space-between;
   background: $periwinkle;
   box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
@@ -17,6 +19,8 @@
   font-weight: 500;
   margin-right: 20px;
   text-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+
+
 }
 
 .dropdown-menu a {
@@ -26,8 +30,29 @@
 
   }
 
+
+
 }
 
 #logout {
   border-top: solid 1px $lilac;
+}
+
+.nav-link {
+  color: $porcelain;
+  font-weight: 500;
+  margin-right: 20px;
+  text-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    color: $lilac;
+  }
+
+
+}
+
+.nav-item.active .nav-link {
+  color: $lilac;      // or your dark color
+  font-weight: 700;   // maybe bolder to highlight
+  text-shadow: none;  // remove if you want cleaner text
 }

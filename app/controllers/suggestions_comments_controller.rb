@@ -9,15 +9,13 @@ def create
  respond_to do |format|
   format.turbo_stream do
     render turbo_stream: [
-      turbo_stream.append("comments_section_#{@suggestion.id}", partial: "suggestions/comment", locals: { comment: @comment }),
-      turbo_stream.replace("comment_form_#{@suggestion.id}", partial: "suggestions/comment_form", locals: { suggestion: @suggestion }),
-      turbo_stream.replace("comment_counter_#{@suggestion.id}", partial: "suggestions/comment_counter", locals: { suggestion: @suggestion })
+      turbo_stream.append("comments_section_#{@suggestion.id}", partial: "suggestions/comment", locals: { comment: @comment, suggestion: @suggestion }),
+        turbo_stream.replace("comment_form_#{@suggestion.id}", partial: "suggestions/comment_form", locals: { suggestion: @suggestion }),
+        turbo_stream.replace("comment_counter_#{@suggestion.id}", partial: "suggestions/comment_counter", locals: { suggestion: @suggestion })
     ]
   end
   format.html { redirect_to @suggestion }
 end
-
-
   else
     Rails.logger.error("COMMENT SAVE FAILED: #{@comment.errors.full_messages}")
     respond_to do |format|
@@ -26,6 +24,17 @@ end
     end
   end
 end
+
+
+def destroy
+  @suggestion = Suggestion.find(params[:suggestion_id])
+  @comment = @suggestion.suggestion_comments.find(params[:id])
+  @comment.destroy
+
+  redirect_to suggestions_path, status: :see_other
+end
+
+
 
 
 

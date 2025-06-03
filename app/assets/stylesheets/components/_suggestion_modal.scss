@@ -1,8 +1,46 @@
 #confirmModal {
-  --bs-modal-width: 600px;
-  --bs-modal-padding: 2rem;
-  --bs-modal-border-radius: 1rem;
-  --bs-modal-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  --bs-modal-bg: #fff7f7;
-  --bs-modal-color: #222;
+
+    color: $lilac;
+    border: 2px solid $lilac;
+    
+    .modal-dialog {
+      margin-top: 200px;
+    }
+
+  .modal-header {
+    border: none;
+    background-color: $porcelain;
+  }
+
+  .modal-footer {
+    border: none;
+    background-color: $porcelain;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .modal-body {
+    background-color: $porcelain;
+
+    p {
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+
+
+  .button-cancel, .button-accept {
+    align-items: center;
+  }
+}
+
+#confirmModal .modal-dialog {
+  transform: scale(0.5);
+  opacity: 0;
+  transition: transform 0.02s linear, opacity 0.02s linear;
+}
+
+#confirmModal.show .modal-dialog {
+  transform: scale(1);
+  opacity: 1;
 }
