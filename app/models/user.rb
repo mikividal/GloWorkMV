@@ -22,5 +22,16 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def display_email
+  "#{email.split('@').first}@glowork.com"
+  end
+
+  def capitalized_full_name
+  "#{first_name.capitalize} #{last_name.capitalize}"
+  end
+
+  def capitalized_location
+  location.capitalize
+  end
 
 end

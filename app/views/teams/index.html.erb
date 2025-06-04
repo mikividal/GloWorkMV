@@ -1,68 +1,25 @@
 <div class="teams-container" data-controller="teams">
   <div class="team-list">
-    <% if current_user.admin? %>
-      <!-- Toggle Form Button -->
-      <button class="add-button" data-action="click->teams#toggleForm">
-        + Add new team member
-      </button>
-
-      <!-- New Member Form -->
-      <div id="new-member-form" class="hidden">
-        <%= form_with model: User.new, url: users_path, method: :post, local: false, html: { id: "create-team-member-form" } do |f| %>
-          <div>
-            <%= f.label :first_name %>
-            <%= f.text_field :first_name %>
-          </div>
-
-          <div>
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name %>
-          </div>
-
-          <div>
-            <%= f.label :job_position %>
-            <%= f.text_field :job_position %>
-          </div>
-
-          <div>
-            <%= f.label :location %>
-            <%= f.text_field :location %>
-          </div>
-
-          <div>
-            <%= f.label :team %>
-            <%= f.text_field :team %>
-          </div>
-
-          <div>
-            <%= f.label :email %>
-            <%= f.email_field :email, placeholder: "name@glowork.com", value: "@glowork.com" %>          </div>
-
-          <div>
-            <%= f.submit "Create Member" %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-
     <!-- Team Member List -->
     <ul id="team-member-list">
       <% @users.each do |user| %>
         <li class="team-member"
-            data-full-name="<%= user.full_name %>"
+            data-full-name="<%= user.capitalized_full_name %>"
             data-job-position="<%= user.job_position %>"
             data-team="<%= user.team %>"
-            data-location="<%= user.location %>"
-            data-email="<%= user.email %>">
+            data-location="<%= user.capitalized_location %>"
+            data-email="<%= user.display_email %>">
           <div class="member-card">
             <%= image_tag(
-            "https://api.dicebear.com/9.x/avataaars/svg?seed=#{user.id}",
-            alt: "#{user.full_name}'s avatar",
-            class: "avatar"
-          ) %>
+              "https://api.dicebear.com/9.x/avataaars/svg?seed=#{user.id}",
+              alt: "#{user.capitalized_full_name}'s avatar",
+              class: "avatar"
+            ) %>
             <div>
-              <div class="name"><%= user.full_name %></div>
+              <div class="name"><%= user.capitalized_full_name %></div>
               <div class="position"><%= user.job_position %></div>
+              <div class="location"><%= user.capitalized_location %></div>
+              <div class="email"><%= user.display_email %></div>
             </div>
           </div>
         </li>
@@ -79,8 +36,8 @@
        data-controller="map"
        data-map-users-value='<%= raw @users.select { |u| u.latitude && u.longitude }.map { |u|
          {
-           full_name: u.full_name,
-           location: u.location,
+           full_name: u.capitalized_full_name,
+           location: u.capitalized_location,
            lat: u.latitude,
            lng: u.longitude
          }
