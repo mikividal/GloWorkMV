@@ -18,7 +18,9 @@ class ApplicationController < ActionController::Base
       @range = "7days"
       @moodtrackers = filtered_moodtrackers(@range)
       @color_company = calculate_percentages(@moodtrackers)[:emojis][0][2]
+      @emoji_company = calculate_percentages(@moodtrackers)[:emojis][0][1]
       @color_team = team_percentage(@moodtrackers)[:emojis][0][2]
+      @emoji_team = team_percentage(@moodtrackers)[:emojis][0][1]
 
     end
   end
