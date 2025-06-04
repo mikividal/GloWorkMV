@@ -12,13 +12,13 @@
     <div class="card mood">
         <!-- Column 1: My Mood -->
         <div class="column">
-          <%= render "shared/mood_card_all", title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
+          <%= render "shared/mood_card_all", form_url: request.path, title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
         </div>
     </div>
 
     <!-- Company Mood -->
     <div class="card mood">
-      <%= render "shared/mood_card_all", title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
+      <%= render "shared/mood_card_all", form_url: request.path, title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
     </div>
 
     <!-- Team Mood / Admin Toggle Area -->
@@ -28,10 +28,10 @@
           <%= render "shared/admin_team_mood" %>
         </div>
         <div id="personal-team-mood">
-          <%= render "shared/mood_card_all", title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
+          <%= render "shared/mood_card_all", form_url: request.path, title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
         </div>
       <% else %>
-        <%= render "shared/mood_card_all", title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
+        <%= render "shared/mood_card_all", form_url: request.path, title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
       <% end %>
     </div>
   </div>
