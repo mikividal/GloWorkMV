@@ -13,7 +13,9 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+   <% unless current_page?(new_moodtracker_path) %>
+      <%= render "shared/navbar" %>
+    <% end %>
 
     <% if user_signed_in? %>
       <%= render 'shared/mood_bar' %>

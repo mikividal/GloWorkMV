@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-start_date = Date.today - 7
+start_date = Date.today - 365
 end_date = Date.today - 1
 random_date = rand(start_date..end_date)
 
@@ -18,7 +18,9 @@ Moodtracker.destroy_all
 SuggestionsComment.destroy_all
 Suggestion.destroy_all
 Event.destroy_all
+Question.destroy_all
 User.destroy_all
+
 
 puts"creating users"
 
@@ -132,67 +134,61 @@ user = User.create!(
 puts "#{User.count} users created"
 puts"creating moodtrackers"
 
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: sales1
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: sales1
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: sales1
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: sales2
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: sales2
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: sales2
-)
+100.times do
+  Moodtracker.create!(
+    mood: (1..3).to_a.sample,
+    date: rand(start_date..end_date),
+    user: user
+  )
+end
 
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: marketing1
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: marketing1
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: marketing1
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: marketing2
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: marketing2
-)
-Moodtracker.create!(
-  mood: (1..3).to_a.sample,
-  date: rand(start_date..end_date),
-  user: marketing2
-)
+100.times do
+  Moodtracker.create!(
+    mood: (1..3).to_a.sample,
+    date: rand(start_date..end_date),
+    user: admin2
+  )
+end
+
+100.times do
+  Moodtracker.create!(
+    mood: (1..3).to_a.sample,
+    date: rand(start_date..end_date),
+    user: admin1
+  )
+end
+
+100.times do
+  Moodtracker.create!(
+    mood: (1..3).to_a.sample,
+    date: rand(start_date..end_date),
+    user: sales1
+  )
+end
+100.times do
+  Moodtracker.create!(
+    mood: (1..3).to_a.sample,
+    date: rand(start_date..end_date),
+    user: sales2
+  )
+end
+
+100.times do
+  Moodtracker.create!(
+    mood: (1..3).to_a.sample,
+    date: rand(start_date..end_date),
+    user: marketing1
+  )
+end
+
+100.times do
+  Moodtracker.create!(
+    mood: (1..3).to_a.sample,
+    date: rand(start_date..end_date),
+    user: marketing2
+  )
+end
+
 puts "#{Moodtracker.count} moodtracker created"
 puts "creating suggestions"
 
@@ -238,9 +234,8 @@ puts "#{SuggestionsComment.count} suggestions_comments created"
 
 puts "Creating Events..."
 
-Event.create!(event_name: "End of bootcamp party", start_date: "25/05/2025", end_date: "25/05/2025", location: "London", user: admin1)
-Event.create!(event_name: "Catch-up Meeting", start_date: "24/05/2025", end_date: "24/05/2025", location: "Liverpool", user: admin1)
-Event.create!(event_name: "Summer Meeting", start_date: "23/05/2025", end_date: "23/05/2025", location: "Manchester", user: admin1)
+Event.create!(event_name: "End of bootcamp party", start_date: "25/06/2025 19:00", end_date: "25/05/2025 22:00", location: "London", user: admin1)
+Event.create!(event_name: "Catch-up Meeting", start_date: "24/06/2025 09:00", end_date: "24/05/2025 10:00", location: "Liverpool", user: admin1)
+Event.create!(event_name: "Summer Meeting", start_date: "23/06/2025 17:00", end_date: "23/05/2025 19:00", location: "Manchester", user: admin1)
 
 puts "#{Event.count} events created"
-

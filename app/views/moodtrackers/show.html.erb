@@ -12,15 +12,6 @@
     <div class="card mood">
         <!-- Column 1: My Mood -->
         <div class="column">
-        <div class="mb-3">
-          <%= form_with url: moodtracker_path, method: :get, local: true do %>
-            <%= select_tag :range, options_for_select([
-                ['Last 7 days', '7_days'],
-                ['Last 6 months', '6_months'],
-                ['Last year', '1_year']
-              ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
-          <% end %>
-        </div>
           <%= render "shared/mood_card_all", title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
         </div>
     </div>
