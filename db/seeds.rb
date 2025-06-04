@@ -234,8 +234,8 @@ puts "#{SuggestionsComment.count} suggestions_comments created"
 
 puts "Creating Events..."
 
-Event.create!(event_name: "End of bootcamp party", start_date: "25/06/2025 19:00", end_date: "25/05/2025 22:00", location: "London", user: admin1)
-Event.create!(event_name: "Catch-up Meeting", start_date: "24/06/2025 09:00", end_date: "24/05/2025 10:00", location: "Liverpool", user: admin1)
-Event.create!(event_name: "Summer Meeting", start_date: "23/06/2025 17:00", end_date: "23/05/2025 19:00", location: "Manchester", user: admin1)
+Event.create!(event_name: "End of bootcamp party", start_date: DateTime.new(2025, 6, 4, 18, 0, 0), end_date: DateTime.new(2025, 6, 4, 21, 0, 0), location: "London", user: admin1)
+Event.create!(event_name: "Catch-up Meeting", start_date: DateTime.new(2025, 6, 24, 14, 0, 0), end_date: DateTime.new(2025, 6, 25, 16, 0, 0), location: "Liverpool", user: admin1)
+Event.create!(event_name: "Summer Meeting", start_date: DateTime.new(2025, 5, 3, 11, 0, 0), end_date: DateTime.new(2025, 5, 3, 12, 0, 0), location: "Manchester", user: admin1)
 
 puts "#{Event.count} events created"
