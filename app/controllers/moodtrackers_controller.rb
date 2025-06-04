@@ -15,14 +15,15 @@ class MoodtrackersController < ApplicationController
   end
 
   def show
-    @moodtrackers = Moodtracker.all
-    @percentage = user_percentage
+    @range = params[:range] || "7_days"
+    @moodtrackers = filtered_moodtrackers(@range)
+    @percentage = user_percentage(@moodtrackers, current_user)
     @users = if current_user.admin?
                User.where(team: current_user.team).where.not(id: current_user.id)
              else
                [current_user]
              end
-    @team = team_percentage
+    @team = team_percentage(@moodtrackers)
     @company = calculate_percentages(@moodtrackers)
   end
 
@@ -50,15 +51,26 @@ class MoodtrackersController < ApplicationController
     return average_mood
   end
 
-  def user_percentage
-    user_moods = @moodtrackers.where(user_id: current_user.id)
+  def user_percentage(moods, user)
+    user_moods = moods.where(user_id: user.id)
     calculate_percentages(user_moods)
   end
 
-  def team_percentage
+  def team_percentage(moods)
     team_users = User.where(team: current_user.team)
-    team_moods = Moodtracker.where(user_id: team_users)
+    team_moods = moods.where(user: team_users)
     calculate_percentages(team_moods)
+  end
+
+  def filtered_moodtrackers(range)
+    case range
+    when "6months"
+      Moodtracker.where("date >= ?", 6.months.ago)
+    when "1year"
+      Moodtracker.where("date >= ?", 1.year.ago)
+    else
+      Moodtracker.where("date >= ?", 7.days.ago)
+    end
   end
 
   def calculate_percentages(moods)
