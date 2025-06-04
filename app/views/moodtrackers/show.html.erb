@@ -1,18 +1,9 @@
 <div class="moodtracker-wrapper">
-  <% if current_user.admin? %>
-    <div class="top-right-toggle">
-      <button id="show-team-mood">My Team</button>
-      <button id="show-own-mood" style="display: none;">Back to My Mood</button>
-    </div>
-  <% end %>
-
-
+<h1> am i here </h1>
   <div class="moodtracker-container" id="mood-cards">
     <!-- My Mood -->
-    <div class="card mood">
-        <!-- Column 1: My Mood -->
-        <div class="column">
-        <div class="mb-3">
+    <div class="moodtracker-card">
+        <div class="date-drop-down mb-3">
           <%= form_with url: moodtracker_path, method: :get, local: true do %>
             <%= select_tag :range, options_for_select([
                 ['Last 7 days', '7_days'],
@@ -21,65 +12,52 @@
               ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
           <% end %>
         </div>
-          <%= render "shared/mood_card_all", title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
+        <div class="my-mood-render">
+          <%= render "shared/mood_card_all", title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis] %>
+        </div>
+    </div>
+
+    <!-- Team Mood -->
+    <div class="moodtracker-card" id="team-mood-card">
+      <div class="date-drop-down mb-3">
+            <%= form_with url: moodtracker_path, method: :get, local: true do %>
+              <%= select_tag :range, options_for_select([
+                  ['Last 7 days', '7_days'],
+                  ['Last 6 months', '6_months'],
+                  ['Last year', '1_year']
+                ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
+            <% end %>
+      </div>
+          <% if current_user.admin? %>
+        <div class="team-mood-render">
+            <div id="team-mood-section" style="display: none;">
+              <%= render "shared/admin_team_mood" %>
+            </div>
+            <div id="personal-team-mood">
+              <%= render "shared/mood_card_all", title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
+            </div>
+          <% else %>
+            <%= render "shared/mood_card_all", title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
+          <% end %>
         </div>
     </div>
 
     <!-- Company Mood -->
-    <div class="card mood">
-      <%= render "shared/mood_card_all", title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
+    <div class="moodtracker-card">
+    <div class="date-drop-down mb-3">
+          <%= form_with url: moodtracker_path, method: :get, local: true do %>
+            <%= select_tag :range, options_for_select([
+                ['Last 7 days', '7_days'],
+                ['Last 6 months', '6_months'],
+                ['Last year', '1_year']
+              ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
+          <% end %>
+        </div>
+      <div class="company-mood-render">
+        <%= render "shared/mood_card_all", title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
+      </div>
     </div>
 
-    <!-- Team Mood / Admin Toggle Area -->
-    <div class="card mood" id="team-mood-card">
-      <% if current_user.admin? %>
-        <div id="team-mood-section" style="display: none;">
-          <%= render "shared/admin_team_mood" %>
-        </div>
-        <div id="personal-team-mood">
-          <%= render "shared/mood_card_all", title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
-        </div>
-      <% else %>
-        <%= render "shared/mood_card_all", title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
-      <% end %>
-    </div>
+
   </div>
 </div>
-
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const showTeamBtn = document.getElementById("show-team-mood");
-  const showOwnBtn = document.getElementById("show-own-mood");
-  const teamSection = document.getElementById("team-mood-section");
-  const personalSection = document.getElementById("personal-team-mood");
-
-  const moodCards = document.getElementById("mood-cards").children;
-
-  if (showTeamBtn && showOwnBtn) {
-    showTeamBtn.addEventListener("click", () => {
-      moodCards[0].style.display = "none"; // My Mood
-      moodCards[1].style.display = "none"; // Company Mood
-
-      moodCards[2].style.display = "flex";  // Team mood column
-      teamSection.style.display = "block";
-      personalSection.style.display = "none";
-
-      showTeamBtn.style.display = "none";
-      showOwnBtn.style.display = "inline-block";
-    });
-
-    showOwnBtn.addEventListener("click", () => {
-      moodCards[0].style.display = "flex";
-      moodCards[1].style.display = "flex";
-      moodCards[2].style.display = "flex";
-
-      teamSection.style.display = "none";
-      personalSection.style.display = "block";
-
-      showTeamBtn.style.display = "inline-block";
-      showOwnBtn.style.display = "none";
-    });
-  }
-});
-</script>

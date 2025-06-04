@@ -1,8 +1,14 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
   <div class="logo-div">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag asset_path("glowork_logo_porcelain.png"), class: "logo" %>
+    <% if user_signed_in? %>
+      <%= link_to dashboard_path, class: "navbar-brand" do %>
+        <%= image_tag asset_path("glowork_logo_porcelain.png"), class: "logo" %>
+        <% end %>
+      <% else %>
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag asset_path("glowork_logo_porcelain.png"), class: "logo" %>
+      <% end %>
     <% end %>
 </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +42,7 @@
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
           <%= image_tag(
-          "https://api.dicebear.com/9.x/avataaars/svg?seed=#{current_user.id}",
+          "https://api.dicebear.com/9.x/avataaars/svg?seed=#{Digest::SHA256.hexdigest(current_user.email)}",
           alt: "#{current_user.full_name}'s avatar",
           id: "avatar-icon"
           ) %>
