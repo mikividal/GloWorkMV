@@ -1,12 +1,17 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :mood_bar_methods
+  before_action :set_welcome_modal_flag
 
-  def after_sign_in_path_for(resource)
-    new_moodtracker_path
+
+  def set_welcome_modal_flag
+    @show_mood_modal = flash[:show_mood_modal].present?
   end
 
-  # private
+  def after_sign_in_path_for(resource)
+    flash[:show_mood_modal] = true
+    return new_moodtracker_path
+  end
 
   def user_percentage(moods, user)
     user_moods = moods.where(user_id: user.id)
@@ -21,7 +26,6 @@ class ApplicationController < ActionController::Base
       @emoji_company = calculate_percentages(@moodtrackers)[:emojis][0][1]
       @color_team = team_percentage(@moodtrackers)[:emojis][0][2]
       @emoji_team = team_percentage(@moodtrackers)[:emojis][0][1]
-
     end
   end
 
@@ -43,7 +47,6 @@ class ApplicationController < ActionController::Base
       Moodtracker.all
     end
   end
-
 
   def calculate_percentages(moods)
     sad = 0
@@ -72,7 +75,6 @@ class ApplicationController < ActionController::Base
       emojis: emoji_percentage(p_happy, p_sad, p_neutral)
     }
   end
-
 
   def emoji_percentage(happy, sad, neutral)
     [[happy, "😀", "#93F271"], [neutral, "😐", "#FFEC1C"], [sad, "☹️", "#FF7272"]].sort_by { |a| a[0] }.reverse
