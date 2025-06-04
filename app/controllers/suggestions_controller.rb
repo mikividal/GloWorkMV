@@ -17,8 +17,11 @@ class SuggestionsController < ApplicationController
     @suggestion = Suggestion.new(suggestion_params)
     if @suggestion.save
       @suggestions = Suggestion.order(created_at: :desc)
-
-      render :index, status: :see_other
+      if request.referer&.include?("/new")
+        redirect_to dashboard_path, status: :see_other
+      else
+        redirect_to suggestions_path, status: :see_other
+      end
     else
       render :index, status: :unprocessable_entity
     end
