@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def mood_bar_methods
     if user_signed_in?
-      @range = params[:range] || "7days"
+      @range = "7days"
       @moodtrackers = filtered_moodtrackers(@range)
       @color_company = calculate_percentages(@moodtrackers)[:emojis][0][2]
       @color_team = team_percentage(@moodtrackers)[:emojis][0][2]
