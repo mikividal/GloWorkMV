@@ -1,13 +1,8 @@
 <div class="moodtracker-wrapper">
   <div class="moodtracker-container" id="mood-cards">
-    <!-- My Mood -->
-    <div class="card mood">
-        <!-- Column 1: My Mood -->
-        <div class="column">
-          <%= render "shared/mood_card_all", form_url: request.path, title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
 
+        <!-- My Mood -->
     <div class="moodtracker-card">
-
         <div class="my-mood-render">
           <%= render "shared/mood_card_all", form_url: request.path, title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis] %>
         </div>
@@ -34,7 +29,8 @@
       <div class="company-mood-render">
         <%= render "shared/mood_card_all", form_url: request.path, title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
       </div>
-
     </div>
+
   </div>
 </div>
+
