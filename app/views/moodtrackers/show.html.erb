@@ -4,33 +4,23 @@
         <!-- My Mood -->
     <div class="moodtracker-card">
         <div class="my-mood-render">
-          <%= render "shared/mood_card_all", form_url: request.path, title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis] %>
+          <%= render "shared/mood_card_all", form_url: request.path, title: "ME", data: @percentage, emojis: @percentage[:emojis] %>
         </div>
     </div>
 
     <!-- Team Mood -->
     <div class="moodtracker-card" id="team-mood-card">
-          <% if current_user.admin? %>
         <div class="team-mood-render">
-            <div id="team-mood-section" style="display: none;">
-              <%= render "shared/admin_team_mood" %>
-            </div>
-            <div id="personal-team-mood">
-              <%= render "shared/mood_card_all", form_url: request.path, title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
-            </div>
-          <% else %>
-            <%= render "shared/mood_card_all", form_url: request.path, title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
-          <% end %>
+            <%= render "shared/mood_card_all", form_url: request.path, title: "TEAM", data: @team, emojis: @team[:emojis] %>
         </div>
     </div>
 
     <!-- Company Mood -->
     <div class="moodtracker-card">
       <div class="company-mood-render">
-        <%= render "shared/mood_card_all", form_url: request.path, title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
+        <%= render "shared/mood_card_all", form_url: request.path, title: "COMPANY", data: @company, emojis: @company[:emojis] %>
       </div>
     </div>
 
   </div>
 </div>
-

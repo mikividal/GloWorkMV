@@ -1,17 +1,25 @@
-<div class="container text-center">
-  <div class="row">
-    <div class="col-4">
-      <div class="d-flex flex-column mb-3" style="height: 50%vh; width: 100%">
-        <div class="card mood" style="height: 50%vh; width: 100%">
-          <%= render "shared/mood_card_all", form_url: dashboard_path, title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
-        </div>
-        <div>
-          <%= render "shared/events_dashboard" %>
+<div class="container">
+  <div class="dash-wrapper">
+
+    <div class="dash-left">
+      <div class="card-mood-dash">
+        <div class="my-mood-render">
+          <%= render "shared/mood_card_all", form_url: request.path, title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis] %>
         </div>
       </div>
+
+      <div class="dash-events">
+        <%= render "shared/events_dashboard" %>
+      </div>
     </div>
-    <div class="col-8 text-start">
-      <%= render "shared/sugg_board_dashboard" %>
+
+    <div class="dash-gap"></div>
+
+    <div class="dash-right">
+      <div class="dash-sugg-board">
+        <%= render "shared/sugg_board_dashboard" %>
+      </div>
     </div>
+
   </div>
 </div>

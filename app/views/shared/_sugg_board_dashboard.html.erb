@@ -1,7 +1,6 @@
 <% @suggestions = Suggestion.order(created_at: :desc) %>
-<div class="container-dash-sugg" >
-  <div class='d-flex'>
-    <div class='left' style="width: 90%;">
+
+   
     <h5>LATEST SUGGESTIONS</h5>
     <p id="warning-dash"> ❗️ Please be respectful and constructive in your suggestions. You will not be able to delete them after submitting. ❗️ </p>
       <div class='suggestions-main'>
@@ -15,8 +14,3 @@
           <p>No suggestions have been made yet</p>
         <% end %>
       </div>
-    </div>
-
-    <div class='gap'></div>
-  </div>
-</div>
