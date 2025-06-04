@@ -1,5 +1,8 @@
 <div class="card-mood">
 
+
+  <div class="mood-header">
+
   <div class="range-dropdown">
     <%= form_with url: form_url, method: :get, local: true do %>
                 <%= select_tag :range, options_for_select([
@@ -11,8 +14,6 @@
   </div>
   <h4><%= title %></h4>
 
-
-  <h4 id="mood-title"><%= title %></h4>
 
 
   <div class="moodtracker-bar">
