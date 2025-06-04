@@ -1,11 +1,15 @@
 <div class="moodtracker-wrapper">
   <div class="moodtracker-container" id="mood-cards">
     <!-- My Mood -->
+    <div class="card mood">
+        <!-- Column 1: My Mood -->
+        <div class="column">
+          <%= render "shared/mood_card_all", form_url: request.path, title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
 
     <div class="moodtracker-card">
 
         <div class="my-mood-render">
-          <%= render "shared/mood_card_all", title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis] %>
+          <%= render "shared/mood_card_all", form_url: request.path, title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis] %>
         </div>
     </div>
 
@@ -17,10 +21,10 @@
               <%= render "shared/admin_team_mood" %>
             </div>
             <div id="personal-team-mood">
-              <%= render "shared/mood_card_all", title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
+              <%= render "shared/mood_card_all", form_url: request.path, title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
             </div>
           <% else %>
-            <%= render "shared/mood_card_all", title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
+            <%= render "shared/mood_card_all", form_url: request.path, title: "TEAM MOOD", data: @team, emojis: @team[:emojis] %>
           <% end %>
         </div>
     </div>
@@ -28,10 +32,9 @@
     <!-- Company Mood -->
     <div class="moodtracker-card">
       <div class="company-mood-render">
-        <%= render "shared/mood_card_all", title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
+        <%= render "shared/mood_card_all", form_url: request.path, title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
       </div>
+
     </div>
-
-
   </div>
 </div>

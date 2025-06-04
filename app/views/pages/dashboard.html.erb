@@ -3,7 +3,7 @@
     <div class="col-4">
       <div class="d-flex flex-column mb-3" style="height: 50%vh; width: 100%">
         <div class="card mood" style="height: 50%vh; width: 100%">
-          <%= render "shared/mood_card_all", title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
+          <%= render "shared/mood_card_all", form_url: dashboard_path, title: "#{current_user.first_name} MOOD", data: @percentage, emojis: @percentage[:emojis] %>
         </div>
         <div>
           <%= render "shared/events_dashboard" %>

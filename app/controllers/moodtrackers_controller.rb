@@ -51,6 +51,7 @@ class MoodtrackersController < ApplicationController
     return average_mood
   end
 
+
   def user_percentage(moods, user)
     user_moods = moods.where(user_id: user.id)
     calculate_percentages(user_moods)
