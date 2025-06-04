@@ -74,13 +74,13 @@
     </div>
 
 
-    <div data-comments-target="container", class="hidden">
+    <div data-comments-target="container", class="hidden" id="comments-container">
       <!-- Comments Section -->
-      <div id="comments_section_<%= suggestion.id %>">
-        <% suggestion.suggestion_comments.each do |comment| %>
+     <div id="comments_section_<%= suggestion.id %>" class="comments-section">
+      <% suggestion.suggestion_comments.each do |comment| %>
         <%= render partial: "suggestions/comment", locals: { comment: comment, suggestion: suggestion } %>
       <% end %>
-      </div>
+    </div>
 
 
     <!-- Comment Form -->

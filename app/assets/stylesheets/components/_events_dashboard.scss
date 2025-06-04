@@ -1,0 +1,46 @@
+.events-dash-box {
+  background-color: $porcelain;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+  margin: 20px 0px;
+
+  h5 {
+    font-weight: 600;
+    text-align: left;
+    color: $lilac;
+  }
+}
+
+.periwinkle-bg {
+  background-color: rgba($periwinkle, 0.5);
+  color: $lilac;
+  border-radius: 16px;
+  padding: 4px 8px;
+  align-items: center;
+  margin-bottom: 10px;
+
+}
+
+.peach-bg {
+  background-color: rgba($peach, 0.5);
+  color: $lilac;
+  border-radius: 16px;
+  padding: 4px 8px;
+  margin-bottom: 10px;
+}
+
+.event-info-dash {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.info-left, .info-right {
+  display: flex;
+  align-items:  center;
+  height: 30px;
+  margin-top: 15px;
+  padding: 0px 5px;
+}

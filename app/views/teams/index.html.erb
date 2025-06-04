@@ -55,7 +55,11 @@
             data-location="<%= user.location %>"
             data-email="<%= user.email %>">
           <div class="member-card">
-            <%= image_tag("default_avatar.png", class: "avatar") %>
+            <%= image_tag(
+            "https://api.dicebear.com/9.x/avataaars/svg?seed=#{user.id}",
+            alt: "#{user.full_name}'s avatar",
+            class: "avatar"
+          ) %>
             <div>
               <div class="name"><%= user.full_name %></div>
               <div class="position"><%= user.job_position %></div>

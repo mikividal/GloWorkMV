@@ -56,3 +56,17 @@
   font-weight: 700;   // maybe bolder to highlight
   text-shadow: none;  // remove if you want cleaner text
 }
+
+#avatar-icon {
+  background-color: $porcelain;
+  border-radius: 50%;
+  width: 50px;
+  height: auto;
+}
+
+#username {
+  color: $porcelain;
+  font-weight: 500;
+  margin-right: 20px;
+  text-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+}
