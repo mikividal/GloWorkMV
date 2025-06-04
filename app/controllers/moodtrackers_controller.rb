@@ -89,9 +89,9 @@ class MoodtrackersController < ApplicationController
     total = sad + neutral + happy
     return { happy: 0, neutral: 0, sad: 0, emojis: [] } if total == 0
 
-    p_happy = (happy.to_f / total * 100).round(2)
-    p_neutral = (neutral.to_f / total * 100).round(2)
-    p_sad = (sad.to_f / total * 100).round(2)
+    p_happy = (happy.to_f / total * 100).round
+    p_neutral = (neutral.to_f / total * 100).round
+    p_sad = (sad.to_f / total * 100).round
 
     {
       happy: p_happy,

@@ -1,18 +1,73 @@
-.emoji-circle {
+.emoji-strip-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.emoji-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #CCCCFF;
-  border-radius: 50%;
-  font-size: 2rem;
-  width: 56px;
-  height: 56px;
-  margin-top: -55px;
 }
 
-.emoji-circle.large {
-  font-size: 3rem;
-  width: 72px;
-  height: 72px;
-  margin-top: -55px;
+.emoji-container {
+  position: absolute;
+  bottom: 5px; /* Adjusted to place emojis over the curve */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+  z-index: 2;
+}
+
+.emoji-circle-small, .emoji-circle-large {
+  display: flex;
+  align-items: center; /* Centers vertically */
+  justify-content: center; /* Centers horizontally */
+  border-radius: 50%;
+  background-color: $periwinkle;
+  width: 60px; /* Small */
+  height: 60px;
+}
+
+.emoji-circle-small {
+  width: 70px;
+  height: 70px;
+}
+
+.emoji-circle-large {
+  width: 80px;
+  height: 80px;
+}
+
+#curve {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+
+}
+
+#curve img {
+  width: 100%;
+  scale: 105%;
+  height: auto;
+}
+
+.emoji-circle-large p {
+  font-size: 60px;
+}
+
+.emoji-circle-small p {
+  font-size: 40px;
+}
+
+.emoji-circle-small p, .emoji-circle-large p {
+
+  margin: 0;
+  line-height: 1;
+  text-align: center;
 }
