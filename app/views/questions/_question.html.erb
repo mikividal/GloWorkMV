@@ -3,7 +3,7 @@
 
   <p class="user-question"><%= question.user_question %></p>
   <div class="ai-answer">
-    <p><%= markdown(question.ai_answer) || "..." %></p>
+    <p><%= markdown(question.ai_answer.presence || "...") %></p>
   </div>
 
 </div>
