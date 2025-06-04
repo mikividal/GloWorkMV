@@ -20,10 +20,10 @@ class SuggestionsController < ApplicationController
       if request.referer&.include?("/new")
         redirect_to dashboard_path, status: :see_other
       else
-        redirect_to suggestions_path, status: :see_other
+        redirect_to dashboard_path, status: :see_other
       end
     else
-      render :index, status: :unprocessable_entity
+      redirect_to dashboard_path
     end
   end
 

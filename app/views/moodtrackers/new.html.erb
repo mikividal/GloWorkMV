@@ -5,7 +5,7 @@
 <% if @show_mood_modal %>
 <script>
   document.addEventListener('turbo:load', () => {
-    const modalElement = document.getElementById('exampleModalToggle');
+    const modalElement = document.getElementById('open-mood-modal');
     if (modalElement) {
       const modal = new bootstrap.Modal(modalElement);
       modal.show();

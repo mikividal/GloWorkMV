@@ -34,13 +34,19 @@ a{
 
 .button-cancel{
   background-color: $lilac;
-  border-radius: 8px;
-  box-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.2);
   color: $porcelain;
   font-size: 14px;
   font-weight: bold;
   border: none;
-  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  min-width: 120px;
+  max-width: 100%;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover{
     scale: 102%;
@@ -50,15 +56,24 @@ a{
 
 .button-accept{
   background-color: $peach;
-  border-radius: 8px;
-  box-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.2);
   color: $porcelain;
   font-size: 14px;
   font-weight: bold;
   border: none;
-  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  min-width: 120px;
+  max-width: 100%;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 
   &:hover{
     scale: 102%;
+    background-color: $peach;
+    color: $porcelain;
   }
 }

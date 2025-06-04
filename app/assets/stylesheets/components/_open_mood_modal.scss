@@ -1,0 +1,119 @@
+// MODAL 1
+
+#open-mood-modal {
+
+    color: $lilac;
+    border: 2px solid $lilac;
+    background-color: $porcelain;
+
+    .modal-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .modal-dialog {
+      align-items: center;
+    }
+
+  .modal-header {
+    border: none;
+    background-color: $porcelain;
+  }
+
+  .mood-button{
+    font-size: 80px;
+  }
+
+  .open-moods-emojis {
+    display: flex;
+    justify-content: center;
+  }
+
+  .modal-body {
+    background-color: $porcelain;
+
+    p {
+      font-size: 24px;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+
+
+  .open-moods-emoji-btns {
+    align-items: center;
+    border: none;
+    background: transparent;
+  }
+}
+
+#confirmModal .modal-dialog {
+  transform: scale(0.5);
+  opacity: 0;
+  transition: transform 0.02s linear, opacity 0.02s linear;
+}
+
+#confirmModal.show .modal-dialog {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+// MODAL 2
+
+#open-mood-modal-2 {
+    color: $lilac;
+    border: 2px solid $lilac;
+    background-color: $porcelain;
+
+    #warning {
+      font-size: 10px;
+    }
+
+    #sugg-question {
+      padding: 10px 0px;
+    }
+
+    .modal-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+
+    }
+
+    .modal-dialog {
+      align-items: center;
+    }
+
+  .modal-header {
+    border: none;
+    background-color: $porcelain;
+  }
+
+  .mood-button{
+    font-size: 80px;
+  }
+
+
+  .modal-body {
+    background-color: $porcelain;
+
+    p {
+      font-size: 24px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .open-sugg-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    .suggestion-container-modal {
+      width: auto;
+    }
+
+  }
+}
