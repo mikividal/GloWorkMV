@@ -4,12 +4,7 @@ export default class extends Controller {
   connect() {
     this.setupMemberClick();
   }
-
-  toggleForm() {
-    const form = this.element.querySelector("#new-member-form");
-    form.classList.toggle("hidden");
-  }
-
+  
   setupMemberClick() {
     const members = this.element.querySelectorAll(".team-member");
     const userDetails = this.element.querySelector("#user-details");
