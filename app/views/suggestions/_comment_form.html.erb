@@ -1,9 +1,11 @@
 <div id="comment_form_<%= suggestion.id %>" data-controller="reset_form">
   <%= form_with model: [suggestion, SuggestionsComment.new], url: suggestion_suggestions_comments_path(suggestion), method: :post, data: { turbo_frame: "comment_form_#{suggestion.id}" } do |form| %>
     <div>
-      <%= form.text_area :comment, rows: 2, placeholder: "Add a comment...", data: { reset_form_target: "input", class: "comment-textbox" } %>
+      <%= form.text_area :comment, rows: 2, placeholder: "Add a comment...
+      ", data: { reset_form_target: "input", class: "comment-textbox" } %>
     </div>
     <div>
+
       <%= form.submit "Comment", class: "button-accept" %>
     </div>
   <% end %> <!-- Correctly closes the `form_with` block -->

@@ -1,0 +1,38 @@
+.container {
+  margin-top: 40px;
+}
+.card-mood-dash {
+  background-color: $porcelain;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.dash-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0;
+}
+.dash-gap {
+  width: 5%;
+}
+
+.dash-left {
+  flex: 1; /* Distributes available space properly */
+  max-width: 40%;
+}
+
+.dash-right {
+  flex: 1.5; /* Slightly larger to keep content balanced */
+  max-width: 60%;
+}
+
+.dash-sugg-board {
+  background-color: $porcelain;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+}
