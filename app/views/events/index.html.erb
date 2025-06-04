@@ -1,139 +1,120 @@
-<h1>Events Calendar</h1>
-<p>See your upcoming events</p>
-
-<%= month_calendar(events: @events, attribute: :start_date, end_attribute: :end_date) do |date, meetings| %>
-<div class="simple-calendar">
-  <div class="card-calendar-body">
-  <%= date.day %>
-  <% meetings.each do |meeting| %>
-  <div>
-    <!-- Trigger for Modal 1 -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
-      <%= meeting.event_name %>
-    </button>
-  </div>
-
-  <!-- Modal 1: Main Info -->
-  <div class="modal fade" id="Modal1-<%= meeting.id %>" tabindex="-1" aria-labelledby="Modal1Label-<%= meeting.id %>" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="Modal1Label-<%= meeting.id %>"><%= meeting.event_name %></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p><strong>Description:</strong> <%= meeting.description %></p>
-          <p><strong>Location:</strong> <%= meeting.location %></p>
-          <p><strong>Start Date:</strong> <%= meeting.start_date.strftime("%A, %d %b %Y %l:%M %p") %></p>
-          <p><strong>End Date:</strong> <%= meeting.end_date.strftime("%A, %d %b %Y %l:%M %p") %></p>
-        </div>
-        <div class="modal-footer">
-          <!-- Trigger for Modal 2 -->
-          <button class="btn btn-primary" data-bs-target="#Modal2-<%= meeting.id %>"  data-bs-dismiss="modal">
-            <%= link_to "Delete", event_path(meeting), data: {turbo_method: :delete} %>
-
-          </button>
-          <button class="btn btn-primary" data-bs-target="#Modal2-<%= meeting.id %>" data-bs-toggle="modal" data-bs-dismiss="modal">
-            Edit Event
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2: Custom content (editable) -->
-  <div class="modal fade" id="Modal2-<%= meeting.id %>" tabindex="-1" aria-labelledby="Modal2Label-<%= meeting.id %>" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="Modal2Label-<%= meeting.id %>"><%= meeting.event_name %></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- TODO: Customize this modal content per event -->
-          <% if current_user.admin?  %>
-            <h1>Edit event</h1>
-            <%= simple_form_for(meeting, html: { id: "edit_meeting_#{meeting.id}" }) do |f| %>
-              <%= f.input :event_name, label: "Edit event name" %>
-              <%= f.input :description, label: "Edit event description" %>
-              <%= f.input :location, label: "Edit event location" %>
-              <%= f.datetime_local_field :start_date, as: :datetime, label: "Start Date" %>
-              <%= f.datetime_local_field :end_date, as: :datetime, label: "End Date" %>
-
-            <div class="modal-footer">
-          <!-- Update button -->
-            <button class="btn btn-primary" data-bs-target="#Modal1-<%= meeting.id %>" data-bs-dismiss="modal" >
-              <%= f.submit "Update Event" %>
+<div class= "calendar-wrapper">
+<div class="calendar-container">
+  <%= month_calendar(events: @events, attribute: :start_date, end_attribute: :end_date) do |date, meetings| %>
+    <div class="simple-calendar">
+      <div class="card-calendar-body">
+        <%= date.day %>
+        <% meetings.each do |meeting| %>
+          <div>
+            <!-- Trigger for Modal 1 -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
+              <%= meeting.event_name %>
             </button>
-            <% end %>
-          <% end %>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-<% end %>
-
-<% if current_user.admin?  %>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Create Event
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Event</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for(@event) do |f| %>
-          <%= f.input :event_name, label: "Event Name", placeholder: "Write your event name here" %>
-          <%= f.input :description, label: "Event Description", placeholder: "Write your description here" %>
-          <%= f.input :location, label: "Event Location", placeholder: "Enter your event location here" %>
-          <%= f.datetime_local_field :start_date, as: :datetime, label: "Start Date" %>
-          <%= f.datetime_local_field :end_date, as: :datetime, label: "End Date" %>
-          <%= f.submit %>
+          </div>
         <% end %>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
-</div>
-</div>
-</div>
-<% end %>
+  <% end %>
 
-<h2>List of events</h2>
-<h3><%= @events.count %> events </h3>
-<% @events.each_with_index do |event, index| %>
-  <p><%= event.event_name %></p>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= index %>">
-      <%= event.event_name %>
-    </button>
-<div class="modal fade" id="exampleModal<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel<%= index %>" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel<%= index %>">Would you like to delete this event?</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <%= link_to "Edit", event_path(event), class: "btn btn-primary" %>
-          <%= link_to "Delete", event_path(event), data: {turbo_method: :delete, turbo_confirm: "are you sure?"}, class: "btn btn-warn" %>
+  <% if current_user.admin?  %>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Create Event
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Event</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for(@event) do |f| %>
+            <%= f.input :event_name, label: "Event Name", placeholder: "Write your event name here" %>
+            <%= f.input :description, label: "Event Description", placeholder: "Write your description here" %>
+            <%= f.input :location, label: "Event Location", placeholder: "Enter your event location here" %>
+            <%= f.datetime_local_field :start_date, as: :datetime, label: "Start Date" %>
+            <%= f.datetime_local_field :end_date, as: :datetime, label: "End Date" %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
+  <% end %>
 </div>
-<% end %>
+<div class="events-list-container">
+  <h2>List of events</h2>
+  <h3><%= @events.count %> events </h3>
+  <% @events.each_with_index do |meeting, index| %>
+    <div>
+      <!-- Trigger for Modal 1 -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
+        <%= meeting.event_name %>
+      </button>
+    </div>
+
+    <!-- Modal 1: Main Info -->
+    <div class="modal fade" id="Modal1-<%= meeting.id %>" tabindex="-1" aria-labelledby="Modal1Label-<%= meeting.id %>" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="Modal1Label-<%= meeting.id %>"><%= meeting.event_name %></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Description:</strong> <%= meeting.description %></p>
+            <p><strong>Location:</strong> <%= meeting.location %></p>
+            <p><strong>Start Date:</strong> <%= meeting.start_date.strftime("%A, %d %b %Y %l:%M %p") %></p>
+            <p><strong>End Date:</strong> <%= meeting.end_date.strftime("%A, %d %b %Y %l:%M %p") %></p>
+          </div>
+          <div class="modal-footer">
+            <!-- Trigger for Modal 2 -->
+            <button class="btn btn-primary" data-bs-target="#Modal2-<%= meeting.id %>"  data-bs-dismiss="modal">
+              <%= link_to "Delete", event_path(meeting), data: {turbo_method: :delete} %>
+            </button>
+            <button class="btn btn-primary" data-bs-target="#Modal2-<%= meeting.id %>" data-bs-toggle="modal" data-bs-dismiss="modal">
+              Edit Event
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: Custom content (editable) -->
+    <div class="modal fade" id="Modal2-<%= meeting.id %>" tabindex="-1" aria-labelledby="Modal2Label-<%= meeting.id %>" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="Modal2Label-<%= meeting.id %>"><%= meeting.event_name %></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- TODO: Customize this modal content per event -->
+            <% if current_user.admin?  %>
+              <h1>Edit event</h1>
+              <%= simple_form_for(meeting, html: { id: "edit_meeting_#{meeting.id}" }) do |f| %>
+                <%= f.input :event_name, label: "Edit event name" %>
+                <%= f.input :description, label: "Edit event description" %>
+                <%= f.input :location, label: "Edit event location" %>
+                <%= f.datetime_local_field :start_date, as: :datetime, label: "Start Date" %>
+                <%= f.datetime_local_field :end_date, as: :datetime, label: "End Date" %>
+              <div class="modal-footer">
+            <!-- Update button -->
+              <button class="btn btn-primary" data-bs-target="#Modal1-<%= meeting.id %>" data-bs-dismiss="modal" >
+                <%= f.submit "Update Event" %>
+              </button>
+              <% end %>
+            <% end %>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
