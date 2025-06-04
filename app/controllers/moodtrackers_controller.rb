@@ -51,6 +51,61 @@ class MoodtrackersController < ApplicationController
     return average_mood
   end
 
+
+  def user_percentage(moods, user)
+    user_moods = moods.where(user_id: user.id)
+    calculate_percentages(user_moods)
+  end
+
+  def team_percentage(moods)
+    team_users = User.where(team: current_user.team)
+    team_moods = moods.where(user: team_users)
+    calculate_percentages(team_moods)
+  end
+
+  def filtered_moodtrackers(range)
+    case range
+    when "6months"
+      Moodtracker.where("date >= ?", 6.months.ago)
+    when "1year"
+      Moodtracker.where("date >= ?", 1.year.ago)
+    else
+      Moodtracker.where("date >= ?", 7.days.ago)
+    end
+  end
+
+  def calculate_percentages(moods)
+    sad = 0
+    neutral = 0
+    happy = 0
+
+    moods.each do |mood|
+      case mood.mood
+      when 1 then sad += 1
+      when 2 then neutral += 1
+      when 3 then happy += 1
+      end
+    end
+
+    total = sad + neutral + happy
+    return { happy: 0, neutral: 0, sad: 0, emojis: [] } if total == 0
+
+    p_happy = (happy.to_f / total * 100).round
+    p_neutral = (neutral.to_f / total * 100).round
+    p_sad = (sad.to_f / total * 100).round
+
+    {
+      happy: p_happy,
+      neutral: p_neutral,
+      sad: p_sad,
+      emojis: emoji_percentage(p_happy, p_sad, p_neutral)
+    }
+  end
+
+  def emoji_percentage(happy, sad, neutral)
+    [[happy, "😀"], [neutral, "😐"], [sad, "☹️"]].sort_by { |a| a[0] }.reverse
+  end
+
   private
 
   def mood_params

@@ -1,0 +1,16 @@
+<h3><%= user.full_name %>'s Mood History</h3>
+<ul class="mood-history-list">
+  <% moodtrackers.each do |mood| %>
+    <li class="mood-entry">
+      <strong><%= mood.date.strftime("%b %d, %Y") %>:</strong>
+      <% if mood.mood == 3 %>
+        😀
+      <% elsif mood.mood == 2 %>
+        😐
+      <% else %>
+        ☹️
+      <% end %>
+      <p><%= mood.comment.presence || "No comment" %></p>
+    </li>
+  <% end %>
+</ul>
