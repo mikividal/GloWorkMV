@@ -1,22 +1,14 @@
 <div class="card-mood">
     <div class="mood-header">
         <h4><%= title %></h4>
-      <div class="date-dropdown">
-        <%= form_with url: form_url, method: :get, local: true do %>
-        <%= select_tag :range, options_for_select([
-        ['Last 7 days', '7days'],
-        ['Last month', '"1month"'],
-        ['Last 6 months', '6months']
-        ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
-        <% end %>
-      </div>
+    
   </div>
 
 
   <div class="moodtracker-bar">
     <div class="progress flex-grow-1">
       <div class="progress-bar" role="progressbar" style="width: <%= data[:happy] %>%; background-color:#93F271;">
-        <p class="emoji-percentage">😀 <%= data[:happy] %>%</p>
+        <p class="emoji-percentage">😀 <%= data[:happy].round %>%</p>
       </div>
     </div>
   </div>
@@ -24,7 +16,7 @@
   <div class="moodtracker-bar">
     <div class="progress flex-grow-1">
       <div class="progress-bar" role="progressbar" style="width: <%= data[:neutral] %>%; background-color:#FFEC1C;">
-        <p class="emoji-percentage">😐 <%= data[:neutral] %></p>
+        <p class="emoji-percentage">😐 <%= data[:neutral].round %>%</p>
       </div>
     </div>
   </div>
@@ -32,7 +24,7 @@
   <div class="moodtracker-bar">
     <div class="progress flex-grow-1">
       <div class="progress-bar" role="progressbar" style="width: <%= data[:sad] %>%; background-color:#FF7272;">
-        <p class="emoji-percentage">☹️ <%= data[:sad] %>%</p>
+        <p class="emoji-percentage">☹️ <%= data[:sad].round %>%</p>
       </div>
     </div>
   </div>
