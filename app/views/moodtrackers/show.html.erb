@@ -1,35 +1,16 @@
 <div class="moodtracker-wrapper">
-<h1> am i here </h1>
   <div class="moodtracker-container" id="mood-cards">
     <!-- My Mood -->
 
     <div class="moodtracker-card">
-        <div class="date-drop-down mb-3">
-          <%= form_with url: moodtracker_path, method: :get, local: true do %>
-            <%= select_tag :range, options_for_select([
-                ['Last 7 days', '7_days'],
-                ['Last 6 months', '6_months'],
-                ['Last year', '1_year']
-              ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
-          <% end %>
-        </div>
+
         <div class="my-mood-render">
           <%= render "shared/mood_card_all", title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis] %>
-
         </div>
     </div>
 
     <!-- Team Mood -->
     <div class="moodtracker-card" id="team-mood-card">
-      <div class="date-drop-down mb-3">
-            <%= form_with url: moodtracker_path, method: :get, local: true do %>
-              <%= select_tag :range, options_for_select([
-                  ['Last 7 days', '7_days'],
-                  ['Last 6 months', '6_months'],
-                  ['Last year', '1_year']
-                ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
-            <% end %>
-      </div>
           <% if current_user.admin? %>
         <div class="team-mood-render">
             <div id="team-mood-section" style="display: none;">
@@ -46,15 +27,6 @@
 
     <!-- Company Mood -->
     <div class="moodtracker-card">
-    <div class="date-drop-down mb-3">
-          <%= form_with url: moodtracker_path, method: :get, local: true do %>
-            <%= select_tag :range, options_for_select([
-                ['Last 7 days', '7_days'],
-                ['Last 6 months', '6_months'],
-                ['Last year', '1_year']
-              ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
-          <% end %>
-        </div>
       <div class="company-mood-render">
         <%= render "shared/mood_card_all", title: "COMPANY MOOD", data: @company, emojis: @company[:emojis] %>
       </div>
