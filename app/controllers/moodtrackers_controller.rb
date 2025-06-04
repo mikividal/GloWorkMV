@@ -105,7 +105,7 @@ class MoodtrackersController < ApplicationController
   end
 
   def emoji_percentage(happy, sad, neutral)
-    [[happy, "😀"], [neutral, "😐"], [sad, "☹️"]].sort_by { |a| a[0] }.reverse
+    [[happy, "😀", "#93F271"], [neutral, "😐", "#FFEC1C"], [sad, "☹️", "#FF7272"]].sort_by { |a| a[0] }.reverse
   end
 
   private
