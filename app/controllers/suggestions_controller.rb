@@ -20,7 +20,7 @@ class SuggestionsController < ApplicationController
       if request.referer&.include?("/new")
         redirect_to dashboard_path, status: :see_other
       else
-        redirect_to dashboard_path, status: :see_other
+        redirect_to suggestions_path, status: :see_other
       end
     else
       redirect_to dashboard_path
