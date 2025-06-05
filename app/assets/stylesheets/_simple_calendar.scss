@@ -1,11 +1,7 @@
 .simple-calendar {
+  color: #62566F;
+
   table {
-    -webkit-border-horizontal-spacing: 0px;
-    -webkit-border-vertical-spacing: 0px;
-    background-color: rgba(229, 103, 103, 0);
-    border: 1px solid rgb(221, 221, 221);
-    border-collapse: collapse;
-    box-sizing: border-box;
     max-width: 60%;
     height: 300px;
     margin-left: 20px;
@@ -14,49 +10,71 @@
 
   th {
     padding: 10px;
-    box-sizing: border-box;
     text-align: center;
+    color: #62566F;
+    font-size: 20px;
   }
 
   td {
     padding: 6px;
+    border: 1px solid #62566f2e;
+    width: 80px !important;
+    height: 80px !important;
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: nowrap; /* Prevents text wrapping */
+    display: table-cell; /* Ensures strict table behavior */
     vertical-align: top;
-    width: 14%;
-    border: 1px solid rgba(#62566F, 0.2);
+  }
+
+  #new-event-indicator {
+    width: 80px;
+    height: 30px;
+    background-color: #CCCCFF;
+    border: none;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+
+    p {
+      font-size: 9px;
+      margin: 0;
+    }
+  }
+
+  .card-calendar-body {
+  width: 80px !important;
+  height: 80px !important;
+  }
+
+  .calendar-title {
+    font-size: 30px;
+    margin-top: 40px;
+    margin-left: 20px;
+    font-weight: 600;
+  }
+
+  .nav .month-navs {
+   p {
+    color: #62566F;
+    font-size: 24px;
+    font-weight: 600;
+    }
   }
 
   .calendar-heading nav {
     display: inline-block;
   }
 
-  .day {
-    height: 80px; width: 80px;
-  }
-
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
-
   .today {
-    background: #FFFFC0
+    border: 3px solid $periwinkle;
   }
-
-  .past {}
-  .future {}
-
-  .start-date {}
 
   .prev-month {
-    background: #FFB997;
+    background: #ffba974b;
   }
-  .next-month {
-    background: #FFB997;
-  }
-  .current-month {}
 
-  .has-events {}
+  .next-month {
+    background: #ffba974b;
+  }
 }

@@ -5,12 +5,12 @@
       <div class="card-calendar-body">
         <%= date.day %>
         <% meetings.each do |meeting| %>
-          <div>
+
             <!-- Trigger for Modal 1 -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
-              <%= meeting.event_name %>
+            <button type="button" id="new-event-indicator" data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
+              <p> <%= meeting.event_name %> </p>
             </button>
-          </div>
+          
         <% end %>
       </div>
     </div>
@@ -54,7 +54,7 @@
   <% @events.each_with_index do |meeting, index| %>
     <div>
       <!-- Trigger for Modal 1 -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
+      <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
         <%= meeting.event_name %>
       </button>
     </div>
