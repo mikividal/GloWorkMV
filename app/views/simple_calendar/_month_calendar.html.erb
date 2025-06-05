@@ -42,9 +42,9 @@
   <% classes << 'bottom-left' if day == date_range[-7] %>
   <% classes << 'bottom-right' if day == date_range.last %>
 
-  <%= content_tag :td, class: classes do %>
-    <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
-  <% end %>
+  <%= content_tag :td, class: classes, data: { date: day.strftime('%Y-%m-%d') } do %>
+  <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+<% end %>
 <% end %>
 
 
@@ -54,3 +54,13 @@
     </tbody>
   </table>
 </div>
+
+
+
+
+
+
+
+
+
+

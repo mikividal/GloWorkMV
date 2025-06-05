@@ -3,22 +3,22 @@
   <!-- Calendar Column -->
   <div class="calendar-container">
     <%= month_calendar(events: @events, attribute: :start_date, end_attribute: :end_date) do |date, meetings| %>
-      <div class="day">
-        <%= date.day %>
-        <% meetings.each do |meeting| %>
-          <button type="button" class="new-event-indicator" data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
-            <p class="truncate-text"><%= meeting.event_name %></p>
-          </button>
-        <% end %>
-      </div>
+  <% is_past = date < Date.today %>
+  <div class="day <%= 'past-day' if is_past %>" data-date="<%= date %>">
+    <%= date.day %>
+
+    <% unless is_past %>
+      <% meetings.each do |meeting| %>
+        <button type="button" class="new-event-indicator" data-bs-toggle="modal" data-bs-target="#Modal1-<%= meeting.id %>">
+          <p class="truncate-text"><%= meeting.event_name %></p>
+        </button>
+      <% end %>
     <% end %>
+  </div>
+<% end %>
+
 
     <% if current_user.admin? %>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Create Event
-      </button>
-
       <!-- Modal: Create New Event -->
       <div class="modal fade one" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -29,12 +29,12 @@
             </div>
             <div class="modal-body">
               <%= simple_form_for(@event) do |f| %>
-                <%= f.input :event_name, label: "Event Name", placeholder: "Write your event name here" %>
-                <%= f.input :description, label: "Event Description", placeholder: "Write your description here" %>
-                <%= f.input :location, label: "Event Location", placeholder: "Enter your event location here" %>
+                <%= f.input :event_name, label: false, placeholder: "Write your event name here" %>
+                <%= f.input :description, label: false, placeholder: "Write your description here" %>
+                <%= f.input :location, label: false, placeholder: "Enter your event location here" %>
                 <%= f.datetime_local_field :start_date, as: :datetime, label: "Start Date" %>
                 <%= f.datetime_local_field :end_date, as: :datetime, label: "End Date" %>
-                <%= f.submit "Create Event", class: "btn btn-success mt-3" %>
+                <%= f.submit "Create Event", class: "button-accept mt-3" %>
               <% end %>
             </div>
           </div>
@@ -62,10 +62,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p><strong>Description:</strong> <%= meeting.description %></p>
-                <p><strong>Location:</strong> <%= meeting.location %></p>
-                <p><strong>Start Date:</strong> <%= meeting.start_date.strftime("%A, %d %b %Y %l:%M %p") %></p>
-                <p><strong>End Date:</strong> <%= meeting.end_date.strftime("%A, %d %b %Y %l:%M %p") %></p>
+                <p><strong>Start Date:</strong>
+                  <%= meeting.start_date.present? ? meeting.start_date.strftime("%A, %d %b %Y %l:%M %p") : "Not set" %>
+                </p>
+                <p><strong>End Date:</strong>
+                  <%= meeting.end_date.present? ? meeting.end_date.strftime("%A, %d %b %Y %l:%M %p") : "Not set" %>
+                </p>
               </div>
               <div class="modal-footer">
                 <%= link_to "Delete", event_path(meeting), data: {turbo_method: :delete}, class: "btn btn-danger" %>
@@ -104,3 +106,33 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+<script>
+d<script>
+  const modalElement = document.getElementById('exampleModal');
+  const bootstrapModal = new bootstrap.Modal(modalElement);
+
+  document.querySelectorAll('.simple-calendar td').forEach(td => {
+    td.addEventListener('dblclick', (event) => {
+      const clickedDate = td.getAttribute('data-date');
+      const today = new Date().toISOString().split("T")[0];
+
+      if (clickedDate < today) return;
+
+      const startDateInput = modalElement.querySelector('input[name="event[start_date]"]');
+      if (startDateInput) {
+        const dateValue = clickedDate + 'T09:00';
+        startDateInput.value = dateValue;
+      }
+
+      bootstrapModal.show();
+    });
+  });
+</script>
+
+
+</script>
