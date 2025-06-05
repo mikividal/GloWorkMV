@@ -4,7 +4,9 @@
     <div class="dash-left">
       <div class="card-mood-dash">
         <div class="my-mood-render">
-          <%= render "shared/mood_card_all", title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis] %>
+
+          <%= render "shared/mood_card_all",  title: "MY MOOD", data: @percentage, emojis: @percentage[:emojis], trends: @user_trends %>
+
         </div>
       </div>
 

@@ -14,21 +14,27 @@
         <!-- My Mood -->
     <div class="moodtracker-card">
         <div class="my-mood-render">
-          <%= render "shared/mood_card_all", title: "ME", data: @percentage, emojis: @percentage[:emojis] %>
+
+          <%= render "shared/mood_card_all", title: "ME", data: @percentage, emojis: @percentage[:emojis], trends: @user_trends %>
+
         </div>
     </div>
 
     <!-- Team Mood -->
     <div class="moodtracker-card" id="team-mood-card">
         <div class="team-mood-render">
-            <%= render "shared/mood_card_all", title: "TEAM", data: @team, emojis: @team[:emojis] %>
+
+            <%= render "shared/mood_card_all", title: "TEAM", data: @team, emojis: @team[:emojis], trends: @team_trends %>
+
         </div>
     </div>
 
     <!-- Company Mood -->
     <div class="moodtracker-card">
       <div class="company-mood-render">
-        <%= render "shared/mood_card_all",  title: "COMPANY", data: @company, emojis: @company[:emojis] %>
+
+        <%= render "shared/mood_card_all", title: "COMPANY", data: @company, emojis: @company[:emojis], trends: @company_trends%>
+
       </div>
     </div>
 
