@@ -1,3 +1,12 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #FCFCFC;
+  font-family: sans-serif;
+}
+
 .teams-container {
   display: flex;
   flex-direction: row;
@@ -5,97 +14,108 @@
   background: #FCFCFC;
 }
 
+/* === Team List === */
 .team-list {
   width: 30%;
   padding: 20px;
   background-color: #f2f2f2;
   overflow-y: auto;
-
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .add-button {
-    margin-bottom: 20px;
-    background-color: #F48C7F;
-    color: white;
-    font-size: 16px;
-    padding: 10px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  li.team-member {
-    margin-bottom: 10px;
-    cursor: pointer;
-
-    .member-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #EDE9FE;
-      padding: 12px;
-      border-radius: 8px;
-      transition: background 0.2s ease;
-
-      &:hover {
-        background: #C4B5FD;
-      }
-
-      .avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-      }
-
-      .name {
-        font-weight: bold;
-      }
-
-      .position {
-        font-size: 14px;
-        color: #555;
-      }
-    }
-  }
 }
 
-.user-panel {
-  width: 35%;
-  padding: 40px;
-
-  .user-card {
-    padding: 20px;
-    border-radius: 12px;
-    background-color: #fefefe;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .hidden {
-    display: none;
-  }
-}
-
-.map-panel {
-  width: 35%;
-  padding: 40px;
-}
- html, body {
-  height: 100%;
-  margin: 0;
+.team-list ul {
+  list-style: none;
   padding: 0;
 }
 
-.map-placeholder {
-  width: 100%;
-  height: 500px;
-  background-color: #eee;
+.team-list .add-button {
+  margin-bottom: 20px;
+  background-color: #F48C7F;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
   border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
 }
 
+.team-list li.team-member {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.team-list .member-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #EDE9FE;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.team-list .member-card:hover {
+  background: #C4B5FD;
+}
+
+.team-list .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.team-list .name {
+  font-weight: bold;
+}
+
+.team-list .position {
+  font-size: 14px;
+  color: #555;
+}
+
+/* === User Panel === */
+.user-panel {
+  width: 35%;
+  padding: 40px;
+}
+
+.user-card {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #FEFEFE;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.user-details-card h2 {
+  margin: 12px 0 8px;
+}
+
+.user-details-card p {
+  margin: 4px 0;
+  font-size: 15px;
+  color: #444;
+}
+
+.avatar-large {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+/* === Map Placeholder === */
+.map-placeholder {
+  width: 35%;
+  height: 400px;
+  margin-top: 40px;
+  margin-right: 40px;
+  background-color: #EEE;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* === Hidden Class === */
 .hidden {
   display: none;
 }

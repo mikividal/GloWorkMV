@@ -19,7 +19,7 @@ module ApplicationHelper
       description = "same"
     end
 
-    "#{change.abs}% #{description} #{mood} than last week"
+    "#{change.abs}% #{description} #{mood}"
   end
 
   def filtered_moodtrackers_by(moods, range, previous: false)
