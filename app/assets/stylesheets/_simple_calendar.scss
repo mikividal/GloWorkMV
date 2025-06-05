@@ -1,17 +1,88 @@
-simple-calendar tbody tr {
+.simple-calendar {
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
   background-color: #FDF9F8;
-}
+  color: #62566F;
+  padding: 10px;
 
-.new-event-indicator {
-    width: auto;
+  nav a {
+    margin: 0 5px;
+    padding: 6px 12px;
+    background-color: #ffba9751;
+    border: 2px solid #62566f37;
+    color: #62566F;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .calendar-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 16px;
+
+    th {
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #62566F;
+      background-color: #FDF9F8;
+      padding: 10px;
+    }
+
+    td {
+      border: 1px solid #62566f37;
+      background-color: #FDF9F8;
+      color: #62566F;
+      width: 80px;
+      height: 80px;
+      max-width: 80px;
+      max-height: 80px;
+      text-align: left;
+      vertical-align: top;
+      padding: 6px;
+
+      &.top-left {
+        border-top-left-radius: 16px;
+      }
+
+      &.top-right {
+        border-top-right-radius: 16px;
+      }
+
+      &.bottom-left {
+        border-bottom-left-radius: 16px;
+      }
+
+      &.bottom-right {
+        border-bottom-right-radius: 16px;
+      }
+
+      &:hover {
+        background-color: #f0e9e8;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .today {
+    border: 3px solid #CCCCFF;
+  }
+
+  .new-event-indicator {
     height: 20px;
     background-color: #CCCCFF;
     border: none;
     border-radius: 8px;
     display: flex;
-    place-items: center;
+    align-items: center;
     padding: 4px;
-    margin: 5px 0px;
+    margin: 5px 0;
     max-width: 75px;
 
     p {
@@ -27,37 +98,4 @@ simple-calendar tbody tr {
     display: block;
     max-width: 75px;
   }
-
-  .simple-calendar {
-
-    color: #62566F;
-
-    tbody {
-      border: 2px purple solid;
-      font-size: 18px;
-      font-weight: 600;
-
-    }
-
-    th {
-      color: #62566F;
-    }
-
-    td {
-      border: 2px rgb(255, 145, 55) solid;
-      background-color: #FDF9F8;
-      color: #62566F;
-      width: 80px !important;
-      height: 80px !important;
-      max-width: 80px;
-      max-height: 80px;
-      overflow: hidden;
-    }
-
-    th {
-      font-size: 20px;
-      text-align: center;
-      text-transform: uppercase;
-    }
-  }
-
+}

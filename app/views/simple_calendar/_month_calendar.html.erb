@@ -1,6 +1,8 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
-    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title">
+      <%= t('date.month_names')[start_date.month] %> <%= start_date.year %>
+    </time>
 
     <nav>
       <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
@@ -9,7 +11,7 @@
     </nav>
   </div>
 
-  <table class="table">
+  <table class="calendar-table">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
@@ -21,11 +23,18 @@
     <tbody>
       <% date_range.each_slice(7) do |week| %>
         <tr>
-          <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
-            <% end %>
-          <% end %>
+    <% week.each do |day| %>
+      <% classes = calendar.td_classes_for(day) %>
+      <% classes << 'top-left' if day == date_range.first %>
+      <% classes << 'top-right' if day == date_range[6] %>
+      <% classes << 'bottom-left' if day == date_range[-7] %>
+      <% classes << 'bottom-right' if day == date_range.last %>
+
+  <%= content_tag :td, class: classes do %>
+    <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+  <% end %>
+<% end %>
+
         </tr>
       <% end %>
     </tbody>
