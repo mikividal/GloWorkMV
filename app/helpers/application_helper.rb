@@ -9,13 +9,13 @@ module ApplicationHelper
     mood_icon = { happy: "😀", neutral: "😐", sad: "☹️" }[mood]
 
     if change.positive?
-      # trend = "↑"
+      trend = "↑"
       description = "more"
     elsif change.negative?
-      # trend = "↓"
+      trend = "↓"
       description = "less"
     else
-      # trend = "→"
+      trend = "→"
       description = "same"
     end
 

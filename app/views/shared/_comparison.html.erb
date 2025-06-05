@@ -1,8 +1,9 @@
 <div class="d-flex justify-content-evenly">
 <ul style="list-style: none;">
   <% trends.each do |mood, text| %>
-    <li class="mb-3">
-      <h5> 🌡️ <%= text %></h5>
+    <li class="d-flex justify-content-evenly">
+      <h2>🌡️</h2>
+      <h5><%= text %></h5>
     </li>
   <% end %>
 </ul>

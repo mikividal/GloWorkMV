@@ -1,11 +1,12 @@
 .chatbot {
   background: white;
   margin-top: 9px;
-  height: calc(100vh - 75px);
+  height: 65vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
 
 
   #questions {
@@ -41,6 +42,7 @@
 
   #chatform{
     height: 100%;
+    margin-bottom: 0;
   }
 
   #new_question {
@@ -52,9 +54,13 @@
 
     }
   }
-  #new-question-button{
-    height: 100%;
+
+  #question_user_question{
+    margin-bottom: 0px;
   }
 
-
+  #new-question-button{
+    color: $lilac;
+    font-size: 16px;
+  }
 }
