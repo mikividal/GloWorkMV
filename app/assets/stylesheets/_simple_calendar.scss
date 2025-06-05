@@ -1,80 +1,63 @@
-.simple-calendar {
-  color: #62566F;
+simple-calendar tbody tr {
+  background-color: #FDF9F8;
+}
 
-  table {
-    max-width: 60%;
-    height: 300px;
-    margin-left: 20px;
-    border-radius: 10%;
-  }
-
-  th {
-    padding: 10px;
-    text-align: center;
-    color: #62566F;
-    font-size: 20px;
-  }
-
-  td {
-    padding: 6px;
-    border: 1px solid #62566f2e;
-    width: 80px !important;
-    height: 80px !important;
-    overflow: hidden;
-    box-sizing: border-box;
-    white-space: nowrap; /* Prevents text wrapping */
-    display: table-cell; /* Ensures strict table behavior */
-    vertical-align: top;
-  }
-
-  #new-event-indicator {
-    width: 80px;
-    height: 30px;
+.new-event-indicator {
+    width: auto;
+    height: 20px;
     background-color: #CCCCFF;
     border: none;
     border-radius: 8px;
-    display: grid;
+    display: flex;
     place-items: center;
+    padding: 4px;
+    margin: 5px 0px;
+    max-width: 75px;
 
     p {
-      font-size: 9px;
+      font-size: 12px;
       margin: 0;
     }
   }
 
-  .card-calendar-body {
-  width: 80px !important;
-  height: 80px !important;
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 75px;
   }
 
-  .calendar-title {
-    font-size: 30px;
-    margin-top: 40px;
-    margin-left: 20px;
-    font-weight: 600;
-  }
+  .simple-calendar {
 
-  .nav .month-navs {
-   p {
     color: #62566F;
-    font-size: 24px;
-    font-weight: 600;
+
+    tbody {
+      border: 2px purple solid;
+      font-size: 18px;
+      font-weight: 600;
+
+    }
+
+    th {
+      color: #62566F;
+    }
+
+    td {
+      border: 2px rgb(255, 145, 55) solid;
+      background-color: #FDF9F8;
+      color: #62566F;
+      width: 80px !important;
+      height: 80px !important;
+      max-width: 80px;
+      max-height: 80px;
+      overflow: hidden;
+    }
+
+    th {
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
     }
   }
 
-  .calendar-heading nav {
-    display: inline-block;
-  }
-
-  .today {
-    border: 3px solid #CCCCFF;
-  }
-
-  .prev-month {
-    background: #ffba974b;
-  }
-
-  .next-month {
-    background: #ffba974b;
-  }
-}

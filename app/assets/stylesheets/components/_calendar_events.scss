@@ -1,0 +1,26 @@
+  .calendar-wrapper {
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
+
+  .calendar-container {
+    width: 63%;
+    border:  solid 2px red;
+  }
+
+  .events-list-container {
+    width: 35%;
+    border: blue solid 2px;
+  }
+
+    .upcoming-list {
+
+    }
+
+  .events-gap {
+    width: 2%;
+    border: 2px solid orange;
+  }
+
+
+  }
