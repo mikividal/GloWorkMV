@@ -1,4 +1,5 @@
 class MoodtrackersController < ApplicationController
+  include ApplicationHelper
   def new
     @show_welcome_modal = flash[:show_welcome_modal].present?
     @moodtracker = Moodtracker.new
@@ -26,6 +27,10 @@ class MoodtrackersController < ApplicationController
              end
     @team = team_percentage(@moodtrackers)
     @company = calculate_percentages(@moodtrackers)
+    team_users = User.where(team: current_user.team)
+    @team_trends = mood_trends(Moodtracker.where(user: team_users), params[:range] || "7days")
+    @company_trends = mood_trends(Moodtracker.all, params[:range] || "7days")
+    @user_trends = mood_trends(Moodtracker.where(user: current_user), params[:range] || "7days")
   end
 
   def edit
