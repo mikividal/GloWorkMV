@@ -2,8 +2,8 @@
   <%= turbo_stream_from dom_id(question) %>
 
   <p class="user-question"><%= question.user_question %></p>
-  <div class="ai-answer">
-    <p><%= markdown(question.ai_answer.presence || "...") %></p>
+  <div class="ai-answer" data-controller="question" >
+    <p><%= markdown(question.ai_answer || "...") %></p>
   </div>
 
 </div>

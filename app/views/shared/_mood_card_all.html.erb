@@ -5,7 +5,7 @@
         <%= form_with url: form_url, method: :get, local: true do %>
         <%= select_tag :range, options_for_select([
         ['Last 7 days', '7days'],
-        ['Last month', '"1month"'],
+        ['Last month', '1month'],
         ['Last 6 months', '6months']
         ], params[:range]), class: "form-select", onchange: "this.form.submit();" %>
         <% end %>
@@ -39,7 +39,7 @@
 
 
     <div class="comparison-data">
-      <%= render "shared/comparison" %>
+      <%= render "shared/comparison", trends: trends %>
     </div>
 
   <div class="emoji-container-strip">

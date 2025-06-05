@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :mood_bar_methods
+  include ApplicationHelper
 
   def after_sign_in_path_for(resource)
     new_moodtracker_path
@@ -21,8 +22,43 @@ class ApplicationController < ActionController::Base
       @emoji_company = calculate_percentages(@moodtrackers)[:emojis][0][1]
       @color_team = team_percentage(@moodtrackers)[:emojis][0][2]
       @emoji_team = team_percentage(@moodtrackers)[:emojis][0][1]
-
+      @user_trends = mood_trends(Moodtracker.where(user: current_user), params[:range] || "7days")
     end
+  end
+
+  def filtered_moodtrackers_by(moods, range, previous: false)
+    case range
+    when "6months"
+      from = previous ? 1.year.ago : 6.months.ago
+      to = previous ? 6.months.ago : Time.current
+    when "1month"
+      from = previous ? 2.months.ago : 1.month.ago
+      to = previous ? 1.month.ago : Time.current
+    when "7days"
+      from = previous ? 14.days.ago : 7.days.ago
+      to = previous ? 7.days.ago : Time.current
+    else
+      return moods
+    end
+
+    moods.where(date: from..to)
+  end
+
+  def mood_trends(moods, range)
+    current_scope = filtered_moodtrackers_by(moods, range)
+    previous_scope = filtered_moodtrackers_by(moods, range, previous: true)
+
+    current_stats = calculate_percentages(current_scope)
+    previous_stats = calculate_percentages(previous_scope)
+
+    trends = {}
+
+    [:happy, :neutral, :sad].each do |mood|
+      change = current_stats[mood] - previous_stats[mood]
+      trends[mood] = mood_trend_text(mood, change)
+    end
+
+    trends
   end
 
   def team_percentage(moods)
@@ -61,9 +97,9 @@ class ApplicationController < ActionController::Base
     total = sad + neutral + happy
     return { happy: 0, neutral: 0, sad: 0, emojis: [] } if total == 0
 
-    p_happy = (happy.to_f / total * 100).round(2)
-    p_neutral = (neutral.to_f / total * 100).round(2)
-    p_sad = (sad.to_f / total * 100).round(2)
+    p_happy = (happy.to_f / total * 100).round
+    p_neutral = (neutral.to_f / total * 100).round
+    p_sad = (sad.to_f / total * 100).round
 
     {
       happy: p_happy,
@@ -77,4 +113,5 @@ class ApplicationController < ActionController::Base
   def emoji_percentage(happy, sad, neutral)
     [[happy, "😀", "#93F271"], [neutral, "😐", "#FFEC1C"], [sad, "☹️", "#FF7272"]].sort_by { |a| a[0] }.reverse
   end
+
 end
