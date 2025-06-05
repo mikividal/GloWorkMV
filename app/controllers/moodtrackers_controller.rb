@@ -1,6 +1,7 @@
 class MoodtrackersController < ApplicationController
   include ApplicationHelper
   def new
+    @show_welcome_modal = flash[:show_welcome_modal].present?
     @moodtracker = Moodtracker.new
   end
 

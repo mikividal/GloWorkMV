@@ -29,7 +29,7 @@
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 70%;
+  height: 60%;
   overflow: hidden;
 }
 
@@ -115,6 +115,9 @@
   margin: 0;
 }
 
-.date-drop-down {
+.date-dropdown {
   flex-shrink: 0;
+  width: 150px;
+  margin-left: auto;
+  margin-bottom: 20px;
 }

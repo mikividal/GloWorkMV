@@ -1,14 +1,13 @@
-.container-dash-sugg {
-  h5 {
-    font-weight: 600;
+   #sugg-dash-h5{
+    font-weight: bold;
     text-align: left;
     color: $lilac;
   }
-}
+
 
 #warning-dash {
   color: $lilac;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   background-color: #ffba9753;
   padding: 5px;

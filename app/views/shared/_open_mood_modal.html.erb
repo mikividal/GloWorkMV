@@ -1,0 +1,46 @@
+<div id="open-mood">
+  <%# Modal 1 %>
+  <div class="modal fade" id="open-mood-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>HOW DO YOU FEEL TODAY?</p>
+        <div class="open-moods-emojis">
+          <% [ [1, "☹️"], [2, "😐"], [3, "😀"] ].each do |mood_value, emoji| %>
+            <%= simple_form_for Moodtracker.new, html: { class: "inline-form d-inline" }, data: { turbo_frame: "modal-output", controller: "mood" } do |f| %>
+              <%= f.input :mood, as: :hidden, input_html: { value: mood_value } %>
+          <button class="open-moods-emoji-btns" data-bs-target="#open-mood-modal-2" data-bs-toggle="modal"><%= f.button :submit, emoji, class: "mood-button" %></button>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# Modal 2 %>
+  <div class="modal fade" id="open-mood-modal-2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <p id="sugg-question">Would you like to leave a suggestion to help us improve?</p>
+          <p id="warning">❗️ Please be respectful and constructive in your suggestions. You will not be able to delete them after submitting. ❗️</p>
+          <div class="open-sugg-form">
+          <%= simple_form_for(Suggestion.new) do |f| %>
+            <div class="suggestion-container-modal">
+              <%= f.text_area :suggestion, placeholder: "Type your suggestion here...", label: false, class: "suggestion-textbox" %>
+            </div>
+            <div class="open-sugg-buttons">
+            <button class="button-cancel" type="button" onclick="window.location='<%= dashboard_path %>'">No, thanks</button>
+            <div data-bs-target="#open-mood-modal"> <%= f.button :submit, "Add suggestion", class: "button-accept"%></div>
+            </div>
+            </div>
+          <% end %>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

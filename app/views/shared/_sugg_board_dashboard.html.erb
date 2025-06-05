@@ -1,7 +1,7 @@
 <% @suggestions = Suggestion.order(created_at: :desc) %>
 
-   
-    <h5>LATEST SUGGESTIONS</h5>
+
+    <h5 id="sugg-dash-h5">LATEST SUGGESTIONS</h5>
     <p id="warning-dash"> ❗️ Please be respectful and constructive in your suggestions. You will not be able to delete them after submitting. ❗️ </p>
       <div class='suggestions-main'>
         <% if @suggestions.any? %>

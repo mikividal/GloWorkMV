@@ -1,10 +1,15 @@
-<turbo-frame id="modal-output">
-  <div class="container text-center">
-    <div id="comment-form">
-      <div class="modal-card" id="yesno-card">
-        <h1 class="mt-5">HOW DO YOU FEEL TODAY?</h1>
-        <%= render 'moodsubmitform' %>
-      </div>
-    </div>
-  </div>
-</turbo-frame>
+<div id="welcomeModal">
+  <%= render 'shared/open_mood_modal' %>
+</div>
+
+<% if @show_mood_modal %>
+<script>
+  document.addEventListener('turbo:load', () => {
+    const modalElement = document.getElementById('open-mood-modal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  });
+</script>
+<% end %>
