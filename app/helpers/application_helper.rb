@@ -7,30 +7,31 @@ module ApplicationHelper
 
   def mood_trend_text(mood, change)
     mood_icon = { happy: "😀", neutral: "😐", sad: "☹️" }[mood]
+    # range = { week: "week", month: "month", months: "6 months" }
 
     if change.positive?
-      trend = "↑"
+      trend = "📈"
       description = "more"
     elsif change.negative?
-      trend = "↓"
+      trend = "📉"
       description = "less"
     else
-      trend = "→"
-      description = "same"
+      trend = "🟰"
+      description = " "
     end
 
-    "#{change.abs}% #{description} #{mood}"
+    " #{trend} #{change.abs}% #{description} #{mood} than #{@range} "
   end
 
   def filtered_moodtrackers_by(moods, range, previous: false)
     case range
-    when "6months"
+    when "last 6 months"
       from = previous ? 1.year.ago : 6.months.ago
       to = previous ? 6.months.ago : Time.current
-    when "1month"
+    when "last month"
       from = previous ? 2.months.ago : 1.month.ago
       to = previous ? 1.month.ago : Time.current
-    when "7days"
+    when "last week"
       from = previous ? 14.days.ago : 7.days.ago
       to = previous ? 7.days.ago : Time.current
     else

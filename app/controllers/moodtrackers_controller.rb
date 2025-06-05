@@ -17,7 +17,7 @@ class MoodtrackersController < ApplicationController
   end
 
   def show
-    @range = params[:range] || "7days"
+    @range = params[:range] || "7 days"
     @moodtrackers = filtered_moodtrackers(@range)
     @percentage = user_percentage(@moodtrackers, current_user)
     @users = if current_user.admin?
@@ -28,9 +28,9 @@ class MoodtrackersController < ApplicationController
     @team = team_percentage(@moodtrackers)
     @company = calculate_percentages(@moodtrackers)
     team_users = User.where(team: current_user.team)
-    @team_trends = mood_trends(Moodtracker.where(user: team_users), params[:range] || "7days")
-    @company_trends = mood_trends(Moodtracker.all, params[:range] || "7days")
-    @user_trends = mood_trends(Moodtracker.where(user: current_user), params[:range] || "7days")
+    @team_trends = mood_trends(Moodtracker.where(user: team_users), params[:range] || "7 days")
+    @company_trends = mood_trends(Moodtracker.all, params[:range] || "7 days")
+    @user_trends = mood_trends(Moodtracker.where(user: current_user), params[:range] || "7 days")
   end
 
   def edit
@@ -71,11 +71,11 @@ class MoodtrackersController < ApplicationController
 
   def filtered_moodtrackers(range)
     case range
-    when "6months"
+    when "6 months"
       Moodtracker.where("date >= ?", 6.months.ago)
-    when "1month"
+    when "last month"
       Moodtracker.where("date >= ?", 1.month.ago)
-    when "7days"
+    when "7 days"
       Moodtracker.where("date >= ?", 7.days.ago)
     else
       Moodtracker.all
