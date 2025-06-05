@@ -24,26 +24,26 @@ class ApplicationController < ActionController::Base
 
   def mood_bar_methods
     if user_signed_in?
-      @range = "7days"
+      @range = "last week"
       @moodtrackers = filtered_moodtrackers(@range)
       @color_company = calculate_percentages(@moodtrackers)[:emojis][0][2]
       @emoji_company = calculate_percentages(@moodtrackers)[:emojis][0][1]
       @color_team = team_percentage(@moodtrackers)[:emojis][0][2]
       @emoji_team = team_percentage(@moodtrackers)[:emojis][0][1]
 
-      @user_trends = mood_trends(Moodtracker.where(user: current_user), params[:range] || "7days")
+      @user_trends = mood_trends(Moodtracker.where(user: current_user), params[:range] || "last week")
     end
   end
 
   def filtered_moodtrackers_by(moods, range, previous: false)
     case range
-    when "6months"
+    when "last 6 months"
       from = previous ? 1.year.ago : 6.months.ago
       to = previous ? 6.months.ago : Time.current
-    when "1month"
+    when "last month"
       from = previous ? 2.months.ago : 1.month.ago
       to = previous ? 1.month.ago : Time.current
-    when "7days"
+    when "last week"
       from = previous ? 14.days.ago : 7.days.ago
       to = previous ? 7.days.ago : Time.current
     else
@@ -79,11 +79,11 @@ class ApplicationController < ActionController::Base
 
   def filtered_moodtrackers(range)
     case range
-    when "6months"
+    when "last 6 months"
       Moodtracker.where("date >= ?", 6.months.ago)
-    when "1month"
+    when "last month"
       Moodtracker.where("date >= ?", 1.month.ago)
-    when "7days"
+    when "last week"
       Moodtracker.where("date >= ?", 7.days.ago)
     else
       Moodtracker.all
