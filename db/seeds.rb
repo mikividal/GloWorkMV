@@ -100,35 +100,46 @@ marketing4 = User.create!(
 )
 
 admin1 = User.create!(
-  first_name: "Bruno",
+  first_name: "Bruna",
   last_name: "Bond",
-  email: "admin1@glowork.com",
+  email: "admin1@glowork.online",
   admin: true,
   job_position: "Sales Manager",
   team: "Sales",
   location: Faker::Address.country,
-  password: "secret"
+  password: "GloWork2025"
 )
 admin2 = User.create!(
   first_name: "Mimi",
   last_name: "James",
-  email: "admin2@glowork.com",
+  email: "admin2@glowork.online",
   admin: true,
   job_position: "Marketing Manager",
   team: "Marketing",
   location: Faker::Address.country,
-  password: "secret"
+  password: "GloWork2025"
 )
 
 user = User.create!(
   first_name: "Jane",
   last_name: "Smith",
-  email: "user@glowork.com",
+  email: "user1@glowork.online",
   admin: false,
   job_position: "Employee",
   team: "Sales",
   location: Faker::Address.country,
-  password: "secret"
+  password: "GloWork2025"
+)
+
+user2 = User.create!(
+  first_name: "Paul",
+  last_name: "Holmes",
+  email: "user2@glowork.online",
+  admin: false,
+  job_position: "Employee",
+  team: "Sales",
+  location: Faker::Address.country,
+  password: "GloWork2025"
 )
 
 puts "#{User.count} users created"
@@ -139,6 +150,14 @@ puts"creating moodtrackers"
     mood: (1..3).to_a.sample,
     date: rand(start_date..end_date),
     user: user
+  )
+end
+
+100.times do
+  Moodtracker.create!(
+    mood: (1..3).to_a.sample,
+    date: rand(start_date..end_date),
+    user: user2
   )
 end
 
@@ -193,17 +212,17 @@ puts "#{Moodtracker.count} moodtracker created"
 puts "creating suggestions"
 
 suggestion1 = Suggestion.create!(
-  suggestion: Faker::Lorem.sentence,
+  suggestion: "Summer Fridays",
   date: rand(start_date..end_date),
-  actioned: false
+  actioned: true
 )
 suggestion2 = Suggestion.create!(
-  suggestion: Faker::Lorem.sentence,
+  suggestion: "Mental health training for managers",
   date: rand(start_date..end_date),
-  actioned: false
+  actioned: true
 )
 suggestion3 = Suggestion.create!(
-  suggestion: Faker::Lorem.sentence,
+  suggestion: "4 day weeks",
   date: rand(start_date..end_date),
   actioned: false
 )
@@ -211,22 +230,22 @@ puts "#{Suggestion.count} suggestions created"
 puts "creating comments"
 
 comment1 = SuggestionsComment.create!(
-  comment: Faker::Lorem.sentence,
+  comment: "Amazing idea!",
   user: sales1,
   suggestion: suggestion1
 )
 comment2 = SuggestionsComment.create!(
-  comment: Faker::Lorem.sentence,
+  comment: "Love it",
   user: sales2,
   suggestion: suggestion1
 )
 comment3 = SuggestionsComment.create!(
-  comment: Faker::Lorem.sentence,
+  comment: "That'll be so useful",
   user: sales3,
   suggestion: suggestion2
 )
 comment4 = SuggestionsComment.create!(
-  comment: Faker::Lorem.sentence,
+  comment: "lol",
   user: sales1,
   suggestion: suggestion3
 )
@@ -234,8 +253,8 @@ puts "#{SuggestionsComment.count} suggestions_comments created"
 
 puts "Creating Events..."
 
-Event.create!(event_name: "End of bootcamp party", start_date: DateTime.new(2025, 6, 4, 18, 0, 0), end_date: DateTime.new(2025, 6, 4, 21, 0, 0), location: "London", user: admin1)
-Event.create!(event_name: "Catch-up Meeting", start_date: DateTime.new(2025, 6, 24, 14, 0, 0), end_date: DateTime.new(2025, 6, 25, 16, 0, 0), location: "Liverpool", user: admin1)
-Event.create!(event_name: "Summer Meeting", start_date: DateTime.new(2025, 5, 3, 11, 0, 0), end_date: DateTime.new(2025, 5, 3, 12, 0, 0), location: "Manchester", user: admin1)
+Event.create!(event_name: "Office party", start_date: DateTime.new(2025, 6, 4, 18, 0, 0), end_date: DateTime.new(2025, 6, 4, 21, 0, 0), location: "London", user: admin1)
+Event.create!(event_name: "Catch-up Meeting", start_date: DateTime.new(2025, 6, 27, 14, 0, 0), end_date: DateTime.new(2025, 6, 27, 16, 0, 0), location: "Liverpool", user: admin1)
+Event.create!(event_name: "Summer Meeting", start_date: DateTime.new(2025, 8, 10, 11, 0, 0), end_date: DateTime.new(2025, 8, 10, 12, 0, 0), location: "Manchester", user: admin1)
 
 puts "#{Event.count} events created"
