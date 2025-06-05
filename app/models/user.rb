@@ -23,7 +23,8 @@ class User < ApplicationRecord
   end
 
   def display_email
-  "#{email.split('@').first}@glowork.com"
+    return unless first_name.present? && last_name.present?
+    "#{first_name[0].downcase}.#{last_name.downcase}@glowork.com"
   end
 
   def capitalized_full_name

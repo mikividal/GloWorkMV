@@ -8,7 +8,8 @@
             data-job-position="<%= user.job_position %>"
             data-team="<%= user.team %>"
             data-location="<%= user.capitalized_location %>"
-            data-email="<%= user.display_email %>">
+            data-email="<%= user.display_email %>"
+            data-avatar-url="https://api.dicebear.com/9.x/avataaars/svg?seed=<%= user.id %>">
           <div class="member-card">
             <%= image_tag(
               "https://api.dicebear.com/9.x/avataaars/svg?seed=#{user.id}",
