@@ -1,7 +1,7 @@
 <div class="events-dash-box">
   <h5>UPCOMING EVENTS</h5>
 
-  <% @events.order(created_at: :desc).take(3).each_with_index do |event, index| %>
+  <% @events.each_with_index do |event, index| %>
     <% color_class = case index
       when 0, 2 then 'periwinkle-bg'
       when 1 then 'peach-bg'

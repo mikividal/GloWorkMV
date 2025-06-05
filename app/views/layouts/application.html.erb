@@ -17,7 +17,7 @@
       <%= render "shared/navbar" %>
     <% end %>
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? && !current_page?(new_moodtracker_path) %>
       <%= render 'shared/mood_bar', color_team: @color_team, color_company: @color_company, emoji_team: @emoji_team, emoji_company: @emoji_company%>
     <% end %>
 
