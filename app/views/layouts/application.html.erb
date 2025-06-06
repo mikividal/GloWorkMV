@@ -21,7 +21,14 @@
       <%= render 'shared/mood_bar', color_team: @color_team, color_company: @color_company, emoji_team: @emoji_team, emoji_company: @emoji_company%>
     <% end %>
 
+
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
     <%= yield %>
+
+
+    <div class="footer">
+    <%= render "shared/footer" %>
+    </div>
+
   </body>
 </html>

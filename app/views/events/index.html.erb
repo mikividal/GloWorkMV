@@ -105,10 +105,12 @@
                 </p>
               </div>
               <div class="modal-footer">
+              <% if current_user.admin? %>
                 <%= link_to "Delete", event_path(meeting), data: {turbo_method: :delete}, class: "button-cancel" %>
                 <button class="button-accept" data-bs-toggle="modal" data-bs-target="#Modal2-<%= meeting.id %>" data-bs-dismiss="modal">
                   Edit Event
                 </button>
+                <% end %>
               </div>
             </div>
           </div>

@@ -23,9 +23,9 @@
     <div class="login-form">
     <%= form_for(User.new, url: new_user_session_path) do |f| %>
     <%= f.label :email %>
-    <%= f.email_field :email, placeholder: "Email" %>
+    <%= f.email_field :email, placeholder: "Email", id: "visitor-form-field"  %>
     <%= f.label :password %>
-    <%= f.password_field :password, placeholder: "••••••" %>
+    <%= f.password_field :password, placeholder: "••••••", id: "visitor-form-field"  %>
     <%= f.submit "Log in", class: "btn btn-primary" %>
   <% end %>
   </div>

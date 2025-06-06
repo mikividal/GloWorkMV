@@ -112,13 +112,13 @@
     ;
 }
 
-.login-form input {
+#visitor-form-field{
     width: 100%;
     padding: 8px;
     margin-top: 5px;
     border: 1px solid $porcelain;
     border-radius: 8px;
-    background-color: $porcelain
+    background-color: $porcelain;
 }
 
 .login-form .btn-primary {
