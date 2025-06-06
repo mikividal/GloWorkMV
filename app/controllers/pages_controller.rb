@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @range = params[:range] || "7 days"
+    @range = params[:range] || "last week"
     @moodtrackers = filtered_moodtrackers(@range)
     @percentage = user_percentage(@moodtrackers, current_user)
     @suggestions = Suggestion.order(:created_at)
