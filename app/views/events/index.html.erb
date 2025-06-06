@@ -152,7 +152,10 @@
 
 
 <script>
+  document.addEventListener('turbo:load', () => {
   const modalElement = document.getElementById('exampleModal');
+  if (!modalElement) return;
+
   const bootstrapModal = new bootstrap.Modal(modalElement);
 
   document.querySelectorAll('.simple-calendar td').forEach(td => {
@@ -162,13 +165,24 @@
 
       if (clickedDate < today) return;
 
+      // 🧹 Manually close any open modals and remove leftover backdrops
+      document.querySelectorAll('.modal.show').forEach(openModal => {
+        bootstrap.Modal.getInstance(openModal)?.hide();
+      });
+
+      document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+
+      // Set the start date for the new event
       const startDateInput = modalElement.querySelector('input[name="event[start_date]"]');
       if (startDateInput) {
         const dateValue = clickedDate + 'T09:00';
         startDateInput.value = dateValue;
       }
 
+      // Show the create event modal
       bootstrapModal.show();
     });
   });
+});
+
 </script>

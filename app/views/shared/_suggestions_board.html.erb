@@ -27,7 +27,7 @@
       <p id="warning"> ❗️ Please be respectful and constructive in your suggestions. You will not be able to delete them after submitting. ❗️ </p>
         <%= simple_form_for(Suggestion.new) do |f| %>
         <div class=suggestion-container">
-          <%= f.text_area :suggestion, placeholder: "Type your suggestion here...", label: false, class: "suggestion-textbox" %>
+          <%= f.text_area :suggestion, placeholder: "Type your suggestion here... It will be anonymous", label: false, class: "suggestion-textbox" %>
          <%= button_tag '<i class="fa-solid fa-paper-plane"></i>'.html_safe, type: "submit", class: "button-suggestion-send" %>
         </div>
 
