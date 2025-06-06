@@ -1,17 +1,7 @@
-.sign-up-container{
-  margin: 20px auto;
-  height: 600px;
-  width: 80%;
-  text-align: center;
-  box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
-  padding: 10%;
-  border-radius: 8%;
-}
-
 #new_user{
   height:fit-content;
 }
-#login{
+#login, #signin {
   width: 50%;
   margin: 20px auto;
   box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
@@ -19,9 +9,10 @@
   border-radius: 16px;
 }
 
-#login-button{
+#login-button, #signup-button {
   justify-items: center;
   text-align: center;
+  color: $lilac;
 
 }
 #user_email {
@@ -31,6 +22,12 @@
 }
 #user_password{
   height: 50px;
+  background-color: #CCCCFF;
+  opacity: 0.5;
+}
+
+#user_password_confirmation {
+    height: 50px;
   background-color: #CCCCFF;
   opacity: 0.5;
 }

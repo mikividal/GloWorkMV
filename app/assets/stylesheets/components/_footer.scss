@@ -1,0 +1,39 @@
+.footer {
+  background: $periwinkle;
+  display: flex;
+  justify-content: space-between; // pushes left and right sides
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  color: $porcelain;
+  margin-top: 20px;
+
+  .footer-links {
+    padding: 0px 50px;
+    display: flex;
+    align-items: center;
+
+    a {
+      color: $porcelain;
+      text-decoration: none;
+      font-size: 24px;
+      padding: 0 10px;
+
+      &:hover {
+        color: $lilac;
+        opacity: 1;
+      }
+    }
+  }
+
+  .fa-heart {
+    color: #D23333;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0px 50px;
+  }
+}
