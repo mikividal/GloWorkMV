@@ -1,19 +1,35 @@
 .calendar-wrapper {
-    display: flex;
-    margin-top: 20px;
-    justify-content: center;
-    height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin: 20px auto;
+      max-width: 1200px;
+      padding: 0 10px;
 
     .calendar-container {
-      width: 63%;
+      flex: 1 1 80%;
+      max-width: 800px;
+      width: auto;
+      background-color: $porcelain;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+      margin: 20px auto auto auto;
+    }
     }
     .events-list-container {
+     
       width: 35%;
       display: flex;
       justify-content: center;
     }
       .events-box {
-        margin: 15px auto;
+        margin: 20px auto;
+        background-color: $porcelain;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
 
         h5 {
         font-weight: 700;
@@ -78,4 +94,3 @@
       margin-bottom: 10px;
     }
   }
-}

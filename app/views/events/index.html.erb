@@ -21,7 +21,7 @@
     <% if current_user.admin? %>
       <!-- Modal: Create New Event -->
       <div class="modal fade one" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Create Event</h1>
@@ -85,13 +85,6 @@
           <% end %>
     </div>
 
-
-
-
-
-
-
-
       <% @events.each do |meeting| %>
         <!-- Modal 1: View Info -->
         <div class="modal fade two event-info" id="Modal1-<%= meeting.id %>" tabindex="-1" aria-labelledby="Modal1Label-<%= meeting.id %>" aria-hidden="true">
@@ -102,6 +95,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+              <p><strong>Description: </strong><%= meeting.description %> </p>
+              <p><strong>Location: </strong><%= meeting.location %></p>
                 <p><strong>Start Date:</strong>
                   <%= meeting.start_date.present? ? meeting.start_date.strftime("%A, %d %b %Y %l:%M %p") : "Not set" %>
                 </p>
@@ -153,8 +148,8 @@
 
 
 
+
 <script>
-d<script>
   const modalElement = document.getElementById('exampleModal');
   const bootstrapModal = new bootstrap.Modal(modalElement);
 
@@ -174,7 +169,4 @@ d<script>
       bootstrapModal.show();
     });
   });
-</script>
-
-
 </script>
