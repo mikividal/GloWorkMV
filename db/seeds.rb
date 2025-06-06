@@ -100,7 +100,7 @@ marketing4 = User.create!(
 )
 
 admin1 = User.create!(
-  first_name: "Bruna",
+  first_name: "Agnes",
   last_name: "Bond",
   email: "admin1@glowork.online",
   admin: true,
@@ -121,7 +121,7 @@ admin2 = User.create!(
 )
 
 user = User.create!(
-  first_name: "Jane",
+  first_name: "Mohamed",
   last_name: "Smith",
   email: "user1@glowork.online",
   admin: false,
