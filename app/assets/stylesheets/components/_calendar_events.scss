@@ -1,53 +1,81 @@
-  .calendar-wrapper {
+.calendar-wrapper {
     display: flex;
     margin-top: 20px;
     justify-content: center;
     height: 80%;
 
-  .calendar-container {
-    width: 63%;
+    .calendar-container {
+      width: 63%;
+    }
+    .events-list-container {
+      width: 35%;
+      display: flex;
+      justify-content: center;
+    }
+      .events-box {
+        margin: 15px auto;
 
-  }
+        h5 {
+        font-weight: 700;
+        margin: 0;
+        line-height: 1;
+        margin-bottom: 20px;
+        }
+      }
 
-  .events-list-container {
-    width: 35%;
-
-  }
-
-    .upcoming-list {
-
+    .events-gap {
+      width: 2%;
     }
 
-  .events-gap {
-    width: 2%;
-  
-  }
-
-
-  }
-
-
   /* Modal backdrop */
-#new-event-modal {
-  position: fixed;       /* Sit on top of the page */
-  top: 0;
-  left: 0;
-  width: 100vw;          /* Full viewport width */
-  height: 100vh;         /* Full viewport height */
-  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
-  display: flex;         /* Use flexbox to center */
-  justify-content: center; /* Center horizontally */
-  align-items: center;     /* Center vertically */
-  z-index: 1000;         /* On top of other content */
-}
+  #new-event-modal {
+    position: fixed;       /* Sit on top of the page */
+    top: 0;
+    left: 0;
+    width: 100vw;          /* Full viewport width */
+    height: 100vh;         /* Full viewport height */
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+    display: flex;         /* Use flexbox to center */
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    z-index: 1000;         /* On top of other content */
+  }
+  /* Modal content box */
+  #new-event-modal .modal-content {
+    background-color: FDF9F8;
+    padding: 20px 30px;
+    border-radius: 10px;
+    width: 400px;          /* Fixed width */
+    max-width: 90vw;       /* Responsive for small screens */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  #event_event_name, #event_date_range, #event_location {
+    background-color: #ccccff79;
+    height: 50px;
+  }
+    #event_description {
+      background-color: #ccccff79;
+      height: 100px;
+    }
+    .date-picker {
+      display: flex;
+      justify-content: space-between;
+    }
+    #event_start_date, #event_end_date {
+    border: none;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #ccccff79;
+    text-align: center;
+    }
+  .button-div, .event-edit-btn {
+    display: flex;
+    justify-content: flex-end;
 
-/* Modal content box */
-#new-event-modal .modal-content {
-  background-color: white;
-  padding: 20px 30px;
-  border-radius: 10px;
-  width: 400px;          /* Fixed width */
-  max-width: 90vw;       /* Responsive for small screens */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  position: relative;
+    .button-accept {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
 }
