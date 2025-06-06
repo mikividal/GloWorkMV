@@ -29,7 +29,7 @@
           <div class="open-sugg-form">
           <%= simple_form_for(Suggestion.new) do |f| %>
             <div class="suggestion-container-modal">
-              <%= f.text_area :suggestion, placeholder: "Type your suggestion here...", label: false, class: "suggestion-textbox" %>
+              <%= f.text_area :suggestion, placeholder: "Type your suggestion here... It will be anonymous", label: false, class: "suggestion-textbox" %>
             </div>
             <div class="open-sugg-buttons">
             <button class="button-cancel" type="button" onclick="window.location='<%= dashboard_path %>'">No, thanks</button>
