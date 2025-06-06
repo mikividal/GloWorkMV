@@ -1,80 +1,151 @@
 .simple-calendar {
+
+  .next-month {
+    background-color: #ffba9751;
+    color: #62566f27;
+  }
+
+  .prev-month {
+    background-color: #ffba9751;
+    color: #62566f27;
+  }
+
+  .today {
+    border: 3px solid #CCCCFF !important;
+  }
+
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #FDF9F8;
   color: #62566F;
+  padding: 10px;
 
-  table {
-    max-width: 60%;
-    height: 300px;
-    margin-left: 20px;
-    border-radius: 10%;
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  th {
-    padding: 10px;
-    text-align: center;
-    color: #62566F;
-    font-size: 20px;
+  nav p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+
+#back-icon a, #forward-icon a {
+  display: inline-flex;
+  align-items: center;
+  font-size: 20px;
+  line-height: 1;
+  color: #62566F;
+}
+
+
+  #today-icon a{
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  line-height: 1;
+  color: #62566F;
+  padding: 0px 10px;
   }
 
-  td {
-    padding: 6px;
-    border: 1px solid #62566f2e;
-    width: 80px !important;
-    height: 80px !important;
-    overflow: hidden;
-    box-sizing: border-box;
-    white-space: nowrap; /* Prevents text wrapping */
-    display: table-cell; /* Ensures strict table behavior */
-    vertical-align: top;
-  }
+  .calendar-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 
-  #new-event-indicator {
-    width: 80px;
-    height: 30px;
-    background-color: #CCCCFF;
-    border: none;
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-
-    p {
-      font-size: 9px;
-      margin: 0;
+    h5 {
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
     }
   }
 
-  .card-calendar-body {
-  width: 80px !important;
-  height: 80px !important;
-  }
+  .calendar-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 16px;
 
-  .calendar-title {
-    font-size: 30px;
-    margin-top: 40px;
-    margin-left: 20px;
-    font-weight: 600;
-  }
-
-  .nav .month-navs {
-   p {
-    color: #62566F;
-    font-size: 24px;
-    font-weight: 600;
+    th {
+      font-size: 16px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #62566F;
+      background-color: #FDF9F8;
+      padding: 10px;
     }
-  }
 
-  .calendar-heading nav {
-    display: inline-block;
+    td {
+      border: 1px solid #62566f37;
+      color: #62566F;
+      width: 80px;
+      height: 80px;
+      max-width: 80px;
+      max-height: 80px;
+      text-align: left;
+      vertical-align: top;
+      padding: 6px;
+      aspect-ratio: 1 / 1;  /* Forces square */
+
+
+      &.top-left {
+        border-top-left-radius: 16px;
+      }
+
+      &.top-right {
+        border-top-right-radius: 16px;
+      }
+
+      &.bottom-left {
+        border-bottom-left-radius: 16px;
+      }
+
+      &.bottom-right {
+        border-bottom-right-radius: 16px;
+      }
+
+      &:active {
+        background-color: #FFB997;
+      }
+    }
   }
 
   .today {
     border: 3px solid #CCCCFF;
   }
 
-  .prev-month {
-    background: #ffba974b;
+  .new-event-indicator {
+    height: 20px;
+    background-color: #CCCCFF;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    margin: 5px 0;
+    max-width: 75px;
+
+    p {
+      font-size: 12px;
+      margin: 0;
+    }
   }
 
-  .next-month {
-    background: #ffba974b;
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 75px;
   }
 }

@@ -18,11 +18,12 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @events = Event.all
     @event.user = current_user
     if @event.save
       redirect_to events_path
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
