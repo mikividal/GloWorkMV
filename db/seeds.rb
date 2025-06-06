@@ -138,7 +138,7 @@ user2 = User.create!(
   admin: false,
   job_position: "Employee",
   team: "Sales",
-  location: Faker::Address.country,
+  location: "Australia",
   password: "GloWork2025"
 )
 
