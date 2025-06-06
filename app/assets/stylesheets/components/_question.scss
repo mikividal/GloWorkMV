@@ -1,5 +1,5 @@
 .chatbot {
-  background: white;
+  background: $porcelain;
   margin-top: 9px;
   height: 65vh;
   display: flex;
@@ -7,6 +7,7 @@
   justify-content: space-between;
   flex-grow: 1;
   box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
 
 
   #questions {
@@ -57,10 +58,25 @@
 
   #question_user_question{
     margin-bottom: 0px;
+    background-color: #ccccff76;
+    border: none;
+  }
+
+  #question_user_question:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
   }
 
   #new-question-button{
-    color: $lilac;
+    color: $porcelain;
     font-size: 16px;
+    background-color: $peach;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $blush;
+    }
+
   }
 }

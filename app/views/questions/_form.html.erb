@@ -3,8 +3,8 @@
 %>
   <div class="input-group mb-3 w-100">
     <div class="form-floating" id="chatform">
-      <%= f.input :user_question, label: false, wrapper: false %>
-      <%= f.label :user_question, "Your question" %>
+      <%= f.input :user_question, label: false, wrapper: false, placeholder: "Type your questions here..." %>
+      <%# <%= f.label :user_question, placeholder: "Type your questions here...", label: false %> 
     </div>
     <%= f.submit "Ask", id: "new-question-button", class: "btn btn-primary" %>
   </div>
