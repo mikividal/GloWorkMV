@@ -9,6 +9,8 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.user = current_user
     if @question.save
+      ChatbotJob.perform_later(@question.id)  # Ejecuta el job con el ID
+
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.append(:questions, partial: "questions/question",
